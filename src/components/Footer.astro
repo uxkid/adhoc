@@ -1,0 +1,134 @@
+---
+---
+<footer id="footer">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="/" aria-label="Adhoc — inicio">
+          <img src="/logos/logo-inverse.svg" alt="Adhoc" width="120" height="40" class="foot-logo">
+        </a>
+        <p class="foot-desc">Partner #1 de Odoo a nivel mundial. Ayudamos a empresas a ordenar, automatizar y escalar sus operaciones.</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Implementación Odoo</a></li>
+          <li><a href="#">Desarrollos a medida</a></li>
+          <li><a href="#">Migración de sistemas</a></li>
+          <li><a href="#">Soporte consultivo</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="#">Casos de éxito</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Trabajá con nosotros</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:hola@adhoc.inc">hola@adhoc.inc</a></li>
+          <li><a href="#">Buenos Aires</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+        <div class="foot-cta">
+          <button class="btn btn--secondary btn--sm">Solicitar demo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p>© 2025 Adhoc SRL. Todos los derechos reservados.</p>
+      <p>Partner #1 de Odoo a nivel mundial</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  #footer {
+    background: var(--color-ink);
+    color: #E9E5DF;
+    padding: 72px 0 36px;
+  }
+
+  .foot-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+
+  .foot-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .foot-logo {
+    height: 40px;
+    width: auto;
+  }
+
+  .foot-desc {
+    font-size: 0.875rem;
+    color: rgba(233, 229, 223, 0.55);
+    line-height: 1.65;
+  }
+
+  .foot-col h4 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(233, 229, 223, 0.35);
+    margin-bottom: 16px;
+  }
+
+  .foot-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .foot-col ul li a {
+    font-size: 0.875rem;
+    color: rgba(233, 229, 223, 0.65);
+    transition: color 0.15s;
+    text-decoration: none;
+  }
+
+  .foot-col ul li a:hover {
+    color: #E9E5DF;
+  }
+
+  .foot-cta {
+    margin-top: 20px;
+  }
+
+  .foot-bottom {
+    border-top: 1px solid rgba(233, 229, 223, 0.1);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .foot-bottom p {
+    font-size: 0.75rem;
+    color: rgba(233, 229, 223, 0.3);
+  }
+
+  @media (max-width: 767px) {
+    .foot-top {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

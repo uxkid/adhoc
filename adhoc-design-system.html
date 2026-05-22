@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Adhoc</title>
+<style>
+/* ── FONTS ─────────────────────────────────────────── */
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-Regular.otf");font-weight:400;font-display:swap;}
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-Medium.otf");font-weight:500;font-display:swap;}
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-SemiBold.otf");font-weight:600;font-display:swap;}
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-Bold.otf");font-weight:700;font-display:swap;}
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-RegularItalic.otf");font-weight:400;font-style:italic;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Light.ttf");font-weight:300;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Regular.ttf");font-weight:400;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Medium.ttf");font-weight:500;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Bold.ttf");font-weight:700;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Italic.ttf");font-weight:400;font-style:italic;font-display:swap;}
+
+/* ── TOKENS ────────────────────────────────────────── */
+:root {
+  /* Primitives */
+  --p-black:       #000000;
+  --p-beige:       #E9E5DF;
+  --p-white:       #FFFFFF;
+  --p-violet:      #7C6CD8;
+  --p-lavender:    #BCAFEF;
+  --p-coral:       #FF7348;
+  --p-mustard:     #FEA912;
+  --p-violet-dark: #6B5CC4;
+  --p-coral-dark:  #E85F35;
+  --p-gray-1:      #4A4A4A;
+  --p-gray-2:      #888888;
+  --p-gray-3:      #D4CFC6;
+
+  /* Semantic */
+  --canvas:        var(--p-beige);
+  --surface:       var(--p-white);
+  --ink:           var(--p-black);
+  --primary:       var(--p-violet);
+  --primary-h:     var(--p-violet-dark);
+  --primary-c:     var(--p-lavender);
+  --secondary:     var(--p-coral);
+  --secondary-h:   var(--p-coral-dark);
+  --tertiary:      var(--p-mustard);
+  --text-1:        var(--p-black);
+  --text-2:        var(--p-gray-1);
+  --text-3:        var(--p-gray-2);
+  --border-subtle: var(--p-gray-3);
+  --border-strong: var(--p-black);
+
+  /* Radius */
+  --r-none: 0px;
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  40px;
+  --r-pill: 999px;
+
+  /* Spacing */
+  --sp-xxs: 4px;
+  --sp-xs:  8px;
+  --sp-sm:  12px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  --sp-4xl: 96px;
+
+  /* Elevation */
+  --sh-none: none;
+  --sh-sm:   0 1px 2px rgba(0,0,0,.04);
+  --sh-md:   0 4px 12px rgba(0,0,0,.06);
+  --sh-lg:   0 12px 32px rgba(0,0,0,.08);
+}
+
+/* ── RESET ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--canvas);color:var(--ink);font-family:"Apercu Pro","Inter",sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;display:flex;min-height:100vh;}
+
+/* ── SIDEBAR ───────────────────────────────────────── */
+#sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--ink);
+  color: #E9E5DF;
+  overflow-y: auto;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sb-logo {
+  padding: 0 24px 24px;
+  border-bottom: 1px solid rgba(233,229,223,.1);
+  margin-bottom: 16px;
+}
+.sb-logo img { height: 52px; width: auto; display: block; }
+.sb-version {
+  font-size: .65rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+  color: rgba(233,229,223,.3); padding: 0 24px; margin-bottom: 20px;
+}
+.sb-section-lbl {
+  font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(233,229,223,.3); padding: 16px 24px 6px; margin-top: 8px;
+}
+.sb-link {
+  display: block; padding: 8px 24px; font-size: .8125rem; font-weight: 500;
+  color: rgba(233,229,223,.6); text-decoration: none; transition: color .15s, background .15s;
+  border-left: 2px solid transparent;
+}
+.sb-link:hover { color: #E9E5DF; background: rgba(233,229,223,.05); }
+.sb-link.active { color: #E9E5DF; border-left-color: var(--primary-c); background: rgba(233,229,223,.06); }
+
+/* ── MAIN CONTENT ──────────────────────────────────── */
+#main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* ── PAGE HEADER ───────────────────────────────────── */
+.page-header {
+  background: var(--ink); color: #E9E5DF;
+  padding: 64px 64px 56px;
+  border-bottom: 1px solid rgba(233,229,223,.1);
+}
+.page-header-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.1); color: rgba(233,229,223,.7);
+  font-size: .72rem; font-weight: 500; letter-spacing: .05em;
+  padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
+}
+.page-header h1 {
+  font-family: "New Kansas",Georgia,serif; font-weight: 500;
+  font-size: 3rem; line-height: 1.1; letter-spacing: -.02em; color: #fff;
+  margin-bottom: 12px;
+}
+.page-header p {
+  font-size: 1rem; color: rgba(233,229,223,.6); max-width: 520px; line-height: 1.65;
+}
+
+/* ── SECTION ───────────────────────────────────────── */
+.section {
+  padding: 72px 64px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.section:last-child { border-bottom: none; }
+.section-header { margin-bottom: 48px; }
+.section-header h2 {
+  font-family: "New Kansas",Georgia,serif; font-weight: 500;
+  font-size: 2rem; line-height: 1.15; letter-spacing: -.015em;
+  margin-bottom: 8px;
+}
+.section-header p { font-size: .9375rem; color: var(--text-2); max-width: 560px; line-height: 1.65; }
+.subsection { margin-bottom: 52px; }
+.subsection:last-child { margin-bottom: 0; }
+.subsection-lbl {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.subsection-lbl::after {
+  content: ""; flex: 1; height: 1px; background: var(--border-subtle);
+}
+
+/* ── TOKEN TABLE ───────────────────────────────────── */
+.token-table { width: 100%; border-collapse: collapse; }
+.token-table th {
+  text-align: left; padding: 8px 16px; font-size: .72rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--text-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.token-table td { padding: 12px 16px; border-bottom: 1px solid #F2EEE8; vertical-align: middle; font-size: .875rem; }
+.token-table tr:last-child td { border-bottom: none; }
+.token-name { font-family: "Apercu Pro",monospace; font-size: .78rem; color: var(--primary); background: rgba(124,108,216,.08); padding: 2px 8px; border-radius: 4px; }
+.token-value { font-family: "Apercu Pro",monospace; font-size: .78rem; color: var(--text-2); }
+.token-desc { font-size: .8125rem; color: var(--text-2); }
+.color-chip { width: 28px; height: 28px; border-radius: 6px; display: inline-block; vertical-align: middle; border: 1px solid rgba(0,0,0,.08); }
+
+/* ── COLOR GRID ────────────────────────────────────── */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.color-swatch {
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--sh-md);
+}
+.color-swatch-bar { height: 96px; }
+.color-swatch-info {
+  background: var(--surface); padding: 14px 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.color-swatch-name { font-family: "Apercu Pro",sans-serif; font-size: .8125rem; font-weight: 700; margin-bottom: 2px; }
+.color-swatch-hex { font-family: "Apercu Pro",monospace; font-size: .72rem; color: var(--text-3); }
+.color-swatch-role { font-size: .7rem; color: var(--text-3); margin-top: 4px; }
+
+/* ── TYPOGRAPHY SCALE ──────────────────────────────── */
+.type-row {
+  padding: 24px 0; border-bottom: 1px solid var(--border-subtle);
+  display: grid; grid-template-columns: 1fr 200px;
+  gap: 24px; align-items: baseline;
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.type-meta-name { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-3); }
+.type-meta-detail { font-size: .75rem; color: var(--primary); font-family: "Apercu Pro",monospace; text-align: right; }
+
+/* ── SPACING SCALE ─────────────────────────────────── */
+.spacing-grid { display: flex; flex-direction: column; gap: 12px; }
+.spacing-row { display: flex; align-items: center; gap: 20px; }
+.spacing-bar { background: var(--primary-c); border-radius: 4px; height: 20px; min-width: 4px; transition: width .2s; }
+.spacing-label { font-family: "Apercu Pro",monospace; font-size: .78rem; color: var(--text-2); min-width: 60px; }
+.spacing-value { font-family: "Apercu Pro",monospace; font-size: .78rem; color: var(--primary); }
+
+/* ── RADIUS SCALE ──────────────────────────────────── */
+.radius-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.radius-sample {
+  width: 80px; height: 80px; background: var(--primary-c);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 10px;
+  font-family: "Apercu Pro",monospace; font-size: .68rem; color: var(--primary);
+  font-weight: 600;
+}
+
+/* ── ELEVATION ─────────────────────────────────────── */
+.elevation-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+.elevation-sample {
+  width: 120px; height: 80px; background: var(--surface); border-radius: var(--r-lg);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px;
+  font-size: .72rem; color: var(--text-3); font-weight: 600;
+}
+
+/* ── BUTTON SHOWCASE ───────────────────────────────── */
+.btn-showcase { display: flex; flex-direction: column; gap: 32px; }
+.btn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.btn-row-label { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-3); min-width: 120px; }
+.btn-on-dark { background: var(--ink); padding: 24px 20px; border-radius: var(--r-lg); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.btn-on-canvas { background: var(--canvas); padding: 24px 20px; border-radius: var(--r-lg); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+/* ACTUAL BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: "Apercu Pro",sans-serif; font-size: 1rem; font-weight: 500;
+  padding: 12px 24px; border-radius: var(--r-pill); border: none; cursor: pointer;
+  transition: background .18s, transform .12s, box-shadow .18s;
+  white-space: nowrap; line-height: 1;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-sm { font-size: .8125rem; padding: 8px 18px; }
+.btn-lg { font-size: 1.0625rem; padding: 15px 32px; }
+
+.btn-primary   { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-h); box-shadow: var(--sh-md); }
+.btn-secondary { background: var(--secondary); color: var(--ink); }
+.btn-secondary:hover { background: var(--secondary-h); box-shadow: var(--sh-md); }
+.btn-outline   { background: var(--surface); color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-outline:hover { background: #f5f5f5; }
+.btn-outline-w { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.45); }
+.btn-outline-w:hover { background: rgba(255,255,255,.1); }
+.btn-ghost     { background: transparent; color: var(--primary); padding: 12px 0; }
+.btn-ghost:hover { text-decoration: underline; }
+
+.btn-disabled { opacity: .38; pointer-events: none; }
+.btn-loading  { position: relative; color: transparent; }
+.btn-loading::after {
+  content: ""; position: absolute; width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+  border-radius: 50%; animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── CARDS ─────────────────────────────────────────── */
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.cards-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.card { border-radius: var(--r-lg); padding: 28px; }
+.card-white    { background: var(--surface); box-shadow: var(--sh-md); }
+.card-canvas   { background: var(--canvas); border: 1px solid var(--border-subtle); }
+.card-violet   { background: var(--primary); color: #fff; }
+.card-lavender { background: var(--primary-c); }
+.card-coral    { background: var(--secondary); }
+.card-mustard  { background: var(--tertiary); }
+
+.card-accent-vio { background: var(--surface); box-shadow: var(--sh-md); border-top: 4px solid var(--primary); }
+.card-accent-cor { background: var(--surface); box-shadow: var(--sh-md); border-top: 4px solid var(--secondary); }
+.card-accent-mus { background: var(--surface); box-shadow: var(--sh-md); border-top: 4px solid var(--tertiary); }
+.card-accent-lav { background: var(--surface); box-shadow: var(--sh-md); border-top: 4px solid var(--primary-c); }
+
+.card h3 { font-family: "New Kansas",Georgia,serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 8px; }
+.card p  { font-size: .875rem; line-height: 1.6; }
+.card-violet h3, .card-violet p { color: #fff; }
+.card-violet p  { color: rgba(255,255,255,.78); }
+.card-on-dark   { background: rgba(233,229,223,.07); border-radius: var(--r-lg); padding: 28px; }
+
+/* ── PILLS ─────────────────────────────────────────── */
+.pill-showcase { display: flex; flex-direction: column; gap: 24px; }
+.pill-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: "Apercu Pro",sans-serif; font-size: .75rem; font-weight: 500;
+  letter-spacing: .02em; padding: 5px 14px; border-radius: var(--r-pill);
+  line-height: 1;
+}
+.pill-lav    { background: var(--primary-c); color: var(--ink); }
+.pill-vio    { background: var(--primary); color: #fff; }
+.pill-cor    { background: var(--secondary); color: var(--ink); }
+.pill-mus    { background: var(--tertiary); color: var(--ink); }
+.pill-dark   { background: var(--ink); color: #E9E5DF; }
+.pill-canvas { background: var(--canvas); color: var(--text-2); border: 1px solid var(--border-subtle); }
+.pill-out-vio{ background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+.pill-out-cor{ background: transparent; color: var(--secondary); border: 1.5px solid var(--secondary); }
+.pill-sm { font-size: .65rem; padding: 3px 10px; }
+.pill-lg { font-size: .875rem; padding: 7px 18px; }
+
+/* ── INPUTS ─────────────────────────────────────────── */
+.inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: .8125rem; font-weight: 500; color: var(--text-2); }
+.input {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid var(--border-subtle); border-radius: var(--r-sm);
+  font-family: "Apercu Pro",sans-serif; font-size: .9375rem; font-weight: 400;
+  background: var(--surface); color: var(--ink); outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.input::placeholder { color: #bbb; }
+.input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(124,108,216,.14); }
+.input-error { border-color: var(--secondary); }
+.input-error:focus { box-shadow: 0 0 0 3px rgba(255,115,72,.14); }
+.input-success { border-color: #3BB56A; }
+.input-hint { font-size: .75rem; color: var(--text-3); margin-top: 2px; }
+.input-hint.error { color: var(--secondary); }
+.input-hint.success { color: #3BB56A; }
+
+/* Select */
+.input-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 36px; cursor: pointer;
+}
+
+/* Textarea */
+.input-textarea { resize: vertical; min-height: 100px; }
+
+/* ── WAVE COMPONENT ────────────────────────────────── */
+.wave-demo { border-radius: var(--r-lg); overflow: hidden; }
+.wave-demo-top { background: var(--canvas); height: 80px; }
+.wave-demo-mid { background: var(--tertiary); line-height: 0; }
+.wave-demo-bot { background: var(--canvas); height: 80px; display: flex; align-items: center; justify-content: center; font-size: .8125rem; color: var(--text-3); }
+
+/* ── CODE BLOCK ────────────────────────────────────── */
+.code {
+  background: #1A1A1A; color: #E9E5DF; border-radius: var(--r-md);
+  padding: 20px 24px; font-family: "Apercu Pro",monospace;
+  font-size: .78rem; line-height: 1.8; overflow-x: auto; margin-top: 16px;
+}
+.code .cm  { color: #BCAFEF; } /* comment */
+.code .ck  { color: #7C6CD8; } /* keyword */
+.code .cv  { color: #FF7348; } /* value */
+.code .cc  { color: #FEA912; } /* color chip */
+
+/* ── DO / DON'T ────────────────────────────────────── */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.do-box, .dont-box {
+  border-radius: var(--r-lg); padding: 28px;
+  border: 2px solid;
+}
+.do-box   { border-color: #3BB56A; background: #F0FAF4; }
+.dont-box { border-color: var(--secondary); background: #FFF3EE; }
+.do-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .72rem; font-weight: 700; padding: 3px 10px;
+  border-radius: var(--r-pill); margin-bottom: 14px;
+}
+.do-badge.do   { background: #3BB56A; color: #fff; }
+.do-badge.dont { background: var(--secondary); color: var(--ink); }
+.do-box ul, .dont-box ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.do-box ul li, .dont-box ul li { font-size: .875rem; line-height: 1.55; padding-left: 18px; position: relative; }
+.do-box ul li::before   { content: "✓"; position: absolute; left: 0; color: #3BB56A; font-weight: 700; }
+.dont-box ul li::before { content: "✗"; position: absolute; left: 0; color: var(--secondary); font-weight: 700; }
+
+/* ── LOGO DISPLAY ──────────────────────────────────── */
+.logo-display {
+  background: var(--canvas); border-radius: var(--r-lg); padding: 40px;
+  display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap;
+}
+.logo-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.logo-wrap span { font-size: .72rem; color: var(--text-3); font-weight: 500; }
+.logo-item {
+  display: flex; align-items: center; gap: 12px;
+  font-family: "New Kansas",Georgia,serif; font-weight: 500; font-size: 2rem;
+}
+.logo-iso-lg {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-c) 35%, var(--primary) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "New Kansas",Georgia,serif; font-weight: 700; font-size: 1.6rem; color: #fff;
+}
+.logo-on-dark { background: var(--ink); padding: 32px 40px; border-radius: var(--r-lg); }
+
+/* ── USAGE ANNOTATION ──────────────────────────────── */
+.annotation {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .72rem; font-weight: 500; color: var(--text-3);
+  background: var(--canvas); border: 1px solid var(--border-subtle);
+  padding: 3px 10px; border-radius: var(--r-pill);
+}
+
+/* ── DIVIDER ───────────────────────────────────────── */
+.divider { height: 1px; background: var(--border-subtle); margin: 32px 0; }
+
+/* NAV scroll spy */
+.section[data-id] { scroll-margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sb-logo">
+    <img src="logo-inverse.svg" alt="Adhoc">
+  </div>
+  <div class="sb-version">Design System v1.0</div>
+
+  <div class="sb-section-lbl">Fundamentos</div>
+  <a href="#tokens" class="sb-link active">Tokens</a>
+  <a href="#colores" class="sb-link">Colores</a>
+  <a href="#tipografia" class="sb-link">Tipografía</a>
+  <a href="#espaciado" class="sb-link">Espaciado</a>
+  <a href="#formas" class="sb-link">Formas & Elevación</a>
+  <a href="#logo" class="sb-link">Logo</a>
+
+  <div class="sb-section-lbl">Componentes</div>
+  <a href="#botones" class="sb-link">Botones</a>
+  <a href="#cards" class="sb-link">Cards</a>
+  <a href="#pills" class="sb-link">Pills & Tags</a>
+  <a href="#inputs" class="sb-link">Inputs & Forms</a>
+  <a href="#divisor" class="sb-link">Divisor de sección</a>
+
+  <div class="sb-section-lbl">Reglas</div>
+  <a href="#iconos" class="sb-link">Iconos</a>
+  <a href="#dodont" class="sb-link">Do & Don't</a>
+</nav>
+
+<!-- ══ MAIN ═════════════════════════════════════════════ -->
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-badge">📐 Sistema de diseño</div>
+    <h1>Adhoc Design System</h1>
+    <p>Tokens, componentes base y guías de uso para todos los proyectos de Adhoc. Última actualización: abril 2025. Fuente de verdad: DESIGN.md.</p>
+  </div>
+
+  <!-- ══ TOKENS ══════════════════════════════════════════ -->
+  <section class="section" data-id="tokens" id="tokens">
+    <div class="section-header">
+      <h2>Design Tokens</h2>
+      <p>Tokens primitivos (valores raw) y semánticos (roles con significado). Siempre usar los semánticos en componentes; los primitivos son solo la fuente de verdad del valor.</p>
+    </div>
+
+    <!-- Primitivos -->
+    <div class="subsection">
+      <div class="subsection-lbl">Tokens primitivos</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Valor</th><th>Muestra</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code class="token-name">--p-black</code></td><td class="token-value">#000000</td><td><span class="color-chip" style="background:#000"></span></td><td class="token-desc">Negro absoluto. Tinta base.</td></tr>
+          <tr><td><code class="token-name">--p-beige</code></td><td class="token-value">#E9E5DF</td><td><span class="color-chip" style="background:#E9E5DF"></span></td><td class="token-desc">Beige cálido. Canvas del sistema.</td></tr>
+          <tr><td><code class="token-name">--p-white</code></td><td class="token-value">#FFFFFF</td><td><span class="color-chip" style="background:#fff;border:1px solid #ddd"></span></td><td class="token-desc">Blanco puro. Solo para surfaces/cards.</td></tr>
+          <tr><td><code class="token-name">--p-violet</code></td><td class="token-value">#7C6CD8</td><td><span class="color-chip" style="background:#7C6CD8"></span></td><td class="token-desc">Violeta. Color identitario principal.</td></tr>
+          <tr><td><code class="token-name">--p-lavender</code></td><td class="token-value">#BCAFEF</td><td><span class="color-chip" style="background:#BCAFEF"></span></td><td class="token-desc">Lavanda. Variante suave del violeta.</td></tr>
+          <tr><td><code class="token-name">--p-coral</code></td><td class="token-value">#FF7348</td><td><span class="color-chip" style="background:#FF7348"></span></td><td class="token-desc">Coral. Acento de energía y conversión.</td></tr>
+          <tr><td><code class="token-name">--p-mustard</code></td><td class="token-value">#FEA912</td><td><span class="color-chip" style="background:#FEA912"></span></td><td class="token-desc">Mostaza. Celebración, logros, partner.</td></tr>
+          <tr><td><code class="token-name">--p-gray-1</code></td><td class="token-value">#4A4A4A</td><td><span class="color-chip" style="background:#4A4A4A"></span></td><td class="token-desc">Gris oscuro. Texto secundario.</td></tr>
+          <tr><td><code class="token-name">--p-gray-2</code></td><td class="token-value">#888888</td><td><span class="color-chip" style="background:#888"></span></td><td class="token-desc">Gris medio. Labels, metadata.</td></tr>
+          <tr><td><code class="token-name">--p-gray-3</code></td><td class="token-value">#D4CFC6</td><td><span class="color-chip" style="background:#D4CFC6"></span></td><td class="token-desc">Borde sutil. Líneas divisorias.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Semánticos -->
+    <div class="subsection">
+      <div class="subsection-lbl">Tokens semánticos — usar estos en componentes</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Valor ref.</th><th>Rol</th></tr></thead>
+        <tbody>
+          <tr><td><code class="token-name">--canvas</code></td><td class="token-value">→ --p-beige</td><td class="token-desc">Fondo de página. <strong>Nunca blanco puro.</strong> Siempre visible en los bordes.</td></tr>
+          <tr><td><code class="token-name">--surface</code></td><td class="token-value">→ --p-white</td><td class="token-desc">Cards, modales, inputs. Surfaces "levantadas" sobre el canvas.</td></tr>
+          <tr><td><code class="token-name">--ink</code></td><td class="token-value">→ --p-black</td><td class="token-desc">Texto primario, líneas de ilustración, logo wordmark.</td></tr>
+          <tr><td><code class="token-name">--primary</code></td><td class="token-value">→ --p-violet</td><td class="token-desc">Botón primario, enlaces, estados activos, señal de marca.</td></tr>
+          <tr><td><code class="token-name">--primary-h</code></td><td class="token-value">#6B5CC4</td><td class="token-desc">Hover / pressed del primary.</td></tr>
+          <tr><td><code class="token-name">--primary-c</code></td><td class="token-value">→ --p-lavender</td><td class="token-desc">Fondo de pill por defecto, fills decorativos, isótipo.</td></tr>
+          <tr><td><code class="token-name">--secondary</code></td><td class="token-value">→ --p-coral</td><td class="token-desc">CTAs de marketing, conversión. <strong>Texto negro sobre coral, nunca blanco.</strong></td></tr>
+          <tr><td><code class="token-name">--secondary-h</code></td><td class="token-value">#E85F35</td><td class="token-desc">Hover del secondary.</td></tr>
+          <tr><td><code class="token-name">--tertiary</code></td><td class="token-value">→ --p-mustard</td><td class="token-desc">Divisor ola, badges de logro, momentos de celebración.</td></tr>
+          <tr><td><code class="token-name">--text-1</code></td><td class="token-value">→ --p-black</td><td class="token-desc">Body copy principal. Máximo contraste.</td></tr>
+          <tr><td><code class="token-name">--text-2</code></td><td class="token-value">→ --p-gray-1</td><td class="token-desc">Subtítulos, descripciones, texto de apoyo.</td></tr>
+          <tr><td><code class="token-name">--text-3</code></td><td class="token-value">→ --p-gray-2</td><td class="token-desc">Labels, metadata, placeholders, microcopy.</td></tr>
+          <tr><td><code class="token-name">--border-subtle</code></td><td class="token-value">→ --p-gray-3</td><td class="token-desc">Líneas divisorias, bordes de input inactivo.</td></tr>
+          <tr><td><code class="token-name">--border-strong</code></td><td class="token-value">→ --p-black</td><td class="token-desc">Borde del botón outline.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code">
+<span class="cm">/* Ejemplo de uso correcto en CSS */</span>
+.page-background { background: <span class="cv">var(--canvas)</span>; }    <span class="cm">/* ✓ beige, nunca var(--surface) */</span>
+.card            { background: <span class="cv">var(--surface)</span>; }   <span class="cm">/* ✓ blanco solo en cards */</span>
+.cta-button      { background: <span class="cv">var(--secondary)</span>; color: <span class="cv">var(--ink)</span>; }  <span class="cm">/* ✓ texto negro sobre coral */</span>
+.cta-button      { background: <span class="cv">var(--secondary)</span>; color: <span class="cv">#fff</span>; }       <span class="cm">/* ✗ viola WCAG */</span></div>
+    </div>
+  </section>
+
+  <!-- ══ COLORES ══════════════════════════════════════════ -->
+  <section class="section" data-id="colores" id="colores">
+    <div class="section-header">
+      <h2>Colores</h2>
+      <p>Seis colores de marca más derivados de texto y borde. No introducir nuevos hues. Feedback y estados semánticos reusan la paleta existente.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Paleta de marca</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#000000"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Negro</div><div class="color-swatch-hex">#000000</div><div class="color-swatch-role">Ink — texto, linework</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#E9E5DF;border:1px solid #D4CFC6;"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Beige</div><div class="color-swatch-hex">#E9E5DF</div><div class="color-swatch-role">Canvas — fondo de página</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#FFFFFF;border:1px solid #D4CFC6;"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Blanco</div><div class="color-swatch-hex">#FFFFFF</div><div class="color-swatch-role">Surface — solo en cards</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#7C6CD8"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Violeta</div><div class="color-swatch-hex">#7C6CD8</div><div class="color-swatch-role">Primary — identidad, botón CTA</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#BCAFEF"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Lavanda</div><div class="color-swatch-hex">#BCAFEF</div><div class="color-swatch-role">Primary-container — pills, isótipo</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#FF7348"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Coral</div><div class="color-swatch-hex">#FF7348</div><div class="color-swatch-role">Secondary — CTAs de conversión</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-bar" style="background:#FEA912"></div>
+          <div class="color-swatch-info"><div class="color-swatch-name">Mostaza</div><div class="color-swatch-hex">#FEA912</div><div class="color-swatch-role">Tertiary — logros, divisor ola</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Combinaciones aprobadas</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);">
+          <div style="background:#7C6CD8;padding:20px 16px;color:#fff;font-family:'New Kansas',Georgia,serif;font-size:1rem;font-weight:500;">Texto blanco<br>sobre violeta</div>
+          <div style="background:var(--surface);padding:10px 16px;font-size:.72rem;color:#3BB56A;font-weight:600;">✓ AA pass</div>
+        </div>
+        <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);">
+          <div style="background:#FF7348;padding:20px 16px;color:#000;font-family:'New Kansas',Georgia,serif;font-size:1rem;font-weight:500;">Texto negro<br>sobre coral</div>
+          <div style="background:var(--surface);padding:10px 16px;font-size:.72rem;color:#3BB56A;font-weight:600;">✓ AA pass</div>
+        </div>
+        <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);">
+          <div style="background:#000;padding:20px 16px;color:#E9E5DF;font-family:'New Kansas',Georgia,serif;font-size:1rem;font-weight:500;">Beige<br>sobre negro</div>
+          <div style="background:var(--surface);padding:10px 16px;font-size:.72rem;color:#3BB56A;font-weight:600;">✓ AAA pass</div>
+        </div>
+        <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);">
+          <div style="background:#FF7348;padding:20px 16px;color:#fff;font-family:'New Kansas',Georgia,serif;font-size:1rem;font-weight:500;">Texto blanco<br>sobre coral</div>
+          <div style="background:var(--surface);padding:10px 16px;font-size:.72rem;color:var(--secondary);font-weight:600;">✗ WCAG fail</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TIPOGRAFÍA ═══════════════════════════════════════ -->
+  <section class="section" data-id="tipografia" id="tipografia">
+    <div class="section-header">
+      <h2>Tipografía</h2>
+      <p>Dos familias en contraste deliberado: New Kansas (serif editorial) para headlines, Apercu Pro (sans humanista) para UI y body. Nunca mezclar roles.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">New Kansas — display & headings</div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:4.5rem;line-height:1.05;letter-spacing:-.02em;">Display XL</div>
+        <div class="type-meta"><span class="type-meta-name">display-xl</span><span class="type-meta-detail">4.5rem · 500 · ls -0.02em</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:3.5rem;line-height:1.1;letter-spacing:-.015em;">Display LG</div>
+        <div class="type-meta"><span class="type-meta-name">display-lg</span><span class="type-meta-detail">3.5rem · 500 · ls -0.015em</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:2.5rem;line-height:1.15;letter-spacing:-.01em;">Display MD</div>
+        <div class="type-meta"><span class="type-meta-name">display-md</span><span class="type-meta-detail">2.5rem · 500 · ls -0.01em</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:2rem;line-height:1.2;letter-spacing:-.01em;">Heading H2</div>
+        <div class="type-meta"><span class="type-meta-name">h2</span><span class="type-meta-detail">2rem · 500</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:1.5rem;line-height:1.25;">Heading H3</div>
+        <div class="type-meta"><span class="type-meta-name">h3</span><span class="type-meta-detail">1.5rem · 500</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:400;font-size:1.5rem;line-height:1.25;font-style:italic;">Itálica editorial</div>
+        <div class="type-meta"><span class="type-meta-name">italic</span><span class="type-meta-detail">400 italic · acento en headline</span></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Apercu Pro — UI & body</div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:700;font-size:1.375rem;line-height:1.3;">H4 — Apercu Bold</div>
+        <div class="type-meta"><span class="type-meta-name">h4</span><span class="type-meta-detail">1.375rem · 700</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:700;font-size:1.125rem;line-height:1.35;">H5 — Apercu Bold</div>
+        <div class="type-meta"><span class="type-meta-name">h5</span><span class="type-meta-detail">1.125rem · 700</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:400;font-size:1.125rem;line-height:1.55;">Body large — Apercu Regular. Texto de apoyo en hero y subheads.</div>
+        <div class="type-meta"><span class="type-meta-name">body-lg</span><span class="type-meta-detail">1.125rem · 400</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:400;font-size:1rem;line-height:1.55;">Body medium — Apercu Regular. Texto principal en cards y descripciones.</div>
+        <div class="type-meta"><span class="type-meta-name">body-md</span><span class="type-meta-detail">1rem · 400</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:400;font-size:.875rem;line-height:1.5;">Body small — Apercu Regular. Microcopy, captions, metadata secundaria.</div>
+        <div class="type-meta"><span class="type-meta-name">body-sm</span><span class="type-meta-detail">0.875rem · 400</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:500;font-size:.875rem;line-height:1.4;">Label medium — Apercu Medium. Botones, nav, inputs, labels.</div>
+        <div class="type-meta"><span class="type-meta-name">label-md</span><span class="type-meta-detail">0.875rem · 500</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:500;font-size:.75rem;line-height:1.4;letter-spacing:.02em;">Label small — Apercu Medium. Pills, tags, badges.</div>
+        <div class="type-meta"><span class="type-meta-name">label-sm</span><span class="type-meta-detail">0.75rem · 500 · ls 0.02em</span></div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:'Apercu Pro',sans-serif;font-weight:500;font-size:.75rem;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;">OVERLINE — CASO DE ÉXITO</div>
+        <div class="type-meta"><span class="type-meta-name">overline</span><span class="type-meta-detail">0.75rem · 500 · uppercase · ls 0.08em</span></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Ejemplo de pairing canónico</div>
+      <div class="card card-white" style="max-width:480px;">
+        <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:1.75rem;line-height:1.2;margin-bottom:12px;">Escalá tu empresa <em style="color:var(--primary)">sin sumar</em> complejidad.</div>
+        <div style="font-family:'Apercu Pro',sans-serif;font-size:.9375rem;color:var(--text-2);line-height:1.65;margin-bottom:20px;">Centralizá operaciones, automatizá procesos y ganá visibilidad en tiempo real.</div>
+        <div style="font-family:'Apercu Pro',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);">New Kansas headline + Apercu Pro body</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ESPACIADO ════════════════════════════════════════ -->
+  <section class="section" data-id="espaciado" id="espaciado">
+    <div class="section-header">
+      <h2>Espaciado</h2>
+      <p>Escala en base 4px, con 8px como unidad primaria. Usar <code class="token-name">--sp-md</code> y <code class="token-name">--sp-lg</code> para internos de componentes; <code class="token-name">--sp-2xl</code> a <code class="token-name">--sp-4xl</code> para ritmo entre secciones.</p>
+    </div>
+    <div class="spacing-grid">
+      <div class="spacing-row"><span class="spacing-label">--sp-xxs</span><div class="spacing-bar" style="width:4px;"></div><span class="spacing-value">4px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-xs</span><div class="spacing-bar" style="width:8px;"></div><span class="spacing-value">8px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-sm</span><div class="spacing-bar" style="width:12px;"></div><span class="spacing-value">12px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-md</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-value">16px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-lg</span><div class="spacing-bar" style="width:24px;"></div><span class="spacing-value">24px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-xl</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-value">32px</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-2xl</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-value">48px — separación entre componentes</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-3xl</span><div class="spacing-bar" style="width:64px;"></div><span class="spacing-value">64px — separación entre bloques</span></div>
+      <div class="spacing-row"><span class="spacing-label">--sp-4xl</span><div class="spacing-bar" style="width:96px;"></div><span class="spacing-value">96px — padding de sección</span></div>
+    </div>
+  </section>
+
+  <!-- ══ FORMAS & ELEVACIÓN ═══════════════════════════════ -->
+  <section class="section" data-id="formas" id="formas">
+    <div class="section-header">
+      <h2>Formas & Elevación</h2>
+      <p>Adhoc es redondeado, nunca anguloso. Pills para elementos interactivos, <code class="token-name">--r-lg</code> para cards. Sin esquinas rectas en ningún elemento visible.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Escala de border-radius</div>
+      <div class="radius-grid">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-xs);">xs<br>4px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-xs</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-sm);">sm<br>8px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-sm</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-md);">md<br>12px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-md</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-lg);">lg<br>20px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-lg ← cards</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-xl);">xl<br>28px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-xl squircle</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-2xl);">2xl<br>40px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-2xl</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div class="radius-sample" style="border-radius:var(--r-pill);width:120px;">pill<br>999px</div>
+          <span style="font-size:.72rem;color:var(--text-3);font-family:monospace;">--r-pill ← botones</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Elevación / sombras</div>
+      <div class="elevation-grid">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div class="elevation-sample" style="box-shadow:var(--sh-none);border:1px solid var(--border-subtle);">none</div>
+          <span style="font-size:.72rem;color:var(--text-3);">--sh-none<br>inline con página</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div class="elevation-sample" style="box-shadow:var(--sh-sm);">sm</div>
+          <span style="font-size:.72rem;color:var(--text-3);">--sh-sm<br>hover de inputs</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div class="elevation-sample" style="box-shadow:var(--sh-md);">md</div>
+          <span style="font-size:.72rem;color:var(--text-3);">--sh-md<br>cards, dropdowns</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div class="elevation-sample" style="box-shadow:var(--sh-lg);">lg</div>
+          <span style="font-size:.72rem;color:var(--text-3);">--sh-lg<br>modales, hero cards</span>
+        </div>
+      </div>
+      <p style="font-size:.8125rem;color:var(--text-3);margin-top:20px;">⚠ Sin glassmorphism, sin sombras pesadas, sin glow de colores. El sistema es paper-flat.</p>
+    </div>
+  </section>
+
+  <!-- ══ LOGO ═════════════════════════════════════════════ -->
+  <section class="section" data-id="logo" id="logo">
+    <div class="section-header">
+      <h2>Logo</h2>
+      <p>Wordmark "Adhoc." + isótipo (A en círculo bicolor lavanda/violeta). Nunca recrear, distorsionar, rotar ni recolorear. Usar los archivos SVG originales.</p>
+    </div>
+    <div class="logo-display">
+      <div class="logo-wrap">
+        <img src="logo-primary.svg" style="height:100px;width:auto;" alt="Adhoc">
+        <span>Lockup completo — sobre beige o canvas</span>
+      </div>
+      <div class="logo-wrap">
+        <img src="isotipo.svg" style="height:80px;width:auto;" alt="Adhoc isotipo">
+        <span>Solo isótipo — favicon, avatar, loader</span>
+      </div>
+    </div>
+    <div class="logo-on-dark" style="margin-top:20px;">
+      <div class="logo-wrap" style="flex-direction:row;gap:48px;justify-content:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <img src="logo-inverse.svg" style="height:100px;width:auto;" alt="Adhoc inverse">
+          <span style="font-size:.72rem;color:rgba(233,229,223,.4);">Versión inverse — sobre negro o violeta</span>
+        </div>
+      </div>
+    </div>
+    <div class="code" style="margin-top:20px;">
+<span class="cm">/* Archivos de logo */</span>
+assets/logo/logo-primary.svg   <span class="cm">→ Wordmark negro + isótipo lavanda (fondos claros)</span>
+assets/logo/logo-inverse.svg   <span class="cm">→ Wordmark crema + isótipo lavanda (fondos oscuros)</span>
+assets/logo/isotipo.svg        <span class="cm">→ Solo la "A" (favicon, avatar, loader)</span></div>
+  </section>
+
+  <!-- ══ BOTONES ══════════════════════════════════════════ -->
+  <section class="section" data-id="botones" id="botones">
+    <div class="section-header">
+      <h2>Botones</h2>
+      <p>Siempre pill (<code class="token-name">border-radius: 999px</code>). Cuatro variantes con jerarquía clara. No mezclar violeta y coral como botones primarios en la misma pantalla.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Variantes</div>
+      <div class="btn-showcase">
+        <div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Primary — CTA de producto, acciones UI principales</div>
+          <div class="btn-row">
+            <button class="btn btn-primary btn-sm">Pequeño</button>
+            <button class="btn btn-primary">Mediano</button>
+            <button class="btn btn-primary btn-lg">Grande</button>
+            <button class="btn btn-primary btn-disabled">Deshabilitado</button>
+            <button class="btn btn-primary btn-loading" style="min-width:140px;"></button>
+          </div>
+          <div class="code">background: <span class="cv">var(--primary)</span>; color: <span class="cv">#fff</span>; border-radius: <span class="cv">var(--r-pill)</span>;</div>
+        </div>
+
+        <div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Secondary (coral) — CTAs de marketing, conversión crítica</div>
+          <div class="btn-row">
+            <button class="btn btn-secondary btn-sm">Solicitar demo</button>
+            <button class="btn btn-secondary">Agendar diagnóstico</button>
+            <button class="btn btn-secondary btn-lg">Agendar diagnóstico →</button>
+          </div>
+          <div class="code">background: <span class="cv">var(--secondary)</span>; color: <span class="cv">var(--ink)</span>; <span class="cm">/* ¡texto NEGRO! */</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Outline — acciones secundarias en UI</div>
+          <div class="btn-on-canvas">
+            <button class="btn btn-outline btn-sm">Ver planes</button>
+            <button class="btn btn-outline">Ingresar</button>
+            <button class="btn btn-outline btn-lg">Diagnóstico gratuito</button>
+          </div>
+          <div class="code">background: <span class="cv">var(--surface)</span>; color: <span class="cv">var(--ink)</span>; border: 1.5px solid <span class="cv">var(--border-strong)</span>;</div>
+        </div>
+
+        <div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Outline white — sobre fondos oscuros o saturados</div>
+          <div class="btn-on-dark">
+            <button class="btn btn-outline-w btn-sm">Ver planes</button>
+            <button class="btn btn-outline-w">Hablar con especialista</button>
+          </div>
+          <div class="code">background: transparent; color: <span class="cv">#fff</span>; border: 1.5px solid rgba(255,255,255,.45);</div>
+        </div>
+
+        <div>
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Ghost — acciones terciarias, links en línea</div>
+          <div class="btn-row">
+            <button class="btn btn-ghost">Ver cómo funciona →</button>
+            <button class="btn btn-ghost">Ver todos los casos →</button>
+          </div>
+          <div class="code">background: transparent; color: <span class="cv">var(--primary)</span>; <span class="cm">/* sin border */</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CARDS ════════════════════════════════════════════ -->
+  <section class="section" data-id="cards" id="cards">
+    <div class="section-header">
+      <h2>Cards</h2>
+      <p>Contenedor principal de contenido. <code class="token-name">border-radius: 20px</code> siempre. Mezclar cards rellenas y outline para crear el mosaico característico de Adhoc.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Cards base</div>
+      <div class="cards-grid">
+        <div class="card card-white">
+          <div style="font-size:.72rem;font-weight:700;color:var(--text-3);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-white</div>
+          <h3>Fondo blanco</h3>
+          <p>Para contenido en canvas beige. La más usada. Shadow MD para separación.</p>
+        </div>
+        <div class="card card-canvas">
+          <div style="font-size:.72rem;font-weight:700;color:var(--text-3);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-canvas</div>
+          <h3>Fondo beige</h3>
+          <p>Para métricas y elementos dentro de surface blanca. Sin sombra, con borde sutil.</p>
+        </div>
+        <div class="card card-violet">
+          <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.45);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-violet</div>
+          <h3>Fondo violeta</h3>
+          <p style="color:rgba(255,255,255,.75);">Para cards destacadas o step central. Texto blanco.</p>
+        </div>
+        <div class="card card-lavender">
+          <div style="font-size:.72rem;font-weight:700;color:rgba(0,0,0,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-lavender</div>
+          <h3>Fondo lavanda</h3>
+          <p>Para estado activo, highlight, elementos seleccionados.</p>
+        </div>
+        <div class="card card-coral">
+          <div style="font-size:.72rem;font-weight:700;color:rgba(0,0,0,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-coral</div>
+          <h3>Fondo coral</h3>
+          <p>Para CTAs de alta energía dentro de mosaico de cards.</p>
+        </div>
+        <div class="card card-mustard">
+          <div style="font-size:.72rem;font-weight:700;color:rgba(0,0,0,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">card-mustard</div>
+          <h3>Fondo mostaza</h3>
+          <p>Para badges de logro, celebración, "Partner #1".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Cards con acento de color (top border)</div>
+      <div class="cards-grid">
+        <div class="card card-accent-vio">
+          <h3>Acento violeta</h3>
+          <p>Para categorías o JTBD de tipo "automatizar", acción primaria.</p>
+        </div>
+        <div class="card card-accent-cor">
+          <h3>Acento coral</h3>
+          <p>Para "integrar áreas", CTAs secundarios dentro de grid.</p>
+        </div>
+        <div class="card card-accent-mus">
+          <h3>Acento mostaza</h3>
+          <p>Para "escalar con control", logros y resultados positivos.</p>
+        </div>
+        <div class="card card-accent-lav">
+          <h3>Acento lavanda</h3>
+          <p>Para "ganar visibilidad", items informativos o de estado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Mosaico canónico (patrón Adhoc)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="card card-violet" style="grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;">
+          <div style="font-family:'New Kansas',Georgia,serif;font-weight:700;font-size:3.5rem;color:var(--primary-c);line-height:1;">#1</div>
+          <h3 style="font-size:1.2rem;">Partner global de Odoo</h3>
+          <p style="color:rgba(255,255,255,.72);font-size:.875rem;margin-top:6px;">El único partner latinoamericano en alcanzar el primer lugar a nivel mundial.</p>
+        </div>
+        <div class="card card-white" style="display:flex;align-items:center;gap:20px;">
+          <div style="font-family:'New Kansas',Georgia,serif;font-weight:700;font-size:2.5rem;color:var(--primary);">+600</div>
+          <p style="font-size:.875rem;color:var(--text-2);">Desarrollos propios disponibles</p>
+        </div>
+        <div class="card card-coral" style="display:flex;align-items:center;gap:20px;">
+          <div style="font-family:'New Kansas',Georgia,serif;font-weight:700;font-size:2.5rem;">+350</div>
+          <p style="font-size:.875rem;">Empresas implementadas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PILLS ════════════════════════════════════════════ -->
+  <section class="section" data-id="pills" id="pills">
+    <div class="section-header">
+      <h2>Pills & Tags</h2>
+      <p>Forma pill (<code class="token-name">999px</code>) en todos los casos. Usadas para categorías, toppers de sección, estado de plan, badges de logro.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Variantes de fill</div>
+      <div class="pill-row" style="margin-bottom:20px;">
+        <span class="pill pill-lav">Lavanda (default)</span>
+        <span class="pill pill-vio">Violeta</span>
+        <span class="pill pill-cor">Coral</span>
+        <span class="pill pill-mus">★&nbsp; Mostaza</span>
+        <span class="pill pill-dark">Negro</span>
+        <span class="pill pill-canvas">Canvas</span>
+      </div>
+      <div class="pill-row">
+        <span class="pill pill-out-vio">Outline violeta</span>
+        <span class="pill pill-out-cor">Outline coral</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Tamaños</div>
+      <div class="pill-row">
+        <span class="pill pill-lav pill-sm">Small</span>
+        <span class="pill pill-lav">Medium (default)</span>
+        <span class="pill pill-lav pill-lg">Large</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Usos en contexto</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="card card-white">
+          <span class="pill pill-lav" style="margin-bottom:12px;">Resultados reales</span>
+          <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:1.4rem;">Topper de sección</div>
+          <p style="font-size:.875rem;color:var(--text-2);margin-top:6px;">La pill lavanda es el topper por defecto para secciones en páginas web.</p>
+        </div>
+        <div class="card card-white" style="display:flex;align-items:center;gap:14px;">
+          <span class="pill pill-mus">★&nbsp; Partner #1</span>
+          <span class="pill pill-vio">Growth</span>
+          <span class="pill pill-cor">Oferta</span>
+          <span class="pill pill-dark">Enterprise</span>
+          <span style="font-size:.8125rem;color:var(--text-3);">← Badges de logro y estado de plan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INPUTS ════════════════════════════════════════════ -->
+  <section class="section" data-id="inputs" id="inputs">
+    <div class="section-header">
+      <h2>Inputs & Forms</h2>
+      <p>Border-radius: 8px (<code class="token-name">--r-sm</code>) para inputs. Focus con ring violeta de 3px. Sin esquinas rectas. Fondo siempre surface blanco.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Estados</div>
+      <div class="inputs-grid">
+        <div class="input-group">
+          <label class="input-label">Nombre</label>
+          <input class="input" type="text" placeholder="Tu nombre">
+          <span class="input-hint">Estado default</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Email empresarial</label>
+          <input class="input" type="email" placeholder="vos@empresa.com" style="border-color:var(--primary);box-shadow:0 0 0 3px rgba(124,108,216,.14);">
+          <span class="input-hint" style="color:var(--primary);">Estado focus</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Empresa</label>
+          <input class="input input-success" type="text" value="Adhoc SRL">
+          <span class="input-hint success">✓ Verificado</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Email</label>
+          <input class="input input-error" type="email" value="usuario@">
+          <span class="input-hint error">Ingresá un email válido</span>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Rubro</label>
+          <select class="input input-select">
+            <option>Seleccioná un rubro</option>
+            <option>Manufactura</option>
+            <option>Distribución</option>
+            <option>Servicios</option>
+            <option>Retail</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Input deshabilitado</label>
+          <input class="input" type="text" value="No editable" disabled style="opacity:.5;cursor:not-allowed;">
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <div class="input-group">
+          <label class="input-label">Mensaje</label>
+          <textarea class="input input-textarea" placeholder="Contanos brevemente qué necesitás..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Form card completo</div>
+      <div class="card card-white" style="max-width:480px;display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <span class="pill pill-lav" style="margin-bottom:14px;">Diagnóstico sin costo</span>
+          <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:1.4rem;margin-top:12px;margin-bottom:4px;">Agendá una evaluación gratuita.</div>
+          <p style="font-size:.875rem;color:var(--text-2);">30 minutos. Sin compromiso.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <input class="input" type="text" placeholder="Tu nombre">
+          <input class="input" type="email" placeholder="Email empresarial">
+          <input class="input" type="text" placeholder="Empresa">
+        </div>
+        <button class="btn btn-secondary" style="width:100%;padding:15px;font-size:1rem;justify-content:center;">Agendar diagnóstico →</button>
+        <p style="font-size:.75rem;color:var(--text-3);text-align:center;">Sin spam. Respondemos en menos de 24hs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DIVISOR OLA ═══════════════════════════════════════ -->
+  <section class="section" data-id="divisor" id="divisor">
+    <div class="section-header">
+      <h2>Divisor de sección — Ola mustaza</h2>
+      <p>SVG sine-wave en <code class="token-name">--tertiary</code> (#FEA912) entre secciones. Separa visualmente bloques de contenido. Solo en color mostaza.</p>
+    </div>
+
+    <div class="wave-demo">
+      <div class="wave-demo-top" style="display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text-3);">Sección anterior (canvas)</div>
+      <div class="wave-demo-mid">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:56px;display:block;width:100%;">
+          <path d="M0,28 C180,56 360,0 540,28 C720,56 900,0 1080,28 C1260,56 1440,14 1440,28 L1440,56 L0,56 Z" fill="#FEA912"/>
+        </svg>
+        <div style="height:32px;background:#FEA912;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:rgba(0,0,0,.5);">Sección activa (mostaza)</div>
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:56px;display:block;width:100%;">
+          <path d="M0,28 C180,0 360,56 540,28 C720,0 900,56 1080,28 C1260,0 1440,42 1440,28 L1440,0 L0,0 Z" fill="#FEA912"/>
+        </svg>
+      </div>
+      <div class="wave-demo-bot">Sección siguiente (canvas)</div>
+    </div>
+
+    <div class="code" style="margin-top:20px;">
+<span class="cm">/* Ola de entrada (canvas → mustaza) */</span>
+&lt;svg viewBox="0 0 1440 64" preserveAspectRatio="none" style="height:64px"&gt;
+  &lt;path d="M0,32 C200,64 400,0 600,32 C800,64 1000,0 1200,32 L1440,32 L1440,64 L0,64 Z"
+        fill=<span class="cv">"#FEA912"</span>/&gt;
+&lt;/svg&gt;</div>
+  </section>
+
+  <!-- ══ ICONOS ════════════════════════════════════════════ -->
+  <section class="section" data-id="iconos" id="iconos">
+    <div class="section-header">
+      <h2>Iconos</h2>
+      <p>SVG inline, 20×20 viewBox, 1.5px stroke, round caps y joins. Cada ícono tiene su propio color de acento + fondo tintado (squircle 8px). Nunca íconos 3D, isométricos ni SaaS genérico.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Paleta de colores por ícono</div>
+      <p style="font-size:.875rem;color:var(--text-2);margin-bottom:20px;">Cada ícono recibe un color individual del sistema, no un color por columna. La variedad crea jerarquía visual sin salir de la paleta de 5 colores.</p>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+        <div style="background:var(--surface);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:#FFE5DE;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#FF7348" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="11" width="3" height="7" rx="1"/><rect x="8.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="3" width="3" height="15" rx="1"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:.72rem;font-weight:700;color:var(--secondary);">Coral</div><div style="font-size:.65rem;color:var(--text-3);">#FF7348</div></div>
+          <code class="token-name" style="font-size:.65rem;">--secondary</code>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:#EAE7FA;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#7C6CD8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2s4 1 5 6l-3 3-4-4 2-5z"/><path d="M7 11l2 2-4 5-1-1 3-6z"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:.72rem;font-weight:700;color:var(--primary);">Violeta</div><div style="font-size:.65rem;color:var(--text-3);">#7C6CD8</div></div>
+          <code class="token-name" style="font-size:.65rem;">--primary</code>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:#FFF3D0;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#B87800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,2 12.5,7.5 18.5,8 14,12.5 15.5,18.5 10,15.5 4.5,18.5 6,12.5 1.5,8 7.5,7.5"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:.72rem;font-weight:700;color:#B87800;">Mostaza</div><div style="font-size:.65rem;color:var(--text-3);">#B87800</div></div>
+          <code class="token-name" style="font-size:.65rem;">--tertiary (dark)</code>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:#F0EDFB;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9A8FDE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3h3a2 2 0 010 4h-3v3h3a2 2 0 010 4H5a2 2 0 010-4h3v-3H5a2 2 0 010-4h3V3a2 2 0 014 0z"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:.72rem;font-weight:700;color:#9A8FDE;">Lavanda</div><div style="font-size:.65rem;color:var(--text-3);">#9A8FDE</div></div>
+          <code class="token-name" style="font-size:.65rem;">--primary-c (dark)</code>
+        </div>
+        <div style="background:var(--surface);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:#E6F7EE;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#2A9D5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2c0 0-2 8-8 10S2 18 2 18s1-6 5-9c2-1.5 5-2 6-2"/><path d="M2 18l6-6"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:.72rem;font-weight:700;color:#2A9D5C;">Verde</div><div style="font-size:.65rem;color:var(--text-3);">#2A9D5C</div></div>
+          <code class="token-name" style="font-size:.65rem;">success (semántico)</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Anatomía del ícono en navegación</div>
+      <div style="background:var(--surface);border-radius:var(--r-lg);padding:32px;box-shadow:var(--sh-md);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+          <div>
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;">Default — en reposo</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:#FFE5DE;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#FF7348" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="11" width="3" height="7" rx="1"/><rect x="8.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="3" width="3" height="15" rx="1"/></svg></div>
+                <div><div style="font-size:.875rem;font-weight:500;">Ventas y CRM</div><div style="font-size:.78rem;color:var(--text-3);">Gestioná tu pipeline</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:#EAE7FA;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#7C6CD8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><path d="M7 10h6"/></svg></div>
+                <div><div style="font-size:.875rem;font-weight:500;">Inventario</div><div style="font-size:.78rem;color:var(--text-3);">Control en tiempo real</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:#FFF3D0;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#B87800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h2.5l2 9h9l2-6H5.5"/><circle cx="8" cy="17" r="1.2"/><circle cx="15" cy="17" r="1.2"/></svg></div>
+                <div><div style="font-size:.875rem;font-weight:500;">Compras</div><div style="font-size:.78rem;color:var(--text-3);">Optimizá proveedores</div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;">Hover — fila resaltada</div>
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.05);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#FFD5C8;display:flex;align-items:center;justify-content:center;transform:scale(1.08);"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#FF7348" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="11" width="3" height="7" rx="1"/><rect x="8.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="3" width="3" height="15" rx="1"/></svg></div>
+                <div><div style="font-size:.875rem;font-weight:500;">Ventas y CRM</div><div style="font-size:.78rem;color:var(--text-3);">Gestioná tu pipeline</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:8px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:#EAE7FA;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#7C6CD8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><path d="M7 10h6"/></svg></div>
+                <div><div style="font-size:.875rem;font-weight:500;">Inventario</div><div style="font-size:.78rem;color:var(--text-3);">Control en tiempo real</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-lbl">Especificación técnica</div>
+      <table class="token-table">
+        <thead><tr><th>Propiedad</th><th>Valor</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td class="feature-name">Tamaño SVG</td><td><code class="token-name">20×20px</code></td><td class="token-desc">viewBox="0 0 20 20" para todos los íconos</td></tr>
+          <tr><td class="feature-name">Stroke width</td><td><code class="token-name">1.5px</code></td><td class="token-desc">Nunca fill sólido en stroke icons</td></tr>
+          <tr><td class="feature-name">Stroke caps</td><td><code class="token-name">round</code></td><td class="token-desc">stroke-linecap y stroke-linejoin siempre round</td></tr>
+          <tr><td class="feature-name">Contenedor</td><td><code class="token-name">32×32px, r-sm (8px)</code></td><td class="token-desc">Squircle con fondo tintado individual</td></tr>
+          <tr><td class="feature-name">Hover container</td><td><code class="token-name">scale(1.08)</code></td><td class="token-desc">Leve grow en el squircle, no en el SVG</td></tr>
+          <tr><td class="feature-name">Hover row</td><td><code class="token-name">rgba(0,0,0,.05)</code></td><td class="token-desc">Fondo gris muy sutil en la fila completa</td></tr>
+          <tr><td class="feature-name">Focus</td><td><code class="token-name">outline: 2px solid var(--primary)</code></td><td class="token-desc">Offset 2px, border-radius heredado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <span class="do-badge do">✓ Hacer</span>
+        <ul>
+          <li>SVG inline — nunca icon fonts ni PNG</li>
+          <li>Cada ícono con su propio color de acento individual</li>
+          <li>Squircle 32×32 con fondo tintado del mismo color</li>
+          <li>stroke-width: 1.5, stroke-linecap: round siempre</li>
+          <li>Hover en la fila completa (rgba sutil), no solo en el ícono</li>
+          <li>Scale(1.08) solo en el squircle al hover</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <span class="do-badge dont">✗ No hacer</span>
+        <ul>
+          <li>Todos los íconos del mismo color por columna</li>
+          <li>íconos sin contenedor (squircle) en contextos de nav</li>
+          <li>Stroke-width mayor a 2px o fill sólido sin stroke</li>
+          <li>íconos 3D, isométricos o estilo SaaS genérico</li>
+          <li>Icon fonts (Material Symbols, FontAwesome) — fallan en sandbox</li>
+          <li>Gradientes en íconos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DO & DON'T ════════════════════════════════════════ -->
+  <section class="section" data-id="dodont" id="dodont">
+    <div class="section-header">
+      <h2>Do & Don't</h2>
+      <p>Reglas no negociables del sistema. Si hay duda, revisar DESIGN.md. Las reglas de marca ganan siempre sobre preferencias estéticas.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <span class="do-badge do">✓ Hacer</span>
+        <ul>
+          <li>Usar <strong>beige (#E9E5DF)</strong> como fondo de página siempre</li>
+          <li>Reservar blanco para cards y surfaces levantadas</li>
+          <li>Headlines en <strong>New Kansas</strong>, body en <strong>Apercu Pro</strong></li>
+          <li>Botones y pills siempre con <strong>border-radius: 999px</strong></li>
+          <li>Cards con <strong>border-radius: 20px</strong> mínimo</li>
+          <li>Texto <strong>negro</strong> sobre botón coral (WCAG AA)</li>
+          <li>Texto <strong>blanco</strong> sobre botón violeta</li>
+          <li>Divisor de sección con ola SVG en <strong>mostaza</strong></li>
+          <li>Mezclar cards rellenas y outline en grids (mosaico)</li>
+          <li>Copy en <strong>español argentino</strong>, voseo</li>
+          <li>Un solo color de acento dominante por sección</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <span class="do-badge dont">✗ No hacer</span>
+        <ul>
+          <li>Usar <strong>blanco puro</strong> como fondo de página</li>
+          <li>Elementos con esquinas rectas (border-radius: 0)</li>
+          <li>Body copy en New Kansas (serif pierde legibilidad)</li>
+          <li>Texto <strong>blanco</strong> sobre coral — viola WCAG</li>
+          <li>Gradientes en botones ni en texto</li>
+          <li>Glassmorphism, sombras pesadas, neon glows</li>
+          <li>Ilustraciones 3D o isométricas</li>
+          <li>Fotografía de stock genérica</li>
+          <li>Introducir nuevos colores fuera de la paleta de 6</li>
+          <li>Recrear o modificar el logo</li>
+          <li>Mixing violeta + coral como botones iguales en jerarquía</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;background:var(--canvas);border-radius:var(--r-lg);padding:32px;">
+      <div style="font-family:'New Kansas',Georgia,serif;font-weight:500;font-size:1.2rem;margin-bottom:16px;">Jerarquía de fuentes de verdad</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;font-size:.875rem;">
+          <span class="pill pill-vio pill-sm">1°</span>
+          <span><strong>adhoc-brandbook.pdf</strong> — fuente de verdad absoluta</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:.875rem;">
+          <span class="pill pill-lav pill-sm">2°</span>
+          <span><strong>DESIGN.md</strong> — tokens y especificaciones técnicas</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:.875rem;">
+          <span class="pill pill-canvas pill-sm">3°</span>
+          <span><strong>Este documento</strong> — referencia visual y de componentes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Scroll spy para sidebar
+const sections = document.querySelectorAll('.section[data-id]');
+const links = document.querySelectorAll('.sb-link');
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const id = e.target.getAttribute('data-id');
+      const active = document.querySelector(`.sb-link[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

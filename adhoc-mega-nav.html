@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Nav — Adhoc</title>
+<!-- icons replaced with SVG -->
+<style>
+@font-face{font-family:"New Kansas";src:url("uploads/NewKansas-Medium.otf");font-weight:500;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Regular.ttf");font-weight:400;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Medium.ttf");font-weight:500;font-display:swap;}
+@font-face{font-family:"Apercu Pro";src:url("uploads/ApercuPro-Bold.ttf");font-weight:700;font-display:swap;}
+
+:root{
+  --canvas:#E9E5DF;--surface:#fff;--ink:#000;
+  --vio:#7C6CD8;--vio-c:#BCAFEF;
+  --cor:#FF7348;--mus:#FEA912;
+  --t2:#4A4A4A;--t3:#888;--border:#D4CFC6;
+  --rp:999px;
+}
+/* icons: SVG inline */
+.chev-icon{display:inline-flex;align-items:center;opacity:.5;transition:transform .2s ease,opacity .2s;margin-left:2px;}
+.nav-item.open .nav-trigger .chev-icon{transform:rotate(180deg);opacity:.8;}
+.dd-icon svg,.chev-icon svg{display:block;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;-webkit-font-smoothing:antialiased;}
+body{font-family:"Apercu Pro","Inter",sans-serif;background:var(--canvas);color:var(--ink);}
+
+/* ─── NAV ──────────────────────────────────────────────── */
+#nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--canvas);
+  border-bottom:1px solid var(--border);
+  height:64px;
+}
+.nav-inner{
+  max-width:1160px;margin:0 auto;padding:0 40px;
+  height:64px;display:flex;align-items:center;gap:0;
+}
+.nav-logo{display:flex;align-items:center;margin-right:32px;}
+.nav-logo img{height:48px;width:auto;display:block;}
+
+/* nav links */
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;}
+.nav-item{position:relative;}
+.nav-trigger{
+  display:flex;align-items:center;gap:4px;
+  font-family:"Apercu Pro",sans-serif;font-size:.875rem;font-weight:500;
+  color:var(--ink);padding:8px 14px;border-radius:var(--rp);
+  background:transparent;border:none;cursor:pointer;
+  transition:background .15s ease;white-space:nowrap;
+  text-decoration:none;
+}
+.nav-trigger:hover{background:var(--surface);}
+.nav-trigger:active{background:var(--canvas);transform:scale(.98);}
+.nav-trigger.active-page{color:var(--vio);}
+.nav-trigger .chev{
+  font-size:16px;opacity:.5;transition:transform .2s ease,opacity .2s;
+  font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20;
+}
+.nav-item.open .nav-trigger{background:var(--surface);}
+.nav-item.open .nav-trigger .chev{transform:rotate(180deg);opacity:.8;}
+
+/* CTAs */
+.nav-ctas{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:"Apercu Pro",sans-serif;font-size:.875rem;font-weight:500;padding:9px 20px;border-radius:var(--rp);border:none;cursor:pointer;transition:background .15s,transform .12s,box-shadow .15s;white-space:nowrap;}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.btn:active{transform:scale(.98);}
+.btn-out{background:var(--surface);color:var(--ink);border:1.5px solid var(--ink);}
+.btn-cor{background:var(--cor);color:var(--ink);}
+.btn-cor:hover{background:#E85F35;}
+
+/* ─── DROPDOWN PANEL ────────────────────────────────────── */
+.dropdown{
+  position:absolute;top:calc(100% + 8px);left:0;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+  padding:16px 20px 14px;min-width:680px;
+  opacity:0;pointer-events:none;
+  transform:translateY(-6px);
+  transition:opacity .18s ease-out,transform .18s ease-out;
+  z-index:300;
+}
+.dropdown.open{opacity:1;pointer-events:all;transform:translateY(0);}
+.dropdown::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px;}
+
+.dd-cols{display:grid;gap:0;}
+.dd-cols-3{grid-template-columns:1fr 1fr 1fr;}
+.dd-divider{display:none;}
+
+.dd-col{padding:0 4px;}
+.dd-col-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:6px;padding:4px 8px;
+}
+
+/* ─── NAV ITEM ──────────────────────────────────────────── */
+.dd-item{
+  display:flex;align-items:center;gap:12px;
+  padding:7px 8px;border-radius:8px;cursor:pointer;
+  transition:background .1s ease;
+  text-decoration:none;color:inherit;
+}
+.dd-item:hover{background:rgba(0,0,0,.05);}
+.dd-item:active{background:rgba(0,0,0,.08);transform:scale(.99);}
+.dd-item:focus-visible{outline:2px solid var(--vio);outline-offset:2px;border-radius:8px;}
+
+.dd-icon{
+  width:32px;height:32px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;transition:background .1s ease;
+}
+
+.dd-name{font-size:.875rem;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:1px;display:flex;align-items:center;gap:6px;}
+.dd-desc{font-size:.78rem;color:var(--t3);line-height:1.35;}
+
+/* individual icon accent colors via data-a attribute */
+.dd-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:transform .1s ease;}
+.dd-item:hover .dd-icon{transform:scale(1.08);}
+.dd-icon[data-a="cor"]{background:#FFE5DE;}.dd-icon[data-a="cor"] svg{stroke:#FF7348;}
+.dd-icon[data-a="vio"]{background:#EAE7FA;}.dd-icon[data-a="vio"] svg{stroke:#7C6CD8;}
+.dd-icon[data-a="mus"]{background:#FFF3D0;}.dd-icon[data-a="mus"] svg{stroke:#B87800;}
+.dd-icon[data-a="lav"]{background:#F0EDFB;}.dd-icon[data-a="lav"] svg{stroke:#9A8FDE;}
+.dd-icon[data-a="grn"]{background:#E6F7EE;}.dd-icon[data-a="grn"] svg{stroke:#2A9D5C;}
+.dd-item:hover .dd-icon[data-a="cor"]{background:#FFD5C8;}
+.dd-item:hover .dd-icon[data-a="vio"]{background:#DDD9F7;}
+.dd-item:hover .dd-icon[data-a="mus"]{background:#FFEAB8;}
+.dd-item:hover .dd-icon[data-a="lav"]{background:#E4DFF8;}
+.dd-item:hover .dd-icon[data-a="grn"]{background:#D0F0E0;}
+
+/* ─── FEATURED CARD (3rd col) ──────────────────────────── */
+.dd-featured-col{
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+}
+.dd-featured-card{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  background: var(--vio-c);
+  border: none;
+  border-radius: 20px;
+  box-shadow: none;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .15s ease;
+  cursor: pointer;
+  height: 100%;
+}
+.dd-featured-card:hover{
+  transform: translateY(-2px);
+}
+.dd-feat-pill{
+  display: inline-flex;
+  align-items: center;
+  background: var(--cor);
+  color: #fff;
+  font-family: "Apercu Pro", sans-serif;
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+.dd-feat-img{
+  background: var(--vio);
+  border-radius: 12px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dd-feat-client{
+  font-family: "New Kansas", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.dd-feat-title{
+  font-family: "New Kansas", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.0rem;
+  line-height: 1.3;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dd-feat-result{
+  font-family: "Apercu Pro", sans-serif;
+  font-size: .8rem;
+  color: var(--t2);
+  line-height: 1.45;
+}
+.dd-feat-cta{
+  font-family: "Apercu Pro", sans-serif;
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--vio);
+  margin-top: auto;
+  transition: gap .15s;
+}
+.dd-featured-card:hover .dd-feat-cta{
+  text-decoration: underline;
+}
+.dd-footer{
+  margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.dd-footer-left{display:flex;align-items:center;gap:8px;}
+.dd-footer-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dd-footer-text{font-size:.8125rem;color:var(--t2);}
+.dd-footer-text strong{color:var(--ink);font-weight:600;}
+.dd-footer-link{font-size:.8125rem;font-weight:500;color:var(--vio);text-decoration:none;transition:color .12s;white-space:nowrap;}
+.dd-footer-link:hover{text-decoration:underline;}
+.dd-footer-logos{display:flex;align-items:center;gap:6px;}
+.dd-logo-chip{font-size:.62rem;font-weight:700;color:#bbb;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border);border-radius:var(--rp);}
+
+/* ─── SKELETON ──────────────────────────────────────────── */
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
+.sk{
+  background:linear-gradient(90deg,#D4CFC6 25%,#E9E5DF 50%,#D4CFC6 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.4s infinite ease-in-out;
+  border-radius:4px;
+}
+.sk-icon{width:40px;height:40px;border-radius:10px;}
+.sk-name{width:120px;height:14px;margin-bottom:6px;}
+.sk-desc{width:80px;height:12px;}
+.sk-item{display:flex;align-items:flex-start;gap:12px;padding:10px;}
+
+/* ─── MOBILE DRAWER ─────────────────────────────────────── */
+.mobile-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:400;
+  opacity:0;transition:opacity .2s;
+}
+.mobile-overlay.open{display:block;opacity:1;}
+.mobile-drawer{
+  position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:var(--canvas);border-radius:20px 20px 0 0;
+  padding:20px 0 40px;max-height:85vh;overflow-y:auto;
+  transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);
+}
+.mobile-drawer.open{transform:translateY(0);}
+.drawer-handle{width:36px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 20px;}
+.drawer-close{position:absolute;top:16px;right:20px;background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--t3);}
+.drawer-section{border-bottom:1px solid var(--border);}
+.drawer-trigger{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:16px 24px;
+  font-family:"Apercu Pro",sans-serif;font-size:1rem;font-weight:500;
+  background:none;border:none;cursor:pointer;text-align:left;
+}
+.drawer-trigger .chev{font-size:20px;opacity:.5;transition:transform .2s;}
+.drawer-section.open .drawer-trigger .chev{transform:rotate(180deg);}
+.drawer-content{display:none;padding:0 24px 16px;}
+.drawer-section.open .drawer-content{display:block;}
+.drawer-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;border-bottom:1px solid #F0EDE8;
+}
+.drawer-item:last-child{border:none;}
+.drawer-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.drawer-ctas{padding:20px 24px 0;display:flex;flex-direction:column;gap:10px;}
+.btn-full{width:100%;justify-content:center;padding:14px;}
+
+/* ─── DEMO CONTENT BELOW NAV ───────────────────────────── */
+.demo-body{
+  max-width:1160px;margin:0 auto;padding:80px 40px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;
+}
+.demo-body h1{font-family:"New Kansas",Georgia,serif;font-weight:500;font-size:3.5rem;line-height:1.1;letter-spacing:-.025em;}
+.demo-body h1 em{font-style:italic;color:var(--vio);}
+.demo-body p{font-size:1.0625rem;color:var(--t2);max-width:520px;line-height:1.65;}
+.demo-hint{margin-top:40px;font-size:.8125rem;color:var(--t3);background:var(--surface);border:1px solid var(--border);padding:10px 20px;border-radius:var(--rp);}
+
+/* ─── STATE LEGEND ──────────────────────────────────────── */
+.legend{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#E9E5DF;border-radius:var(--rp);
+  padding:10px 20px;font-size:.78rem;display:flex;gap:20px;
+  box-shadow:0 8px 24px rgba(0,0,0,.2);
+  pointer-events:none;
+}
+.legend span{opacity:.5;}
+.legend b{opacity:1;color:#fff;}
+
+@media(max-width:767px){
+  .nav-links,.nav-ctas .btn-out{display:none;}
+  .mobile-btn{display:flex!important;}
+  .nav-ctas{gap:8px;}
+}
+.mobile-btn{display:none;}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ════════════════════════════════════════════════ -->
+<header id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="logo-primary.svg" alt="Adhoc">
+    </div>
+
+    <nav class="nav-links" role="navigation">
+
+      <!-- Soluciones -->
+      <div class="nav-item" id="ni-sol">
+        <button class="nav-trigger" id="t-sol" aria-haspopup="true" aria-expanded="false">
+          Soluciones <span class="chev-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></span>
+        </button>
+        <div class="dropdown" id="dd-sol" role="menu">
+          <div class="dd-cols dd-cols-3">
+            <!-- Col 1 — Por industria -->
+            <div class="dd-col col-cor">
+              <div class="dd-col-label">Por industria</div>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="mus"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L1 8l9 5 9-5-9-5z"/><path d="M4 11v4c2 2 10 2 12 0v-4"/></svg></div>
+                <div class="dd-text"><div class="dd-name">Educación</div><div class="dd-desc">Institutos, colegios y centros de formación</div></div>
+              </a>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="cor"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><path d="M7 11h6"/></svg></div>
+                <div class="dd-text"><div class="dd-name">Distribución y comercios</div><div class="dd-desc">Mayoristas, minoristas y distribuidoras B2B</div></div>
+              </a>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="vio"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2l-2 2 1 1-7 7-1-1-2 2 3 3 2-2-1-1 7-7 1 1 2-2-3-3z"/></svg></div>
+                <div class="dd-text"><div class="dd-name">Servicios</div><div class="dd-desc">Consultoría, IT, agencias e ingeniería</div></div>
+              </a>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="lav"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="2.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4"/></svg></div>
+                <div class="dd-text"><div class="dd-name">Manufactura</div><div class="dd-desc">Producción, insumos y cadena de valor</div></div>
+              </a>
+            </div>
+            <div class="dd-divider"></div>
+
+            <!-- Col 2 — Por tamaño -->
+            <div class="dd-col col-vio">
+              <div class="dd-col-label">Por tamaño</div>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="cor"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17v-7"/><path d="M10 10c-3 0-5-2-5-5 3 0 5 2 5 5z"/><path d="M10 10c3 0 5-2 5-5-3 0-5 2-5 5z"/></svg></div>
+                <div class="dd-text"><div class="dd-name">En crecimiento</div><div class="dd-desc">Hasta 50 personas</div></div>
+              </a>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="vio"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17V4"/><path d="M5 9l5-5 5 5"/></svg></div>
+                <div class="dd-text"><div class="dd-name">En escala</div><div class="dd-desc">50 a 200 personas</div></div>
+              </a>
+              <a class="dd-item" href="#" role="menuitem" tabindex="-1">
+                <div class="dd-icon" data-a="mus"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="15" rx="1"/><path d="M7 7h2M11 7h2M7 11h2M11 11h2M7 15h2M11 15h2"/></svg></div>
+                <div class="dd-text"><div class="dd-name">Enterprise</div><div class="dd-desc">+200 personas o multi-empresa</div></div>
+              </a>
+            </div>
+            <div class="dd-divider"></div>
+
+            <!-- Col 3 — Featured card -->
+            <div class="dd-col dd-featured-col">
+              <a class="dd-featured-card" href="#" role="menuitem" tabindex="-1">
+                <span class="dd-feat-pill">Caso de éxito</span>
+                <div class="dd-feat-img">
+                  <span class="dd-feat-client">OneClick</span>
+                </div>
+                <div class="dd-feat-title">De planillas de Excel a operación centralizada en 3 meses</div>
+                <div class="dd-feat-result">−40% tiempo administrativo · Ventas e inventario integrados</div>
+                <div class="dd-feat-cta">Ver caso completo →</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="dd-footer">
+            <div class="dd-footer-left">
+              <div class="dd-footer-icon"><span style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,2 12.5,7.5 18.5,8 14,12.5 15.5,18.5 10,15.5 4.5,18.5 6,12.5 1.5,8 7.5,7.5"/></svg></span></div>
+              <span class="dd-footer-text"><strong>Partner #1 de Odoo</strong> — conocé por qué. <a href="#" class="dd-footer-link">Ver historia →</a></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="16" rx="2"/><path d="M6 1v4M14 1v4M2 8h16"/><circle cx="7" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="7" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="15.5" r="1" fill="currentColor" stroke="none"/></svg>
+              <a href="#" class="dd-footer-link">Agendar diagnóstico gratuito →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Static links -->
+      <a href="adhoc-pricing.html" class="nav-trigger">Precios</a>
+      <a href="#" class="nav-trigger">Casos</a>
+      <a href="#" class="nav-trigger">Recursos</a>
+    </nav>
+
+    <!-- CTAs -->
+    <div class="nav-ctas">
+      <button class="btn btn-out">Ingresar</button>
+      <button class="btn btn-cor">
+        Diagnóstico gratuito
+      </button>
+      <!-- Mobile hamburger -->
+      <button class="btn mobile-btn" id="mobile-open" style="background:none;border:none;padding:8px;cursor:pointer;">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="7" x2="19" y2="7"/><line x1="3" y1="11" x2="19" y2="11"/><line x1="3" y1="15" x2="19" y2="15"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MOBILE OVERLAY ═══════════════════════════════════════ -->
+<div class="mobile-overlay" id="mob-overlay"></div>
+<div class="mobile-drawer" id="mob-drawer" role="dialog" aria-modal="true">
+  <div class="drawer-handle"></div>
+  <button class="drawer-close" id="mob-close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/></svg></button>
+
+  <div class="drawer-section" id="drs-sol">
+    <button class="drawer-trigger">Soluciones <span class="chev-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,6 8,10 12,6"/></svg></span></button>
+    <div class="drawer-content">
+      <div class="dd-col-label" style="padding:8px 0 6px;">Por industria</div>
+      ${['Educación','Distribución y comercios','Servicios','Manufactura'].map(n=>`
+      <div class="drawer-item">
+        <div class="drawer-icon" style="background:#FFE5DE;"><span style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="16" height="16" rx="2"/></svg></span></div>
+        <div><div style="font-size:.875rem;font-weight:500;">${n}</div></div>
+      </div>`).join('')}
+      <div class="dd-col-label" style="padding:16px 0 6px;">Por tamaño</div>
+      ${['En crecimiento','En escala','Enterprise'].map(n=>`
+      <div class="drawer-item">
+        <div class="drawer-icon" style="background:#EAE7FA;"><span style="display:inline-flex;align-items:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--vio)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="16" height="16" rx="2"/></svg></span></div>
+        <div><div style="font-size:.875rem;font-weight:500;">${n}</div></div>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <div class="drawer-section">
+    <a href="adhoc-pricing.html" style="display:block;padding:16px 24px;font-weight:500;font-size:1rem;">Precios</a>
+  </div>
+  <div class="drawer-section">
+    <a href="#" style="display:block;padding:16px 24px;font-weight:500;font-size:1rem;">Casos</a>
+  </div>
+
+  <div class="drawer-ctas">
+    <button class="btn btn-cor btn-full">Diagnóstico gratuito</button>
+    <button class="btn btn-out btn-full">Ingresar</button>
+  </div>
+</div>
+
+<!-- ══ DEMO BODY ════════════════════════════════════════════ -->
+<main>
+  <div class="demo-body">
+    <h1>Escalá tu empresa<br><em>sin sumar</em> complejidad.</h1>
+    <p>Este es el mega-nav de Adhoc. Hover sobre "Soluciones" para ver el dropdown.</p>
+    <div class="demo-hint">← Hover en los items del nav para ver los dropdowns &nbsp;·&nbsp; Tab para navegar con teclado &nbsp;·&nbsp; Esc para cerrar</div>
+  </div>
+</main>
+
+<!-- ══ LEGEND ════════════════════════════════════════════════ -->
+<div class="legend">
+  <span>hover item</span><b>→ fondo blanco + elevación</b>
+  <span>hover icon</span><b>→ fondo acento, icono blanco</b>
+  <span>esc</span><b>→ cerrar panel</b>
+</div>
+
+<script>
+/* ── DROPDOWN LOGIC ──────────────────────────────────────── */
+const navItems = [
+  { ni: document.getElementById('ni-sol'), trigger: document.getElementById('t-sol'), dd: document.getElementById('dd-sol') },
+];
+
+let openItem = null;
+let openTimer = null;
+let closeTimer = null;
+
+function openDD(item) {
+  clearTimeout(openTimer);
+  clearTimeout(closeTimer);
+  if (openItem && openItem !== item) closeDD(openItem, true);
+  item.dd.classList.add('open');
+  item.trigger.setAttribute('aria-expanded', 'true');
+  item.ni.classList.add('open');
+  // make menu items focusable
+  item.dd.querySelectorAll('[role="menuitem"]').forEach(el => el.setAttribute('tabindex', '0'));
+  openItem = item;
+}
+
+function closeDD(item, immediate) {
+  clearTimeout(closeTimer);
+  const doClose = () => {
+    item.dd.classList.remove('open');
+    item.trigger.setAttribute('aria-expanded', 'false');
+    item.ni.classList.remove('open');
+    item.dd.querySelectorAll('[role="menuitem"]').forEach(el => el.setAttribute('tabindex', '-1'));
+    if (openItem === item) openItem = null;
+  };
+  if (immediate) doClose();
+  else closeTimer = setTimeout(doClose, 150);
+}
+
+navItems.forEach(item => {
+  // hover on trigger
+  item.trigger.addEventListener('mouseenter', () => {
+    clearTimeout(closeTimer);
+    openTimer = setTimeout(() => openDD(item), 100);
+  });
+  item.trigger.addEventListener('mouseleave', () => {
+    clearTimeout(openTimer);
+    closeDD(item);
+  });
+  // hover on panel
+  item.dd.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+  item.dd.addEventListener('mouseleave', () => closeDD(item));
+
+  // keyboard: enter/space to open
+  item.trigger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      item.dd.classList.contains('open') ? closeDD(item, true) : openDD(item);
+    }
+    if (e.key === 'Escape') closeDD(item, true);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      openDD(item);
+      const first = item.dd.querySelector('[role="menuitem"]');
+      if (first) first.focus();
+    }
+  });
+
+  // keyboard navigation inside dropdown
+  item.dd.addEventListener('keydown', e => {
+    const items = [...item.dd.querySelectorAll('[role="menuitem"]')];
+    const idx = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[(idx+1) % items.length]?.focus(); }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); items[(idx-1+items.length) % items.length]?.focus(); }
+    if (e.key === 'Escape')    { closeDD(item, true); item.trigger.focus(); }
+    if (e.key === 'Tab' && !e.shiftKey && idx === items.length-1) closeDD(item, true);
+  });
+});
+
+// close on outside click
+document.addEventListener('click', e => {
+  navItems.forEach(item => {
+    if (!item.ni.contains(e.target)) closeDD(item, true);
+  });
+});
+
+/* ── MOBILE DRAWER ───────────────────────────────────────── */
+const mobileOpen  = document.getElementById('mobile-open');
+const mobileClose = document.getElementById('mob-close');
+const overlay     = document.getElementById('mob-overlay');
+const drawer      = document.getElementById('mob-drawer');
+
+function openDrawer()  { overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeDrawer() { overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow=''; }
+
+mobileOpen?.addEventListener('click', openDrawer);
+mobileClose?.addEventListener('click', closeDrawer);
+overlay?.addEventListener('click', closeDrawer);
+
+// accordion
+document.querySelectorAll('.drawer-section .drawer-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sec = btn.closest('.drawer-section');
+    const isOpen = sec.classList.contains('open');
+    document.querySelectorAll('.drawer-section').forEach(s => s.classList.remove('open'));
+    if (!isOpen) sec.classList.add('open');
+  });
+});
+
+/* ── SKELETON DEMO ───────────────────────────────────────── */
+// Show skeleton briefly on first open of Soluciones
+let skShown = false;
+document.getElementById('t-sol').addEventListener('mouseenter', () => {
+  if (skShown) return;
+  skShown = true;
+  const sk = document.getElementById('sk-demo');
+  sk.style.display = 'flex';
+  setTimeout(() => {
+    sk.style.transition = 'opacity .2s';
+    sk.style.opacity = '0';
+    setTimeout(() => sk.remove(), 200);
+  }, 1200);
+});
+</script>
+</body>
+</html>

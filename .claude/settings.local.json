@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(sudo chmod -R u+rwX /Users/facu/.npm/_cacache)",
+      "Bash(npm cache *)",
+      "Bash(ls -la /Users/facu/.npm/_cacache/content-v2/sha512/33/3d 2>/dev/null | head -5; file /Users/facu/.npm/_cacache/content-v2/sha512/33/3d 2>/dev/null)",
+      "Bash(ls /Users/facu/.npm/_cacache/content-v2/sha512/33/ 2>/dev/null | head; mkdir -p /Users/facu/.npm/_cacache/content-v2/sha512/33/3d 2>&1)",
+      "Bash(sudo chown -R facu /Users/facu/.npm/_cacache/content-v2/sha512/33)",
+      "Bash(cp \"/Users/facu/ADHOC/Adhoc \\(2\\)/assets/Fonts/\"*.otf \"/Users/facu/ADHOC/Adhoc \\(2\\)/public/fonts/\")",
+      "Bash(cp \"/Users/facu/ADHOC/Adhoc \\(2\\)/assets/Fonts/\"*.ttf \"/Users/facu/ADHOC/Adhoc \\(2\\)/public/fonts/\")",
+      "Bash(cp \"/Users/facu/ADHOC/Adhoc \\(2\\)/assets/uploads/\"*.ttf \"/Users/facu/ADHOC/Adhoc \\(2\\)/public/fonts/\")",
+      "Bash(cp \"/Users/facu/ADHOC/Adhoc \\(2\\)/assets/uploads/\"*.otf \"/Users/facu/ADHOC/Adhoc \\(2\\)/public/fonts/\")",
+      "Bash(cp \"/Users/facu/ADHOC/Adhoc \\(2\\)/assets/Logos/\"*.svg \"/Users/facu/ADHOC/Adhoc \\(2\\)/public/logos/\")"
+    ]
+  }
+}
