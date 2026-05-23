@@ -1,35 +1,43 @@
 ---
 import MegaNav from '../components/MegaNav.astro';
-import Footer from '../components/Footer.astro';
+import Cotizador from '../components/Cotizador.astro';
 import '../styles/global.css';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
-  currentPage?: string;
+  currentPath?: string;
 }
 
 const {
-  title,
-  description = 'Partner #1 de Odoo a nivel mundial. Implementamos Odoo para que tu empresa pueda escalar sin sumar complejidad.',
-  currentPage = '',
+  title = 'Adhoc — Partner #1 de Odoo en Latinoamérica',
+  description = 'Implementamos Odoo para PyMEs en crecimiento. Diagnóstico gratuito.',
+  currentPath = Astro.url.pathname,
 } = Astro.props;
+
+const ogImage = `${Astro.url.origin}/images/og-default.jpg`;
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content={description}>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/logos/isotipo.svg">
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/logos/isotipo.svg" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
   </head>
   <body>
-    <MegaNav currentPage={currentPage} />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+    <MegaNav currentPath={currentPath} />
+    <slot />
+    <Cotizador />
+    <!-- Footer va acá — implementar en paso 10 -->
   </body>
 </html>
