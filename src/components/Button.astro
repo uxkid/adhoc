@@ -1,0 +1,120 @@
+---
+interface Props {
+  variant?: 'primary' | 'conversion' | 'outline' | 'outline-white' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  label: string;
+  dataOpenCotizador?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  label,
+  dataOpenCotizador,
+} = Astro.props;
+
+const tag = href ? 'a' : 'button';
+const Tag = tag;
+---
+
+<Tag
+  class:list={['btn', `btn--${variant}`, `btn--${size}`]}
+  href={href}
+  type={!href ? 'button' : undefined}
+  data-open-cotizador={dataOpenCotizador ? 'true' : undefined}
+>
+  {label}
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border-radius: var(--radius-button);
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+    transition: background 150ms ease, color 150ms ease, transform 120ms ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary-focus);
+    outline-offset: 2px;
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.38;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  /* ─── Sizes ─── */
+  .btn--sm { padding: 8px 18px;  font-size: 0.8125rem; }
+  .btn--md { padding: 12px 24px; font-size: 1rem; }
+  .btn--lg { padding: 15px 32px; font-size: 1.0625rem; }
+
+  /* ─── Variants ─── */
+  .btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+  }
+  .btn--primary:hover {
+    background: var(--color-primary-hover);
+  }
+
+  /* Coral: SOLO CTAs de marketing de alta conversión — ver CLAUDE.md */
+  .btn--conversion {
+    background: var(--color-coral);
+    color: var(--color-ink);
+    border: none;
+  }
+  .btn--conversion:hover {
+    background: var(--color-coral-hover);
+  }
+
+  .btn--outline {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-ink);
+  }
+  .btn--outline:hover {
+    background: var(--color-canvas);
+  }
+
+  .btn--outline-white {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+  .btn--outline-white:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-primary);
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .btn--ghost:hover {
+    transform: none;
+    text-decoration: underline;
+  }
+</style>

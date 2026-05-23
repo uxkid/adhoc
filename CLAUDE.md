@@ -36,7 +36,9 @@ antes de continuar.
 COLORES
 - Nunca hardcodear colores. Solo var(--)
 - Violeta (#7C6CD8): exclusivamente button-primary y button-ghost
-- Coral (#FF7348) y mostaza (#FEA912): exclusivamente SVGs e íconos
+- Coral (#FF7348): exclusivamente btn--conversion y SVGs/íconos.
+  Prohibido en cualquier otro elemento de UI.
+- Mostaza (#FEA912): exclusivamente SVGs e íconos. Nunca en UI.
 - Excepción documentada: Final CTA (sección 10 de Home) tiene
   fondo violeta. Es intencional. No corregir.
 
@@ -94,6 +96,9 @@ JAVASCRIPT
 - Why Adhoc: sección eliminada de Home
 - Final CTA: fondo violeta, excepción intencional y documentada
 - MegaNav CTA principal: violeta + "Solicitar una demo". El HTML de referencia tenía coral + "Diagnóstico gratuito" — ese era el prototipo. El CLAUDE.md es la decisión final. No revertir a coral.
+- Button variante coral: se llama btn--conversion, no secondary.
+  Solo para CTAs de marketing de alta conversión (hero, landings,
+  final CTA de sección). Nunca en nav, cards, formularios ni UI interna.
 
 ---
 

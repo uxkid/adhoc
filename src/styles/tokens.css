@@ -16,8 +16,11 @@
   --color-lavender: #BCAFEF;
   --color-lavender-fill: #EDE9FB;   /* fill de tag (~15% opacity) */
 
-  /* ─── Acentos — SOLO íconos e ilustraciones ─── */
+  /* ─── Coral — btn--conversion y SVGs/íconos únicamente ─── */
   --color-coral: #FF7348;
+  --color-coral-hover: #E85F35;
+
+  /* ─── Mostaza — SOLO SVGs/íconos ─── */
   --color-mustard: #FEA912;
 
   /* ─── Bordes (grises únicamente) ─── */
