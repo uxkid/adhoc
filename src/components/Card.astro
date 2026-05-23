@@ -1,0 +1,67 @@
+---
+/**
+ * Surface Inversion Rule — CSS custom property heredada:
+ *   Sección blanca  → .section--surface { --card-bg: var(--color-canvas); }
+ *   Sección canvas  → .section--canvas  { --card-bg: var(--color-surface); }
+ * variant="auto" lee --card-bg del ancestro más cercano; cae a surface si no está definido.
+ */
+
+interface Props {
+  variant?: 'auto' | 'white' | 'canvas' | 'violet' | 'lavender' | 'coral' | 'mustard';
+  padding?: 'sm' | 'md' | 'lg';
+}
+
+const { variant = 'auto', padding = 'md' } = Astro.props;
+---
+
+<div class:list={['card', `card--${variant}`, `card--pad-${padding}`]}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    border: 1px solid var(--border-subtle);
+    border-radius: clamp(16px, 5vw, 32px);
+    /* NO box-shadow, NO border de color de marca */
+  }
+
+  /* ─── Neutral variants ─── */
+  .card--auto    { background: var(--card-bg, var(--color-surface)); }
+  .card--white   { background: var(--color-surface); }
+  .card--canvas  { background: var(--color-canvas); }
+
+  /* ─── Colored variants — el fondo define la card; borde sutil se oculta ─── */
+
+  /* violet: #7C6CD8 / #000 = 4.99:1 AA — excepción AA, igual que tag--vio */
+  .card--violet {
+    background: var(--color-primary);
+    color: var(--color-ink);
+    border-color: transparent;
+  }
+
+  /* lavender: #EDE9FB / #000 = 17.65:1 AAA */
+  .card--lavender {
+    background: var(--color-lavender-fill);
+    color: var(--color-ink);
+    border-color: transparent;
+  }
+
+  /* coral: #FF7348 / #000 = 7.79:1 AAA */
+  .card--coral {
+    background: var(--color-coral);
+    color: var(--color-ink);
+    border-color: transparent;
+  }
+
+  /* mustard: #FEA912 / #000 = 10.91:1 AAA */
+  .card--mustard {
+    background: var(--color-mustard);
+    color: var(--color-ink);
+    border-color: transparent;
+  }
+
+  /* ─── Padding ─── */
+  .card--pad-sm  { padding: var(--space-md); }   /* 16px */
+  .card--pad-md  { padding: var(--space-lg); }   /* 24px */
+  .card--pad-lg  { padding: var(--space-2xl); }  /* 48px */
+</style>

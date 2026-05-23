@@ -35,10 +35,11 @@ antes de continuar.
 
 COLORES
 - Nunca hardcodear colores. Solo var(--)
-- Violeta (#7C6CD8): exclusivamente button-primary y button-ghost
-- Coral (#FF7348): permitido en btn--conversion y tag--cor únicamente.
+- Violeta (#7C6CD8): permitido en button-primary, button-ghost y card-violet únicamente.
   Prohibido en cualquier otro elemento de UI.
-- Mostaza (#FEA912): permitido en tag--mus únicamente.
+- Coral (#FF7348): permitido en btn--conversion, tag--cor y card-coral únicamente.
+  Prohibido en cualquier otro elemento de UI.
+- Mostaza (#FEA912): permitido en tag--mus y card-mustard únicamente.
   Prohibido en cualquier otro elemento de UI.
 - Excepción documentada: Final CTA (sección 10 de Home) tiene
   fondo violeta. Es intencional. No corregir.
@@ -105,6 +106,10 @@ JAVASCRIPT
   out-cor eliminada — el borde coral no cumple WCAG 1.4.11 (2.70:1 < 3:1).
 - tag--vio es la única excepción AA del sistema (4.99:1).
   No usar para texto de más de 3 palabras.
+- Card.astro = contenedor puro (slot). Variantes: auto, white, canvas,
+  violet, lavender, coral, mustard. Sin accent cards (border-top de color).
+  Sin box-shadow. Las cards complejas de cada sección son componentes propios.
+  card-violet tiene la misma excepción AA que tag--vio (4.99:1).
 
 ---
 
