@@ -1,36 +1,35 @@
+/* src/styles/tokens.css */
+
 :root {
   /* ─── Superficies ─── */
   --color-canvas: #E9E5DF;
   --color-surface: #FFFFFF;
   --color-ink: #000000;
   --color-text-secondary: #4A4A4A;
-  --color-text-muted: #888888;
 
   /* ─── Violeta — SOLO BOTONES ─── */
   --color-primary: #7C6CD8;
   --color-primary-hover: #6B5CC4;
+  --color-primary-focus: #7C6CD8;
 
   /* ─── Lavanda — SOLO TAGS ─── */
   --color-lavender: #BCAFEF;
-  --color-lavender-fill: #EDE9FB;
+  --color-lavender-fill: #EDE9FB;   /* fill de tag (~15% opacity) */
 
-  /* ─── Acentos — SOLO ilustraciones e íconos ─── */
+  /* ─── Acentos — SOLO íconos e ilustraciones ─── */
   --color-coral: #FF7348;
-  --color-coral-hover: #E85F35;
   --color-mustard: #FEA912;
 
-  /* ─── Bordes ─── */
-  --border-subtle: #EBEBEB;
-  --border-medium: #D4CFC6;
+  /* ─── Bordes (grises únicamente) ─── */
+  --border-subtle: #EBEBEB;         /* cards, dividers, contenedores */
+  --border-medium: #D4CFC6;         /* inputs, modales, elementos con más definición */
 
   /* ─── Border radius ─── */
-  --radius-button: 12px;
-  --radius-input: 8px;
-  --radius-tag: 6px;
-  --radius-icon-tile: 28px;
-  --radius-card-sm: 20px;
-  --radius-card-lg: 32px;
-  --radius-card: clamp(16px, 5vw, 32px);
+  --radius-button: 12px;            /* botones — squircle fijo */
+  --radius-input: 8px;              /* inputs */
+  --radius-tag: 6px;                /* tags/chips */
+  --radius-icon-tile: 28px;         /* app-icon tiles Odoo */
+  /* cards: squircle proporcional — ver sección Cards */
 
   /* ─── Spacing ─── */
   --space-xxs: 4px;
@@ -43,9 +42,6 @@
   --space-3xl: 64px;
   --space-4xl: 96px;
 
-  /* ─── Tipografía ─── */
-  --font-display: 'New Kansas', Georgia, 'Times New Roman', serif;
-  --font-body: 'Apercu Pro', 'Inter', -apple-system, 'Segoe UI', sans-serif;
-
-  /* ─── Elevación: DEPRECATED en v2 — no usar box-shadow ─── */
+  /* ─── Elevación: DEPRECATED en v2 ─── */
+  /* No usar box-shadow en ningún elemento */
 }
