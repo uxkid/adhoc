@@ -1,0 +1,85 @@
+---
+type OdooModule =
+  | 'ai' | 'articulos' | 'compras' | 'conversaciones' | 'crm'
+  | 'documentos' | 'email-marketing' | 'empleados' | 'estudio'
+  | 'firma' | 'horarios' | 'inventario' | 'manufactura' | 'planeacion'
+  | 'proyectos' | 'punto-venta' | 'redes-sociales' | 'servicios'
+  | 'soporte' | 'suscripciones' | 'tablero' | 'ventas' | 'vacaciones'
+  | 'website';
+
+const moduleNames: Record<OdooModule, string> = {
+  'ai':               'Inteligencia Artificial',
+  'articulos':        'Artículos',
+  'compras':          'Compras',
+  'conversaciones':   'Conversaciones',
+  'crm':              'CRM',
+  'documentos':       'Documentos',
+  'email-marketing':  'Email Marketing',
+  'empleados':        'Empleados',
+  'estudio':          'Odoo Studio',
+  'firma':            'Firma Electrónica',
+  'horarios':         'Horarios',
+  'inventario':       'Inventario',
+  'manufactura':      'Manufactura',
+  'planeacion':       'Planificación',
+  'proyectos':        'Proyectos',
+  'punto-venta':      'Punto de Venta',
+  'redes-sociales':   'Redes Sociales',
+  'servicios':        'Servicio de Campo',
+  'soporte':          'Soporte',
+  'suscripciones':    'Suscripciones',
+  'tablero':          'Tablero',
+  'vacaciones':       'Ausencias',
+  'ventas':           'Ventas',
+  'website':          'Website',
+};
+
+interface Props {
+  module: OdooModule;
+  label?: string;
+}
+
+const { module, label } = Astro.props;
+---
+
+<div class="app-icon-wrap">
+  <div class="app-icon-tile">
+    <img
+      src={`/icons/odoo/${module}.svg`}
+      alt={label ? '' : (moduleNames[module] ?? module)}
+      width="48"
+      height="48"
+      loading="lazy"
+    />
+  </div>
+  {label && <span class="app-icon-label">{label}</span>}
+</div>
+
+<style>
+  .app-icon-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .app-icon-tile {
+    width: 96px;
+    height: 96px;
+    background: var(--color-canvas);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-icon-tile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* NO box-shadow */
+  }
+
+  .app-icon-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+</style>
