@@ -36,9 +36,10 @@ antes de continuar.
 COLORES
 - Nunca hardcodear colores. Solo var(--)
 - Violeta (#7C6CD8): exclusivamente button-primary y button-ghost
-- Coral (#FF7348): exclusivamente btn--conversion y SVGs/íconos.
+- Coral (#FF7348): permitido en btn--conversion y tag--cor únicamente.
   Prohibido en cualquier otro elemento de UI.
-- Mostaza (#FEA912): exclusivamente SVGs e íconos. Nunca en UI.
+- Mostaza (#FEA912): permitido en tag--mus únicamente.
+  Prohibido en cualquier otro elemento de UI.
 - Excepción documentada: Final CTA (sección 10 de Home) tiene
   fondo violeta. Es intencional. No corregir.
 
@@ -46,6 +47,7 @@ BORDES Y SOMBRAS
 - Sin box-shadow en ningún elemento del sitio
 - Borders solo con var(--border-subtle) o var(--border-medium)
 - Nunca usar violeta, coral o mostaza como color de border
+  (excepción: tag--out-vio usa border con --color-primary — único caso permitido)
 
 BORDER RADIUS
 - Botones: var(--radius-button) — 12px fijo. Nunca pill (999px)
@@ -99,6 +101,10 @@ JAVASCRIPT
 - Button variante coral: se llama btn--conversion, no secondary.
   Solo para CTAs de marketing de alta conversión (hero, landings,
   final CTA de sección). Nunca en nav, cards, formularios ni UI interna.
+- Tag variantes: lav (default), vio, cor, mus, dark, canvas, out-vio.
+  out-cor eliminada — el borde coral no cumple WCAG 1.4.11 (2.70:1 < 3:1).
+- tag--vio es la única excepción AA del sistema (4.99:1).
+  No usar para texto de más de 3 palabras.
 
 ---
 
