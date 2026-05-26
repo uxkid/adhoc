@@ -347,7 +347,7 @@ Solo "Soluciones" tiene mega-panel. Los otros tres son links estáticos.
 | Servicios | Enterprise | |
 | Manufactura | | |
 
-**CTA en nav:** `button-primary` violeta, texto "Solicitar una demo"  
+**CTA en nav:** `button-primary` violeta, texto "Solicitar demo"  
 **Botón secundario:** "Ingresar" (link estático, sin estilo primario)
 
 **Especificaciones de interacción:**
@@ -437,46 +437,65 @@ Paso 4 (Resultado): Plan recomendado + CTAs
 Estructura de secciones en orden:
 
 ```
- 1. Hero          — canvas  — headline, 2 CTAs ("Solicitar demo" + "Diagnóstico gratuito"),
-                              trust strip + logos de clientes
-                              HeroDashboard.astro sangrado en la parte inferior,
-                              cortado para inducir scroll
+ 1. Hero              — canvas  — headline, 2 CTAs, trust strip + logos,
+                                  HeroDashboard.astro sangrado en la parte inferior
 
- 2. Rubros        — surface — DESKTOP: 2 columnas, sticky tabs izquierda + bloques scrollables derecha
-                              MOBILE:  columna única, cards de rubro apiladas verticalmente
+ 2. Rubros + Métricas — surface — UNA SOLA <section> con sec--sticky-base
+                                  Rubros arriba (sticky tabs desktop / cards mobile)
+                                  Métricas debajo (4 números), mismo fondo, sin separador
+                                  POSICIÓN: sticky — es tapada por Features al scrollear
 
- 3. Features      — canvas  — 6 tabs, color de card único por feature,
-                              visual de UI Odoo, copy de beneficio
+ 3. Features          — ink     — 6 tabs, color de card único por feature
+                                  EFECTO ENTRADA: border-radius 32px 32px 0 0
+                                  Z-INDEX: 2 sobre Rubros+Métricas sticky
 
- 4. Métricas      — surface — 4 números: −40% tareas, −60% errores, +30% prod., +100% visibilidad
+ 4. Casos             — surface — card featured (RE/MAX) + 6 mini cards + ticker animado
 
- 5. Integraciones — MOSTAZA — Wave.astro arriba y abajo como transición
-                              DESKTOP: 2 columnas, copy izquierda + grid de AppIcons derecha
-                              MOBILE:  columna única, copy arriba + AppIcons abajo
+ 5. Proceso           — canvas  — 3 cards: Diagnóstico, Implementación, Optimización continua
+                                  POSICIÓN: sticky — es tapada por Integraciones al scrollear
 
- 6. Proceso       — canvas  — 3 cards: Diagnóstico, Implementación, Optimización continua
+ 6. Integraciones     — ink     — Wave.astro + AppIcons (pendiente)
+                                  EFECTO ENTRADA: border-radius 32px 32px 0 0
+                                  Z-INDEX: 2 sobre Proceso sticky
 
- 7. Casos         — surface — card featured (RE/MAX) + 6 mini cards + ticker animado
+ 7. FAQ               — surface — 5 preguntas, accordion con height transition
 
- 8. FAQ           — canvas  — 5 preguntas, accordion con height transition
+ 8. Contact form      — canvas  — formulario: nombre, email, empresa + checklist
 
- 9. Contact form  — surface — formulario: nombre, email, empresa + checklist
-
-10. Footer
+ 9. Footer
 ```
 
-> **Excepción documentada — Integraciones (sección 5):**
-> Usa fondo mostaza (`var(--color-mustard)`) con waves SVG de transición arriba y abajo.
-> La regla de alternancia canvas/surface no aplica a esta sección.
+**Efecto de entrada — secciones ink (3 y 6):**
+
+Las secciones ink se "tapan" sobre la sección anterior mediante scroll:
+- La sección ink tiene `border-radius: 32px 32px 0 0` y `z-index: 2`
+- La sección que la precede tiene `position: sticky; top: 0; z-index: 1`
+- Ambos pares están envueltos en `<div class="ink-stack">` para aislar el contexto sticky
+
+```html
+<div class="ink-stack">
+  <section class="sec sec--surface sec--sticky-base">...</section>  <!-- precede, sticky -->
+  <section class="sec sec--ink sec--ink-enter">...</section>         <!-- ink, entra encima -->
+</div>
+```
 
 **Regla de alternancia de superficies:**
-Las secciones 1–4 y 6–9 alternan entre `var(--color-canvas)` y `var(--color-surface)`. La sección 5 (Integraciones) es la única excepción explícita. No romper la alternancia en el resto sin motivo documentado.
+
+El esquema final de la Home es:
+
+```
+canvas → surface → ink → surface → canvas → ink → surface → canvas
+ Hero   Rub+Mét  Feat  Casos    Proceso   Integ    FAQ     Contact
+```
+
+Las secciones ink no participan de la alternancia canvas/surface — son la excepción intencional y documentada.
 
 **Secciones eliminadas respecto al prototipo HTML:**
 - ROI Calculator — eliminada por completo
-- Final CTA violeta (sección 11 del prototipo) — eliminada
+- Why Adhoc — eliminada por completo
+- Final CTA violeta — eliminada por completo
 
-**Rubros — implementación (sección 2):**
+**Rubros — implementación (dentro de sección 2):**
 
 Desktop:
 - Layout: `grid` 30% / 70%

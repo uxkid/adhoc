@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="6.30416cm" height="6.30502cm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 630.416 630.502"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+   <clipPath id="id0">
+    <path d="M129.609 130.807l370 0 0 370 -370 0 0 -370z"/>
+   </clipPath>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect fill="#F7F5F3" x="14.608" y="15.805" width="600.001" height="600.003" rx="136.365" ry="136.365"/>
+  <g>
+  </g>
+  <g clip-path="url(#id0)">
+   <g id="_2092416392416">
+    <path fill="#191919" fill-rule="nonzero" d="M322.015 386.106c0,0 -6.142,-14.801 -7.378,-16.037 151.715,-72.816 174.034,-26.196 177.155,-7.068 0.503,3.093 0.036,6.237 -0.918,9.227 -3.473,10.888 -8.01,21.51 -13.466,31.57 -11.101,11.101 -73.999,11.915 -73.999,11.915l-81.4 -29.599 0.006 -0.008z"/>
+    <path fill="#191919" fill-rule="nonzero" d="M285.01 234.408l29.63 27.135c-151.715,72.815 -174.034,26.195 -177.155,7.067 -0.504,-3.093 -0.036,-6.237 0.917,-9.227 2.842,-8.902 6.388,-17.631 10.561,-26.002 30.324,-60.809 87.952,-21.175 87.952,-21.175l48.101 22.202 -0.006 0z"/>
+    <path fill="#BCAFEF" fill-rule="nonzero" d="M138.394 372.231c-0.954,-2.99 -1.421,-6.134 -0.917,-9.227 3.124,-19.136 25.44,-65.757 177.154,7.067 105.058,50.43 148.074,43.586 165.627,28.254 -30.332,60.745 -93.107,102.482 -165.627,102.482 -82.495,0 -152.38,-53.999 -176.237,-128.576z"/>
+    <path fill="#BCAFEF" fill-rule="nonzero" d="M490.869 259.383c0.954,2.99 1.421,6.134 0.917,9.227 -3.124,19.136 -25.44,65.757 -177.155,-7.067 -105.057,-50.43 -148.073,-43.586 -165.626,-28.254 30.332,-60.745 93.107,-102.482 165.626,-102.482 82.488,0 152.372,53.999 176.238,128.576z"/>
+   </g>
+  </g>
+  <polygon fill="none" points="129.609,130.807 499.609,130.807 499.609,500.807 129.609,500.807 "/>
+ </g>
+</svg>

@@ -7,7 +7,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 
 <Base title="Adhoc — Partner #1 de Odoo a nivel mundial">
 
-<!-- ══ 1. HERO ══════════════════════════════════════════════ -->
+<!-- ══ 1. HERO ═══════════════════════════════════════════════ -->
 <section class="sec sec--canvas" id="hero">
   <div class="container hero-inner">
     <Tag label="★  Partner #1 de Odoo a nivel mundial" />
@@ -31,287 +31,226 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   <HeroDashboard />
 </section>
 
-<!-- ══ 2. RUBROS ════════════════════════════════════════════ -->
-<section class="sec sec--surface" id="rubros">
-  <div class="rubros-outer">
-    <div class="rubros-left">
-      <span class="overline">Rubros</span>
-      <h2 class="rubros-hed">Trabajamos con tu industria</h2>
-      <div class="rubros-chips">
-        <button class="rchip rchip--active" data-target="rub-edu">Educación</button>
-        <button class="rchip" data-target="rub-dis">Distribución<br>y comercios</button>
-        <button class="rchip" data-target="rub-ser">Servicios</button>
-        <button class="rchip" data-target="rub-man">Manufactura</button>
-      </div>
-    </div>
-    <div class="rubros-right">
-      <div class="rblock" id="rub-edu">
-        <Tag label="Educación" variant="mus" />
-        <h3 class="rblock-title">Gestioná tu institución sin perder el foco en enseñar</h3>
-        <p class="rblock-sub">Inscripciones, facturación, empleados y comunicación con familias en un solo sistema.</p>
-        <div class="rblock-img"><span>UI Educación</span></div>
-      </div>
-      <div class="rblock" id="rub-dis">
-        <Tag label="Distribución y comercios" variant="lav" />
-        <h3 class="rblock-title">Stock actualizado, precios correctos, pedidos sin errores</h3>
-        <p class="rblock-sub">Unificá compras, inventario y ventas para que tu equipo nunca más dependa de planillas desactualizadas.</p>
-        <div class="rblock-img"><span>UI Distribución</span></div>
-      </div>
-      <div class="rblock" id="rub-ser">
-        <Tag label="Servicios" variant="dark" />
-        <h3 class="rblock-title">De las horas trabajadas a la factura, sin fricción</h3>
-        <p class="rblock-sub">Proyectos, presupuestos, facturación y soporte integrados. Menos administración, más tiempo para servir.</p>
-        <div class="rblock-img"><span>UI Servicios</span></div>
-      </div>
-      <div class="rblock" id="rub-man">
-        <Tag label="Manufactura" variant="cor" />
-        <h3 class="rblock-title">Producción, stock y ventas hablando el mismo idioma</h3>
-        <p class="rblock-sub">Controlá órdenes de producción, insumos y entregas desde un solo lugar con visibilidad en tiempo real.</p>
-        <div class="rblock-img"><span>UI Manufactura</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══ ink-stack-1: Rubros+Métricas sticky → Features ink ════ -->
+<div class="ink-stack">
 
-<!-- ══ 3. FEATURES ══════════════════════════════════════════ -->
-<section class="sec sec--canvas" id="features">
-  <div class="container">
-    <h2 class="ft-headline">Resolvemos los desafíos que <em>frenan tu crecimiento.</em></h2>
-    <div class="ft-tabs" role="tablist">
-      <button class="ft-tab ft-tab--active" role="tab" aria-selected="true"  aria-controls="ft-panel-0" data-ft="0">Automatizar operaciones</button>
-      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-1" data-ft="1">Integrar áreas</button>
-      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-2" data-ft="2">Escalar con control</button>
-      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-3" data-ft="3">Ganar visibilidad</button>
-      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-4" data-ft="4">Control financiero</button>
-      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-5" data-ft="5">Digitalizar el negocio</button>
-    </div>
-
-    <div class="ft-panel ft-panel--active" id="ft-panel-0" role="tabpanel" style="--ft-bg:var(--color-primary);--ft-ink:#fff;">
-      <div class="ft-visual">
-        <div class="ft-mock">
-          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Flujo de pedidos automatizado</span></div>
-          <div class="ft-pipe">
-            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Pedido</div><div class="ft-pc"><div class="ft-pc-id">SO-1284</div><div class="ft-pc-nm">RE/MAX Argentina</div><div class="ft-pc-mt"><span>$24.5K</span><span>14:02</span></div></div></div>
-            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Aprobación</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">SO-1283</div><div class="ft-pc-nm">Mercado Libre</div><div class="ft-pc-mt"><span>$118K</span><span>13:48</span></div></div></div>
-            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Factura</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">FA-0921</div><div class="ft-pc-nm">PayPal LATAM</div><div class="ft-pc-mt"><span>$72K</span><span>13:30</span></div></div></div>
-            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Enviado</div><div class="ft-pc ft-pc--done"><div class="ft-pc-id">FA-0920 ✓</div><div class="ft-pc-nm">OneClick</div><div class="ft-pc-mt"><span>$45K</span><span>13:12</span></div></div></div>
-          </div>
+  <!-- ══ 2. RUBROS + MÉTRICAS ══════════════════════════════════ -->
+  <section class="sec sec--surface sec--sticky-base" id="rubros-metricas">
+    <div class="rubros-outer">
+      <div class="rubros-left">
+        <span class="overline">Rubros</span>
+        <h2 class="rubros-hed">Trabajamos con tu industria</h2>
+        <div class="rubros-chips">
+          <button class="rchip rchip--active" data-target="rub-edu">Educación</button>
+          <button class="rchip" data-target="rub-dis">Distribución<br>y comercios</button>
+          <button class="rchip" data-target="rub-ser">Servicios</button>
+          <button class="rchip" data-target="rub-man">Manufactura</button>
         </div>
       </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">01 · Automatización</span>
-        <h3 class="ft-title">Automatizar operaciones</h3>
-        <p class="ft-sub">Reducí tareas repetitivas y liberá a tu equipo para el trabajo que realmente importa. Menos errores, más velocidad.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-
-    <div class="ft-panel" id="ft-panel-1" role="tabpanel" style="--ft-bg:var(--color-coral);--ft-ink:var(--color-ink);">
-      <div class="ft-visual">
-        <div class="ft-hub-wrap">
-          <div class="ft-hub-center">A · Adhoc Odoo</div>
-          <div class="ft-hub-nodes">
-            <div class="ft-hub-node" style="top:8%;left:50%">💼 Ventas</div>
-            <div class="ft-hub-node" style="top:28%;left:88%">📦 Inventario</div>
-            <div class="ft-hub-node" style="top:68%;left:88%">💰 Finanzas</div>
-            <div class="ft-hub-node" style="top:88%;left:50%">👥 CRM</div>
-            <div class="ft-hub-node" style="top:68%;left:2%">🛒 Compras</div>
-            <div class="ft-hub-node" style="top:28%;left:2%">📊 Reportes</div>
-          </div>
+      <div class="rubros-right">
+        <div class="rblock" id="rub-edu">
+          <Tag label="Educación" variant="mus" />
+          <h3 class="rblock-title">Gestioná tu institución sin perder el foco en enseñar</h3>
+          <p class="rblock-sub">Inscripciones, facturación, empleados y comunicación con familias en un solo sistema.</p>
+          <div class="rblock-img"><span>UI Educación</span></div>
         </div>
-      </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">02 · Integración</span>
-        <h3 class="ft-title">Integrar áreas</h3>
-        <p class="ft-sub">Ventas, stock y finanzas en un solo sistema. Sin copiar datos entre planillas. Sin información desactualizada.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-
-    <div class="ft-panel" id="ft-panel-2" role="tabpanel" style="--ft-bg:var(--color-mustard);--ft-ink:var(--color-ink);">
-      <div class="ft-visual">
-        <div class="ft-mock">
-          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Grupo empresarial · 5 subsidiarias</span></div>
-          <div style="text-align:center;margin-bottom:8px"><div class="ft-tree-root">Holding</div></div>
-          <div class="ft-tree-row"><div class="ft-tree-node">Argentina</div><div class="ft-tree-node">Chile</div><div class="ft-tree-node">México</div><div class="ft-tree-node">Perú</div><div class="ft-tree-node">Colombia</div></div>
-          <div class="ft-tree-note">● Consolidación en tiempo real · USD · ARS · CLP · MXN</div>
+        <div class="rblock" id="rub-dis">
+          <Tag label="Distribución y comercios" variant="lav" />
+          <h3 class="rblock-title">Stock actualizado, precios correctos, pedidos sin errores</h3>
+          <p class="rblock-sub">Unificá compras, inventario y ventas para que tu equipo nunca más dependa de planillas desactualizadas.</p>
+          <div class="rblock-img"><span>UI Distribución</span></div>
         </div>
-      </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">03 · Escalabilidad</span>
-        <h3 class="ft-title">Escalar con control</h3>
-        <p class="ft-sub">Multi-empresa, multi-moneda, multi-país. Adhoc + Odoo crecen con tu operación sin reescribir procesos.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-
-    <div class="ft-panel" id="ft-panel-3" role="tabpanel" style="--ft-bg:var(--color-lavender);--ft-ink:var(--color-ink);">
-      <div class="ft-visual">
-        <div class="ft-mock">
-          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Tablero ejecutivo</span></div>
-          <div class="ft-kpi-row">
-            <div class="ft-kpi"><div class="ft-kpi-l">Facturación MTD</div><div class="ft-kpi-v">$4.2M</div><div class="ft-kpi-d ft-kpi-d--up">↑ 18.4%</div></div>
-            <div class="ft-kpi"><div class="ft-kpi-l">Pedidos</div><div class="ft-kpi-v">318</div><div class="ft-kpi-d ft-kpi-d--up">↑ 12.1%</div></div>
-            <div class="ft-kpi"><div class="ft-kpi-l">Margen</div><div class="ft-kpi-v">31.2%</div><div class="ft-kpi-d ft-kpi-d--dn">↓ 1.4%</div></div>
-          </div>
-          <div class="ft-chart-row">
-            <div class="ft-bar-wrap" style="height:42%"></div><div class="ft-bar-wrap" style="height:58%"></div>
-            <div class="ft-bar-wrap" style="height:49%"></div><div class="ft-bar-wrap" style="height:72%"></div>
-            <div class="ft-bar-wrap" style="height:65%"></div><div class="ft-bar-wrap" style="height:88%"></div>
-            <div class="ft-bar-wrap ft-bar-wrap--hi" style="height:76%"></div><div class="ft-bar-wrap ft-bar-wrap--hi" style="height:95%"></div>
-          </div>
+        <div class="rblock" id="rub-ser">
+          <Tag label="Servicios" variant="dark" />
+          <h3 class="rblock-title">De las horas trabajadas a la factura, sin fricción</h3>
+          <p class="rblock-sub">Proyectos, presupuestos, facturación y soporte integrados. Menos administración, más tiempo para servir.</p>
+          <div class="rblock-img"><span>UI Servicios</span></div>
         </div>
-      </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">04 · Visibilidad</span>
-        <h3 class="ft-title">Ganar visibilidad</h3>
-        <p class="ft-sub">Dashboards en tiempo real con tus KPIs reales. Decidí con datos, no con planillas que se desactualizan en una semana.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-
-    <div class="ft-panel" id="ft-panel-4" role="tabpanel" style="--ft-bg:#000;--ft-ink:#E9E5DF;">
-      <div class="ft-visual">
-        <div class="ft-mock">
-          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Estado de resultados — Q1</span><span class="ft-fin-tag">CIERRE AUTO</span></div>
-          <div class="ft-fin-row ft-fin-row--head"><span>Cuenta</span><span>Real</span><span>Presup.</span><span>Δ</span></div>
-          <div class="ft-fin-row"><span>Ingresos</span><span>$12.4M</span><span>$11.2M</span><span class="ft-pos">+10.7%</span></div>
-          <div class="ft-fin-row"><span>Costos</span><span>$5.8M</span><span>$5.6M</span><span class="ft-neg">+3.5%</span></div>
-          <div class="ft-fin-row"><span>Gastos op.</span><span>$2.1M</span><span>$2.3M</span><span class="ft-pos">−8.6%</span></div>
-          <div class="ft-fin-row ft-fin-row--tot"><span>EBITDA</span><span>$4.5M</span><span>$3.3M</span><span class="ft-pos">+36.3%</span></div>
-        </div>
-      </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">05 · Finanzas</span>
-        <h3 class="ft-title">Control financiero</h3>
-        <p class="ft-sub">Cierres mensuales en horas, no semanas. Conciliación automática, presupuestos vivos y reportes contables al instante.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-
-    <div class="ft-panel" id="ft-panel-5" role="tabpanel" style="--ft-bg:var(--color-canvas);--ft-ink:#000;">
-      <div class="ft-visual">
-        <div class="ft-digi">
-          <div class="ft-paper">
-            <div class="ft-paper-title">Remito #4821</div>
-            <div class="ft-paper-line"></div><div class="ft-paper-line ft-paper-line--70"></div>
-            <div class="ft-paper-line ft-paper-line--90"></div><div class="ft-paper-line ft-paper-line--60"></div>
-            <div class="ft-paper-warn">SIN FIRMA · SIN ARCHIVAR</div>
-          </div>
-          <div class="ft-digi-arrow">→</div>
-          <div class="ft-app-card">
-            <div class="ft-app-title">Remitos · Adhoc App</div>
-            <div class="ft-app-row ft-app-row--done">Recepción · Cliente A <span class="ft-ck ft-ck--done"></span></div>
-            <div class="ft-app-row ft-app-row--done">Firma digital <span class="ft-ck ft-ck--done"></span></div>
-            <div class="ft-app-row ft-app-row--done">Sync con Odoo <span class="ft-ck ft-ck--done"></span></div>
-            <div class="ft-app-row">Notificación cliente <span class="ft-ck"></span></div>
-          </div>
-        </div>
-      </div>
-      <div class="ft-text">
-        <span class="ft-eyebrow">06 · Digitalización</span>
-        <h3 class="ft-title">Digitalizar el negocio</h3>
-        <p class="ft-sub">Sacá los procesos del papel y de Excel. Llevá tu operación a una plataforma moderna sin romper lo que ya funciona.</p>
-        <button class="ft-cta">Ver cómo funciona →</button>
-      </div>
-    </div>
-    <div class="ft-dots" aria-hidden="true">
-      <button class="ft-dot-btn ft-dot-active" data-ft="0" tabindex="-1"></button>
-      <button class="ft-dot-btn" data-ft="1" tabindex="-1"></button>
-      <button class="ft-dot-btn" data-ft="2" tabindex="-1"></button>
-      <button class="ft-dot-btn" data-ft="3" tabindex="-1"></button>
-      <button class="ft-dot-btn" data-ft="4" tabindex="-1"></button>
-      <button class="ft-dot-btn" data-ft="5" tabindex="-1"></button>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 4. MÉTRICAS ══════════════════════════════════════════ -->
-<section class="sec sec--surface">
-  <div class="container">
-    <div class="metrics-hdr">
-      <Tag label="Qué impacto genera" />
-      <h2 class="sec-hed">Más productividad.<br>Menos fricción operativa.</h2>
-      <p class="sec-sub">Resultados promedio en empresas que implementaron Odoo con Adhoc en los primeros 6 meses.</p>
-    </div>
-    <div class="metrics-row">
-      <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">40%</div><div class="metric-lbl">Tareas<br>manuales</div></div>
-      <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">60%</div><div class="metric-lbl">Errores<br>operativos</div></div>
-      <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">30%</div><div class="metric-lbl">Productividad<br>del equipo</div></div>
-      <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div></div>
-    </div>
-    <div class="metrics-cta">
-      <Button variant="primary" size="lg" label="Solicitar demo →" dataOpenCotizador={true} />
-    </div>
-  </div>
-</section>
-
-<!-- ══ 5. INTEGRACIONES ══════════════════════════════════════ -->
-<!-- TODO: Wave.astro + AppIcons — fondo mustaza -->
-
-<!-- ══ 6. PROCESO ════════════════════════════════════════════ -->
-<section class="sec sec--canvas">
-  <div class="container">
-    <div class="proceso-hdr">
-      <Tag label="El proceso" />
-      <h2 class="proceso-hed">Todo tu negocio en <em>un solo sistema.</em></h2>
-      <p class="sec-sub">No tiramos código encima de tus problemas. Primero entendemos tu operación. Después la transformamos.</p>
-    </div>
-    <div class="proceso-grid">
-      <div class="pcard">
-        <div class="pcard-num">01</div>
-        <div class="pcard-title">Diagnóstico</div>
-        <p class="pcard-sub">Analizamos tus procesos y cuellos de botella. Sin compromiso, sin tecnicismos.</p>
-        <div class="pcard-vis">
-          <div class="diag-list">
-            <div class="diag-item"><span class="diag-dot" style="background:#E64A37"></span>Procesos manuales<span class="diag-tag diag-tag--red">Crítico</span></div>
-            <div class="diag-item"><span class="diag-dot" style="background:#B87800"></span>Datos en planillas<span class="diag-tag diag-tag--yel">Medio</span></div>
-            <div class="diag-item"><span class="diag-dot" style="background:var(--color-primary)"></span>Stock desactualizado<span class="diag-tag diag-tag--lav">Alto</span></div>
-            <div class="diag-item"><span class="diag-dot" style="background:#3BB56A"></span>Cobranzas OK<span class="diag-tag diag-tag--grn">Bajo</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="pcard">
-        <div class="pcard-num">02</div>
-        <div class="pcard-title">Implementación</div>
-        <p class="pcard-sub">Configuramos Odoo a medida, migramos datos y capacitamos a tu equipo.</p>
-        <div class="pcard-vis">
-          <div class="imp-mock">
-            <div class="imp-row imp-row--done"><span class="imp-dot" style="background:#3BB56A"></span><span>Diagnóstico</span><span class="imp-state imp-state--ok">✓</span></div>
-            <div class="imp-row imp-row--active"><span class="imp-dot" style="background:var(--color-primary)"></span><span>Configuración Odoo</span><span class="imp-state imp-state--cur">En curso</span></div>
-            <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Migración de datos</span><span class="imp-state">Próximo</span></div>
-            <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Capacitación</span><span class="imp-state">Próximo</span></div>
-            <div class="imp-progress"><div class="imp-progress-lbl">Avance — 62%</div><div class="imp-progress-bar"><div class="imp-progress-fill" style="width:62%"></div></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="pcard">
-        <div class="pcard-num">03</div>
-        <div class="pcard-title">Optimización<br>continua</div>
-        <p class="pcard-sub">Soporte consultivo real. Evolucionamos el sistema a medida que crecés.</p>
-        <div class="pcard-vis">
-          <div class="opt-vis">
-            <div class="opt-lbl">Eficiencia operativa</div>
-            <div class="opt-val">+38% <span class="opt-delta">↑ último Q</span></div>
-            <svg class="opt-chart" viewBox="0 0 280 80" width="100%" height="80" preserveAspectRatio="none">
-              <defs><linearGradient id="optg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C6CD8" stop-opacity=".3"/><stop offset="100%" stop-color="#7C6CD8" stop-opacity="0"/></linearGradient></defs>
-              <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8 L280,80 L0,80 Z" fill="url(#optg)"/>
-              <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8" fill="none" stroke="#7C6CD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="280" cy="8" r="4" fill="#fff" stroke="#7C6CD8" stroke-width="2"/>
-            </svg>
-            <div class="opt-axis"><span>Mes 1</span><span>3</span><span>6</span><span>9</span><span>12</span></div>
-          </div>
+        <div class="rblock" id="rub-man">
+          <Tag label="Manufactura" variant="cor" />
+          <h3 class="rblock-title">Producción, stock y ventas hablando el mismo idioma</h3>
+          <p class="rblock-sub">Controlá órdenes de producción, insumos y entregas desde un solo lugar con visibilidad en tiempo real.</p>
+          <div class="rblock-img"><span>UI Manufactura</span></div>
         </div>
       </div>
     </div>
-    <div class="proceso-cta">
-      <Button variant="primary" size="lg" label="Solicitar diagnóstico" dataOpenCotizador={true} />
-      <Button variant="outline" size="lg" label="Ver cómo trabajamos" />
-    </div>
-  </div>
-</section>
 
-<!-- ══ 7. CASOS ══════════════════════════════════════════════ -->
+    <!-- Métricas — mismo fondo surface, sin separador -->
+    <div class="container">
+      <div class="metrics-hdr">
+        <Tag label="Qué impacto genera" />
+        <h2 class="sec-hed">Más productividad.<br>Menos fricción operativa.</h2>
+        <p class="sec-sub">Resultados promedio en empresas que implementaron Odoo con Adhoc en los primeros 6 meses.</p>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">40%</div><div class="metric-lbl">Tareas<br>manuales</div></div>
+        <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">60%</div><div class="metric-lbl">Errores<br>operativos</div></div>
+        <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">30%</div><div class="metric-lbl">Productividad<br>del equipo</div></div>
+        <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div></div>
+      </div>
+      <div class="metrics-cta">
+        <Button variant="primary" size="lg" label="Solicitar demo →" dataOpenCotizador={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3. FEATURES ════════════════════════════════════════════ -->
+  <section class="sec sec--ink sec--ink-enter" id="features">
+    <div class="container">
+      <h2 class="ft-headline">Resolvemos los desafíos que <em>frenan tu crecimiento.</em></h2>
+      <div class="ft-tabs" role="tablist">
+        <button class="ft-tab ft-tab--active" role="tab" aria-selected="true"  aria-controls="ft-panel-0" data-ft="0">Automatizar operaciones</button>
+        <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-1" data-ft="1">Integrar áreas</button>
+        <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-2" data-ft="2">Escalar con control</button>
+        <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-3" data-ft="3">Ganar visibilidad</button>
+        <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-4" data-ft="4">Control financiero</button>
+        <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-5" data-ft="5">Digitalizar el negocio</button>
+      </div>
+
+      <div class="ft-panel ft-panel--active" id="ft-panel-0" role="tabpanel" style="--ft-bg:var(--color-primary);--ft-ink:#fff;">
+        <div class="ft-visual">
+          <div class="ft-mock">
+            <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Flujo de pedidos automatizado</span></div>
+            <div class="ft-pipe">
+              <div class="ft-pipe-col"><div class="ft-pipe-lbl">Pedido</div><div class="ft-pc"><div class="ft-pc-id">SO-1284</div><div class="ft-pc-nm">RE/MAX Argentina</div><div class="ft-pc-mt"><span>$24.5K</span><span>14:02</span></div></div></div>
+              <div class="ft-pipe-col"><div class="ft-pipe-lbl">Aprobación</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">SO-1283</div><div class="ft-pc-nm">Mercado Libre</div><div class="ft-pc-mt"><span>$118K</span><span>13:48</span></div></div></div>
+              <div class="ft-pipe-col"><div class="ft-pipe-lbl">Factura</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">FA-0921</div><div class="ft-pc-nm">PayPal LATAM</div><div class="ft-pc-mt"><span>$72K</span><span>13:30</span></div></div></div>
+              <div class="ft-pipe-col"><div class="ft-pipe-lbl">Enviado</div><div class="ft-pc ft-pc--done"><div class="ft-pc-id">FA-0920 ✓</div><div class="ft-pc-nm">OneClick</div><div class="ft-pc-mt"><span>$45K</span><span>13:12</span></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">01 · Automatización</span>
+          <h3 class="ft-title">Automatizar operaciones</h3>
+          <p class="ft-sub">Reducí tareas repetitivas y liberá a tu equipo para el trabajo que realmente importa. Menos errores, más velocidad.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-panel" id="ft-panel-1" role="tabpanel" style="--ft-bg:var(--color-coral);--ft-ink:var(--color-ink);">
+        <div class="ft-visual">
+          <div class="ft-hub-wrap">
+            <div class="ft-hub-center">A · Adhoc Odoo</div>
+            <div class="ft-hub-nodes">
+              <div class="ft-hub-node" style="top:8%;left:50%">💼 Ventas</div>
+              <div class="ft-hub-node" style="top:28%;left:88%">📦 Inventario</div>
+              <div class="ft-hub-node" style="top:68%;left:88%">💰 Finanzas</div>
+              <div class="ft-hub-node" style="top:88%;left:50%">👥 CRM</div>
+              <div class="ft-hub-node" style="top:68%;left:2%">🛒 Compras</div>
+              <div class="ft-hub-node" style="top:28%;left:2%">📊 Reportes</div>
+            </div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">02 · Integración</span>
+          <h3 class="ft-title">Integrar áreas</h3>
+          <p class="ft-sub">Ventas, stock y finanzas en un solo sistema. Sin copiar datos entre planillas. Sin información desactualizada.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-panel" id="ft-panel-2" role="tabpanel" style="--ft-bg:var(--color-mustard);--ft-ink:var(--color-ink);">
+        <div class="ft-visual">
+          <div class="ft-mock">
+            <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Grupo empresarial · 5 subsidiarias</span></div>
+            <div style="text-align:center;margin-bottom:8px"><div class="ft-tree-root">Holding</div></div>
+            <div class="ft-tree-row"><div class="ft-tree-node">Argentina</div><div class="ft-tree-node">Chile</div><div class="ft-tree-node">México</div><div class="ft-tree-node">Perú</div><div class="ft-tree-node">Colombia</div></div>
+            <div class="ft-tree-note">● Consolidación en tiempo real · USD · ARS · CLP · MXN</div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">03 · Escalabilidad</span>
+          <h3 class="ft-title">Escalar con control</h3>
+          <p class="ft-sub">Multi-empresa, multi-moneda, multi-país. Adhoc + Odoo crecen con tu operación sin reescribir procesos.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-panel" id="ft-panel-3" role="tabpanel" style="--ft-bg:var(--color-lavender);--ft-ink:var(--color-ink);">
+        <div class="ft-visual">
+          <div class="ft-mock">
+            <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Tablero ejecutivo</span></div>
+            <div class="ft-kpi-row">
+              <div class="ft-kpi"><div class="ft-kpi-l">Facturación MTD</div><div class="ft-kpi-v">$4.2M</div><div class="ft-kpi-d ft-kpi-d--up">↑ 18.4%</div></div>
+              <div class="ft-kpi"><div class="ft-kpi-l">Pedidos</div><div class="ft-kpi-v">318</div><div class="ft-kpi-d ft-kpi-d--up">↑ 12.1%</div></div>
+              <div class="ft-kpi"><div class="ft-kpi-l">Margen</div><div class="ft-kpi-v">31.2%</div><div class="ft-kpi-d ft-kpi-d--dn">↓ 1.4%</div></div>
+            </div>
+            <div class="ft-chart-row">
+              <div class="ft-bar-wrap" style="height:42%"></div><div class="ft-bar-wrap" style="height:58%"></div>
+              <div class="ft-bar-wrap" style="height:49%"></div><div class="ft-bar-wrap" style="height:72%"></div>
+              <div class="ft-bar-wrap" style="height:65%"></div><div class="ft-bar-wrap" style="height:88%"></div>
+              <div class="ft-bar-wrap ft-bar-wrap--hi" style="height:76%"></div><div class="ft-bar-wrap ft-bar-wrap--hi" style="height:95%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">04 · Visibilidad</span>
+          <h3 class="ft-title">Ganar visibilidad</h3>
+          <p class="ft-sub">Dashboards en tiempo real con tus KPIs reales. Decidí con datos, no con planillas que se desactualizan en una semana.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-panel" id="ft-panel-4" role="tabpanel" style="--ft-bg:#000;--ft-ink:#E9E5DF;">
+        <div class="ft-visual">
+          <div class="ft-mock">
+            <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Estado de resultados — Q1</span><span class="ft-fin-tag">CIERRE AUTO</span></div>
+            <div class="ft-fin-row ft-fin-row--head"><span>Cuenta</span><span>Real</span><span>Presup.</span><span>Δ</span></div>
+            <div class="ft-fin-row"><span>Ingresos</span><span>$12.4M</span><span>$11.2M</span><span class="ft-pos">+10.7%</span></div>
+            <div class="ft-fin-row"><span>Costos</span><span>$5.8M</span><span>$5.6M</span><span class="ft-neg">+3.5%</span></div>
+            <div class="ft-fin-row"><span>Gastos op.</span><span>$2.1M</span><span>$2.3M</span><span class="ft-pos">−8.6%</span></div>
+            <div class="ft-fin-row ft-fin-row--tot"><span>EBITDA</span><span>$4.5M</span><span>$3.3M</span><span class="ft-pos">+36.3%</span></div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">05 · Finanzas</span>
+          <h3 class="ft-title">Control financiero</h3>
+          <p class="ft-sub">Cierres mensuales en horas, no semanas. Conciliación automática, presupuestos vivos y reportes contables al instante.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-panel" id="ft-panel-5" role="tabpanel" style="--ft-bg:var(--color-canvas);--ft-ink:#000;">
+        <div class="ft-visual">
+          <div class="ft-digi">
+            <div class="ft-paper">
+              <div class="ft-paper-title">Remito #4821</div>
+              <div class="ft-paper-line"></div><div class="ft-paper-line ft-paper-line--70"></div>
+              <div class="ft-paper-line ft-paper-line--90"></div><div class="ft-paper-line ft-paper-line--60"></div>
+              <div class="ft-paper-warn">SIN FIRMA · SIN ARCHIVAR</div>
+            </div>
+            <div class="ft-digi-arrow">→</div>
+            <div class="ft-app-card">
+              <div class="ft-app-title">Remitos · Adhoc App</div>
+              <div class="ft-app-row ft-app-row--done">Recepción · Cliente A <span class="ft-ck ft-ck--done"></span></div>
+              <div class="ft-app-row ft-app-row--done">Firma digital <span class="ft-ck ft-ck--done"></span></div>
+              <div class="ft-app-row ft-app-row--done">Sync con Odoo <span class="ft-ck ft-ck--done"></span></div>
+              <div class="ft-app-row">Notificación cliente <span class="ft-ck"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ft-text">
+          <span class="ft-eyebrow">06 · Digitalización</span>
+          <h3 class="ft-title">Digitalizar el negocio</h3>
+          <p class="ft-sub">Sacá los procesos del papel y de Excel. Llevá tu operación a una plataforma moderna sin romper lo que ya funciona.</p>
+          <button class="ft-cta">Ver cómo funciona →</button>
+        </div>
+      </div>
+
+      <div class="ft-dots" aria-hidden="true">
+        <button class="ft-dot-btn ft-dot-active" data-ft="0" tabindex="-1"></button>
+        <button class="ft-dot-btn" data-ft="1" tabindex="-1"></button>
+        <button class="ft-dot-btn" data-ft="2" tabindex="-1"></button>
+        <button class="ft-dot-btn" data-ft="3" tabindex="-1"></button>
+        <button class="ft-dot-btn" data-ft="4" tabindex="-1"></button>
+        <button class="ft-dot-btn" data-ft="5" tabindex="-1"></button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /ink-stack-1 -->
+
+<!-- ══ 4. CASOS ═══════════════════════════════════════════════ -->
 <section class="sec sec--surface" id="casos">
   <div class="container">
     <h2 class="sec-hed" style="margin-bottom:var(--space-xl)">Empresas que confían<br>en Adhoc.</h2>
@@ -353,13 +292,88 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       </div>
     </div>
     <div class="casos-cta">
-      <Button variant="primary" size="lg" label="Solicitar una demo" dataOpenCotizador={true} />
+      <Button variant="primary" size="lg" label="Solicitar demo" dataOpenCotizador={true} />
     </div>
   </div>
 </section>
 
-<!-- ══ 8. FAQ ════════════════════════════════════════════════ -->
-<section class="sec sec--canvas" id="faq">
+<!-- ══ ink-stack-2: Proceso sticky → Integraciones ink ═══════ -->
+<div class="ink-stack">
+
+  <!-- ══ 5. PROCESO ═════════════════════════════════════════════ -->
+  <section class="sec sec--canvas sec--sticky-base" id="proceso">
+    <div class="container">
+      <div class="proceso-hdr">
+        <Tag label="El proceso" />
+        <h2 class="proceso-hed">Todo tu negocio en <em>un solo sistema.</em></h2>
+        <p class="sec-sub">No tiramos código encima de tus problemas. Primero entendemos tu operación. Después la transformamos.</p>
+      </div>
+      <div class="proceso-grid">
+        <div class="pcard">
+          <div class="pcard-num">01</div>
+          <div class="pcard-title">Diagnóstico</div>
+          <p class="pcard-sub">Analizamos tus procesos y cuellos de botella. Sin compromiso, sin tecnicismos.</p>
+          <div class="pcard-vis">
+            <div class="diag-list">
+              <div class="diag-item"><span class="diag-dot" style="background:#E64A37"></span>Procesos manuales<span class="diag-tag diag-tag--red">Crítico</span></div>
+              <div class="diag-item"><span class="diag-dot" style="background:#B87800"></span>Datos en planillas<span class="diag-tag diag-tag--yel">Medio</span></div>
+              <div class="diag-item"><span class="diag-dot" style="background:var(--color-primary)"></span>Stock desactualizado<span class="diag-tag diag-tag--lav">Alto</span></div>
+              <div class="diag-item"><span class="diag-dot" style="background:#3BB56A"></span>Cobranzas OK<span class="diag-tag diag-tag--grn">Bajo</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">02</div>
+          <div class="pcard-title">Implementación</div>
+          <p class="pcard-sub">Configuramos Odoo a medida, migramos datos y capacitamos a tu equipo.</p>
+          <div class="pcard-vis">
+            <div class="imp-mock">
+              <div class="imp-row imp-row--done"><span class="imp-dot" style="background:#3BB56A"></span><span>Diagnóstico</span><span class="imp-state imp-state--ok">✓</span></div>
+              <div class="imp-row imp-row--active"><span class="imp-dot" style="background:var(--color-primary)"></span><span>Configuración Odoo</span><span class="imp-state imp-state--cur">En curso</span></div>
+              <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Migración de datos</span><span class="imp-state">Próximo</span></div>
+              <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Capacitación</span><span class="imp-state">Próximo</span></div>
+              <div class="imp-progress"><div class="imp-progress-lbl">Avance — 62%</div><div class="imp-progress-bar"><div class="imp-progress-fill" style="width:62%"></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-num">03</div>
+          <div class="pcard-title">Optimización<br>continua</div>
+          <p class="pcard-sub">Soporte consultivo real. Evolucionamos el sistema a medida que crecés.</p>
+          <div class="pcard-vis">
+            <div class="opt-vis">
+              <div class="opt-lbl">Eficiencia operativa</div>
+              <div class="opt-val">+38% <span class="opt-delta">↑ último Q</span></div>
+              <svg class="opt-chart" viewBox="0 0 280 80" width="100%" height="80" preserveAspectRatio="none">
+                <defs><linearGradient id="optg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C6CD8" stop-opacity=".3"/><stop offset="100%" stop-color="#7C6CD8" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8 L280,80 L0,80 Z" fill="url(#optg)"/>
+                <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8" fill="none" stroke="#7C6CD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="280" cy="8" r="4" fill="#fff" stroke="#7C6CD8" stroke-width="2"/>
+              </svg>
+              <div class="opt-axis"><span>Mes 1</span><span>3</span><span>6</span><span>9</span><span>12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-cta">
+        <Button variant="primary" size="lg" label="Solicitar diagnóstico" dataOpenCotizador={true} />
+        <Button variant="outline" size="lg" label="Ver cómo trabajamos" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6. INTEGRACIONES ═══════════════════════════════════════ -->
+  <!-- TODO: Wave.astro + AppIcons -->
+  <section class="sec sec--ink sec--ink-enter" id="integraciones">
+    <div class="container integraciones-placeholder">
+      <p>Integraciones — próximamente</p>
+    </div>
+  </section>
+
+</div><!-- /ink-stack-2 -->
+
+<!-- ══ 7. FAQ ═════════════════════════════════════════════════ -->
+<section class="sec sec--surface" id="faq">
   <div class="container">
     <div class="faq-wrap">
       <h2 class="sec-hed" style="text-align:center;margin-bottom:var(--space-3xl)">Lo que siempre<br>nos preguntan.</h2>
@@ -386,14 +400,14 @@ import HeroDashboard from '../components/HeroDashboard.astro';
         </div>
       </div>
       <div class="faq-cta">
-        <Button variant="primary" size="lg" label="Solicitar una demo" dataOpenCotizador={true} />
+        <Button variant="primary" size="lg" label="Solicitar demo" dataOpenCotizador={true} />
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 9. CONTACT FORM ═══════════════════════════════════════ -->
-<section class="sec sec--surface" id="lead">
+<!-- ══ 8. CONTACT FORM ════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="lead">
   <div class="container lead-container">
     <div class="lead-card">
       <div class="lead-hdr">
@@ -426,10 +440,15 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .sec          { padding: var(--space-4xl) 0; }
 .sec--canvas  { background: var(--color-canvas);  --card-bg: var(--color-surface); --section-bg: var(--color-canvas); }
 .sec--surface { background: var(--color-surface); --card-bg: var(--color-canvas);  --section-bg: var(--color-surface); }
-.sec--mustard { background: var(--color-mustard); --card-bg: var(--color-surface); --section-bg: var(--color-mustard); }
-.sec--violet  { background: var(--color-primary); --card-bg: var(--color-surface); --section-bg: var(--color-primary); }
-.sec--violet .final-hdr .sec-hed { color: #fff; }
-.sec--violet .final-hdr .sec-sub { color: rgba(255,255,255,.78); }
+.sec--ink     { background: var(--color-ink);     --card-bg: var(--color-canvas);  --section-bg: var(--color-ink); color: #fff; }
+
+/* ─── Scroll entrance effect ─── */
+.ink-stack          { position: relative; }
+.sec--sticky-base   { position: sticky; top: 0; z-index: 1; }
+.sec--ink-enter     { position: relative; z-index: 2; border-radius: 32px 32px 0 0; }
+
+/* ─── Integraciones placeholder ─── */
+.integraciones-placeholder { display:flex;align-items:center;justify-content:center;min-height:320px;color:rgba(255,255,255,.3);font-family:var(--font-body);font-size:.875rem; }
 .overline { font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);display:block;margin-bottom:var(--space-xs); }
 .sec-hdr  { margin-bottom:var(--space-2xl); }
 .sec-hed  { font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-top:var(--space-md); }

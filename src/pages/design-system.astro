@@ -1,0 +1,287 @@
+---
+/**
+ * Página temporal de QA — NO va a producción.
+ * Muestra todos los componentes atómicos para revisión visual.
+ */
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
+import Card from '../components/Card.astro';
+import AppIcon from '../components/AppIcon.astro';
+---
+
+<Base title="Design System QA — Adhoc">
+  <div class="ds-page">
+
+    <!-- ── SECCIÓN HEADER ─────────────────────────────────── -->
+    <div class="ds-header">
+      <h1>Design System QA</h1>
+      <p>Página temporal — solo para revisión visual de componentes atómicos.</p>
+    </div>
+
+    <!-- ══ BUTTONS ══════════════════════════════════════════ -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Button</h2>
+
+      <div class="ds-row">
+        <div class="ds-label">primary</div>
+        <Button variant="primary" size="sm"  label="Pequeño" />
+        <Button variant="primary" size="md"  label="Mediano" />
+        <Button variant="primary" size="lg"  label="Grande" />
+        <Button variant="primary" size="md"  label="Como enlace" href="#" />
+      </div>
+
+      <div class="ds-row">
+        <div class="ds-label">secondary</div>
+        <Button variant="secondary" size="sm"  label="Pequeño" />
+        <Button variant="secondary" size="md"  label="Mediano" />
+        <Button variant="secondary" size="lg"  label="Grande" />
+      </div>
+
+      <div class="ds-row">
+        <div class="ds-label">outline</div>
+        <Button variant="outline" size="sm"  label="Pequeño" />
+        <Button variant="outline" size="md"  label="Mediano" />
+        <Button variant="outline" size="lg"  label="Grande" />
+      </div>
+
+      <div class="ds-row">
+        <div class="ds-label">ghost</div>
+        <Button variant="ghost" size="sm"  label="Pequeño" />
+        <Button variant="ghost" size="md"  label="Ver cómo funciona →" />
+        <Button variant="ghost" size="lg"  label="Grande" />
+      </div>
+
+      <!-- Sobre fondo oscuro para verificar outline-white -->
+      <div class="ds-row ds-row--dark">
+        <div class="ds-label ds-label--light">sobre oscuro</div>
+        <Button variant="primary"   size="md" label="Primary" />
+        <Button variant="secondary" size="md" label="Secondary" />
+      </div>
+    </section>
+
+    <!-- ══ TAGS ══════════════════════════════════════════════ -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Tag</h2>
+
+      <div class="ds-row">
+        <Tag label="Caso de éxito" />
+        <Tag label="Manufactura" />
+        <Tag label="Distribución" />
+        <Tag label="Servicios" />
+        <Tag label="Educación" />
+        <Tag label="Partner #1" />
+      </div>
+    </section>
+
+    <!-- ══ CARDS ══════════════════════════════════════════════ -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">Card — Surface Inversion</h2>
+      <p class="ds-note">
+        <code>surface="auto"</code> hereda <code>--card-bg</code> del padre.
+        Las secciones blancas definen <code>--card-bg: var(--color-canvas)</code>
+        y viceversa.
+      </p>
+
+      <!-- Sección blanca → cards canvas -->
+      <div class="ds-inversion-demo section--surface">
+        <p class="ds-inversion-label">Sección blanca → cards beige (canvas)</p>
+        <div class="ds-card-row">
+          <Card surface="auto" padding="md">
+            <strong>Surface auto</strong>
+            <p>Hereda el contexto. En sección blanca → fondo beige.</p>
+          </Card>
+          <Card surface="white" padding="md">
+            <strong>Surface white (forzado)</strong>
+            <p>Siempre blanco sin importar el contexto.</p>
+          </Card>
+          <Card surface="canvas" padding="md">
+            <strong>Surface canvas (forzado)</strong>
+            <p>Siempre beige sin importar el contexto.</p>
+          </Card>
+        </div>
+      </div>
+
+      <!-- Sección canvas → cards blancas -->
+      <div class="ds-inversion-demo section--canvas">
+        <p class="ds-inversion-label">Sección canvas → cards blancas</p>
+        <div class="ds-card-row">
+          <Card surface="auto" padding="md">
+            <strong>Surface auto</strong>
+            <p>En sección canvas → fondo blanco.</p>
+          </Card>
+          <Card surface="sm" padding="sm">
+            <strong>Padding sm</strong>
+            <p>Padding reducido para elementos compactos.</p>
+          </Card>
+          <Card surface="auto" padding="lg">
+            <strong>Padding lg</strong>
+            <p>Padding generoso para cards de hero o features.</p>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ APP ICONS ══════════════════════════════════════════ -->
+    <section class="ds-section">
+      <h2 class="ds-section-title">AppIcon</h2>
+      <p class="ds-note">
+        Los SVGs deben estar en <code>public/icons/odoo/</code>.
+        Si el archivo no existe se muestra broken image — es esperado en este entorno.
+      </p>
+
+      <div class="ds-icons-row">
+        <AppIcon module="crm"         label="CRM" />
+        <AppIcon module="ventas"      label="Ventas" />
+        <AppIcon module="inventario"  label="Inventario" />
+        <AppIcon module="compras"     label="Compras" />
+        <AppIcon module="proyectos"   label="Proyectos" />
+        <AppIcon module="empleados"   label="Empleados" />
+        <AppIcon module="tablero"     label="Tablero" />
+        <AppIcon module="manufactura" label="Manufactura" />
+        <AppIcon module="website"     />
+      </div>
+    </section>
+
+  </div>
+</Base>
+
+<style>
+  /* ─── Page shell ─── */
+  .ds-page {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-xl);
+  }
+
+  .ds-header {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .ds-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+  }
+
+  .ds-header p {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* ─── Sections ─── */
+  .ds-section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .ds-section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .ds-note {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .ds-note code {
+    background: var(--color-lavender-fill);
+    color: var(--color-lavender);
+    padding: 2px 6px;
+    border-radius: var(--radius-tag);
+    font-size: 0.8125rem;
+  }
+
+  /* ─── Button rows ─── */
+  .ds-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+  }
+
+  .ds-row--dark {
+    background: var(--color-ink);
+    padding: var(--space-lg);
+    border-radius: 12px;
+  }
+
+  .ds-label {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    min-width: 80px;
+  }
+
+  .ds-label--light {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ─── Card demo ─── */
+
+  /* Surface inversion: sección define --card-bg para sus cards */
+  .section--surface {
+    background: var(--color-surface);
+    --card-bg: var(--color-canvas);
+  }
+
+  .section--canvas {
+    background: var(--color-canvas);
+    --card-bg: var(--color-surface);
+  }
+
+  .ds-inversion-demo {
+    padding: var(--space-xl);
+    border-radius: clamp(16px, 5vw, 32px);
+    margin-bottom: var(--space-lg);
+  }
+
+  .ds-inversion-label {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+  }
+
+  .ds-card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .ds-card-row strong {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .ds-card-row p {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* ─── App icons ─── */
+  .ds-icons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+    align-items: flex-start;
+  }
+</style>
