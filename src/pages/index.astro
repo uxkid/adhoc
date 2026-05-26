@@ -31,91 +31,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   <HeroDashboard />
 </section>
 
-<!-- ══ 2. WHY ADHOC ═════════════════════════════════════════ -->
-<section class="sec sec--mustard">
-  <div class="container">
-    <div class="sec-hdr">
-      <Tag label="¿Por qué Adhoc?" />
-      <h2 class="sec-hed">La diferencia está<br>en la experiencia.</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card why-card--dark">
-        <div class="why-num">#1</div>
-        <h3>Partner global de Odoo</h3>
-        <p>El único partner latinoamericano en llegar al primer lugar a nivel mundial. No es un título, es el resultado de años de trabajo real.</p>
-      </div>
-      <div class="why-stack">
-        <div class="why-card why-card--stat">
-          <div class="why-stat">+600</div>
-          <div><h4>Desarrollos propios</h4><p>Adaptamos Odoo a cualquier industria o proceso único.</p></div>
-        </div>
-        <div class="why-card why-card--stat">
-          <div class="why-stat">+350</div>
-          <div><h4>Empresas implementadas</h4><p>Cada proyecto suma aprendizaje a un equipo que ya vio casi todo.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="why-banner">
-      <div>
-        <h3>Soporte consultivo real</h3>
-        <p>No resolvemos tickets, te acompañamos estratégicamente. Nuestro equipo entiende tu negocio y evoluciona el sistema con vos.</p>
-      </div>
-      <Button variant="outline" size="md" label="Hablar con un especialista" />
-    </div>
-  </div>
-</section>
-
-<!-- ══ 3. ROI CALCULATOR ════════════════════════════════════ -->
-<section class="sec sec--canvas">
-  <div class="container">
-    <div class="roi-card">
-      <div class="roi-head">
-        <div>
-          <span class="overline">Calculadora de ROI</span>
-          <h2 class="roi-title">¿Cuánto te cuesta no tener todo integrado?</h2>
-          <p class="roi-sub">Seleccioná los módulos que necesitás y el tamaño de tu equipo.</p>
-          <a href="/pricing" class="roi-link">Ver planes de Adhoc →</a>
-        </div>
-        <div class="roi-apps" aria-hidden="true">
-          <div class="roi-app"></div><div class="roi-app"></div>
-          <div class="roi-app"></div><div class="roi-app"></div>
-          <div class="roi-app"></div><div class="roi-app"></div>
-          <div class="roi-strike"></div>
-        </div>
-      </div>
-      <div class="roi-body">
-        <div class="roi-left">
-          <div class="roi-sect-lbl">Seleccioná los módulos que necesitás</div>
-          <div class="roi-mods" id="roi-mods"></div>
-          <div class="roi-slider-wrap">
-            <div class="roi-slider-lbl">Tamaño del equipo: <span class="roi-slider-num" id="roi-users">12</span> personas</div>
-            <input id="roi-slider" class="roi-slider" type="range" min="1" max="100" step="1" value="12" />
-            <div class="roi-slider-axis"><span>1</span><span>100</span></div>
-            <div class="roi-detected">
-              <span class="roi-detected-lbl">Plan detectado:</span>
-              <span class="roi-pill" id="roi-detected-pill">Plan Pyme</span>
-            </div>
-          </div>
-        </div>
-        <div class="roi-right">
-          <div class="roi-mcard"><span class="roi-mcard-lbl">Costo estimado sin Odoo / mes</span><span class="roi-mcard-val" id="roi-cost-current">USD 900</span></div>
-          <div class="roi-mcard"><span class="roi-mcard-lbl">Con Adhoc pagás / mes</span><span class="roi-mcard-val" id="roi-cost-adhoc">USD 100</span></div>
-          <div class="roi-mcard"><span class="roi-mcard-lbl">Ahorro estimado en 12 meses</span><span class="roi-mcard-val" id="roi-savings">USD 9.600</span></div>
-          <div class="roi-hero-card">
-            <span class="roi-hero-pill" id="roi-hero-pill">Plan Pyme</span>
-            <div class="roi-hero-price" id="roi-hero-price">USD 100 / mes</div>
-            <div class="roi-hero-impl" id="roi-hero-impl">+ USD 1.500 implementación única</div>
-            <div class="roi-hero-desc" id="roi-hero-desc">Te acompañamos en todo el proceso para que tu equipo adopte Odoo sin fricciones.</div>
-            <button class="roi-hero-cta" id="roi-hero-cta" data-open-cotizador="true">Agendar una demo</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 4. RUBROS ════════════════════════════════════════════ -->
-<section class="sec sec--canvas" id="rubros">
+<!-- ══ 2. RUBROS ════════════════════════════════════════════ -->
+<section class="sec sec--surface" id="rubros">
   <div class="rubros-outer">
     <div class="rubros-left">
       <span class="overline">Rubros</span>
@@ -156,8 +73,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 5. FEATURE TABS ══════════════════════════════════════ -->
-<section class="sec sec--surface" id="features">
+<!-- ══ 3. FEATURES ══════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="features">
   <div class="container">
     <h2 class="ft-headline">Resolvemos los desafíos que <em>frenan tu crecimiento.</em></h2>
     <div class="ft-tabs" role="tablist">
@@ -309,8 +226,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 6. MÉTRICAS ══════════════════════════════════════════ -->
-<section class="sec sec--canvas">
+<!-- ══ 4. MÉTRICAS ══════════════════════════════════════════ -->
+<section class="sec sec--surface">
   <div class="container">
     <div class="metrics-hdr">
       <Tag label="Qué impacto genera" />
@@ -324,13 +241,16 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div></div>
     </div>
     <div class="metrics-cta">
-      <Button variant="primary" size="lg" label="Solicitar una demo →" dataOpenCotizador={true} />
+      <Button variant="primary" size="lg" label="Solicitar demo →" dataOpenCotizador={true} />
     </div>
   </div>
 </section>
 
-<!-- ══ 7. PROCESO ════════════════════════════════════════════ -->
-<section class="sec sec--surface">
+<!-- ══ 5. INTEGRACIONES ══════════════════════════════════════ -->
+<!-- TODO: Wave.astro + AppIcons — fondo mustaza -->
+
+<!-- ══ 6. PROCESO ════════════════════════════════════════════ -->
+<section class="sec sec--canvas">
   <div class="container">
     <div class="proceso-hdr">
       <Tag label="El proceso" />
@@ -391,8 +311,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 8. CASOS ══════════════════════════════════════════════ -->
-<section class="sec sec--canvas" id="casos">
+<!-- ══ 7. CASOS ══════════════════════════════════════════════ -->
+<section class="sec sec--surface" id="casos">
   <div class="container">
     <h2 class="sec-hed" style="margin-bottom:var(--space-xl)">Empresas que confían<br>en Adhoc.</h2>
     <div class="caso-featured">
@@ -438,8 +358,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 9. FAQ ════════════════════════════════════════════════ -->
-<section class="sec sec--surface" id="faq">
+<!-- ══ 8. FAQ ════════════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="faq">
   <div class="container">
     <div class="faq-wrap">
       <h2 class="sec-hed" style="text-align:center;margin-bottom:var(--space-3xl)">Lo que siempre<br>nos preguntan.</h2>
@@ -472,8 +392,8 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 10. LEAD CAPTURE ══════════════════════════════════════ -->
-<section class="sec sec--canvas" id="lead">
+<!-- ══ 9. CONTACT FORM ═══════════════════════════════════════ -->
+<section class="sec sec--surface" id="lead">
   <div class="container lead-container">
     <div class="lead-card">
       <div class="lead-hdr">
@@ -498,35 +418,6 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </div>
 </section>
 
-<!-- ══ 11. FINAL CTA ════════════════════════════════════════ -->
-<section class="sec sec--violet" id="final-cta">
-  <div class="container">
-    <div class="final-hdr">
-      <h2 class="sec-hed">Ordená y escalá<br>tu operación.</h2>
-      <p class="sec-sub" style="margin:var(--space-md) auto 0">El primer paso es entender dónde estás. El segundo es saber a dónde podés llegar.</p>
-    </div>
-    <div class="final-grid">
-      <div class="final-card">
-        <div class="final-icon">🔍</div>
-        <h3>Diagnóstico gratuito</h3>
-        <p>30 minutos con un especialista para entender tu operación actual y qué puede mejorar.</p>
-        <Button variant="primary" size="md" label="Agendar →" dataOpenCotizador={true} />
-      </div>
-      <div class="final-card final-card--dark">
-        <div class="final-icon">🚀</div>
-        <h3>Demo de Odoo</h3>
-        <p>Mirá en vivo cómo funciona Odoo aplicado a tu industria. Demo personalizada, no genérica.</p>
-        <Button variant="secondary" size="md" label="Solicitar demo →" dataOpenCotizador={true} />
-      </div>
-      <div class="final-card">
-        <div class="final-icon">💬</div>
-        <h3>Hablar con un especialista</h3>
-        <p>¿Tenés preguntas antes de arrancar? Charlá con alguien del equipo sin compromiso.</p>
-        <Button variant="outline" size="md" label="Contactar →" href="#lead" />
-      </div>
-    </div>
-  </div>
-</section>
 
 </Base>
 
@@ -705,12 +596,12 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 /* ─── 6. Métricas ─── */
 .metrics-hdr { text-align:center;margin-bottom:var(--space-2xl);display:flex;flex-direction:column;align-items:center; }
 .metrics-row { display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);overflow:hidden; }
-.metric-cell { background:var(--card-bg);padding:var(--space-2xl) var(--space-xl);display:flex;flex-direction:column;gap:var(--space-xs);border-right:1px solid var(--border-subtle); }
+.metric-cell { background:var(--color-surface);padding:var(--space-2xl) var(--space-xl);display:flex;flex-direction:column;gap:var(--space-xs);border-right:1px solid var(--border-subtle); }
 .metric-cell:last-child { border-right:none; }
 .metric-arrow { font-size:1.6rem;font-weight:700;line-height:1;color:var(--color-primary); }
-.metric-arrow--up { color:var(--color-primary); }
+.metric-arrow--up { color:var(--color-coral); }
 .metric-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;line-height:1;letter-spacing:-.03em; }
-.metric-num--up { color:var(--color-primary); }
+.metric-num--up { color:var(--color-coral); }
 .metric-lbl { font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);line-height:1.4; }
 .metrics-cta { text-align:center;margin-top:var(--space-2xl); }
 
