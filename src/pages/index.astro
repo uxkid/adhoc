@@ -189,7 +189,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       </div>
     </div>
 
-    <div class="ft-panel" id="ft-panel-1" role="tabpanel" style="--ft-bg:#2A2A2A;--ft-ink:#E9E5DF;">
+    <div class="ft-panel" id="ft-panel-1" role="tabpanel" style="--ft-bg:var(--color-coral);--ft-ink:var(--color-ink);">
       <div class="ft-visual">
         <div class="ft-hub-wrap">
           <div class="ft-hub-center">A · Adhoc Odoo</div>
@@ -211,7 +211,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       </div>
     </div>
 
-    <div class="ft-panel" id="ft-panel-2" role="tabpanel" style="--ft-bg:var(--color-lavender);--ft-ink:#000;">
+    <div class="ft-panel" id="ft-panel-2" role="tabpanel" style="--ft-bg:var(--color-mustard);--ft-ink:var(--color-ink);">
       <div class="ft-visual">
         <div class="ft-mock">
           <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Grupo empresarial · 5 subsidiarias</span></div>
@@ -228,7 +228,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       </div>
     </div>
 
-    <div class="ft-panel" id="ft-panel-3" role="tabpanel" style="--ft-bg:#1A1A1A;--ft-ink:#E9E5DF;">
+    <div class="ft-panel" id="ft-panel-3" role="tabpanel" style="--ft-bg:var(--color-lavender);--ft-ink:var(--color-ink);">
       <div class="ft-visual">
         <div class="ft-mock">
           <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Tablero ejecutivo</span></div>
@@ -297,6 +297,14 @@ import HeroDashboard from '../components/HeroDashboard.astro';
         <p class="ft-sub">Sacá los procesos del papel y de Excel. Llevá tu operación a una plataforma moderna sin romper lo que ya funciona.</p>
         <button class="ft-cta">Ver cómo funciona →</button>
       </div>
+    </div>
+    <div class="ft-dots" aria-hidden="true">
+      <button class="ft-dot-btn ft-dot-active" data-ft="0" tabindex="-1"></button>
+      <button class="ft-dot-btn" data-ft="1" tabindex="-1"></button>
+      <button class="ft-dot-btn" data-ft="2" tabindex="-1"></button>
+      <button class="ft-dot-btn" data-ft="3" tabindex="-1"></button>
+      <button class="ft-dot-btn" data-ft="4" tabindex="-1"></button>
+      <button class="ft-dot-btn" data-ft="5" tabindex="-1"></button>
     </div>
   </div>
 </section>
@@ -617,6 +625,9 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .rblock-img { width:100%;height:280px;border-radius:clamp(16px,5vw,32px);background:var(--card-bg);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);margin-top:var(--space-xs); }
 
 /* ─── 5. Feature Tabs ─── */
+.ft-dots { display:flex;justify-content:center;gap:var(--space-xs);margin-top:var(--space-lg); }
+.ft-dot-btn { width:7px;height:7px;border-radius:999px;background:var(--border-medium);border:none;cursor:pointer;padding:0;transition:background .2s,width .2s; }
+.ft-dot-btn.ft-dot-active { background:var(--color-ink);width:24px; }
 .ft-headline { font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.8vw,3.2rem);line-height:1.08;letter-spacing:-.025em;text-align:center;max-width:760px;margin:0 auto var(--space-2xl); }
 .ft-headline em { font-style:italic;color:var(--color-primary); }
 .ft-tabs { display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-xs);margin-bottom:var(--space-xl); }
@@ -841,15 +852,14 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 (function () {
   const tabs   = document.querySelectorAll<HTMLButtonElement>('.ft-tab');
   const panels = document.querySelectorAll<HTMLElement>('.ft-panel');
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t   => { t.classList.remove('ft-tab--active');   t.setAttribute('aria-selected','false'); });
-      panels.forEach(p => p.classList.remove('ft-panel--active'));
-      tab.classList.add('ft-tab--active');
-      tab.setAttribute('aria-selected','true');
-      panels[i]?.classList.add('ft-panel--active');
-    });
-  });
+  const dots   = document.querySelectorAll<HTMLButtonElement>('.ft-dot-btn');
+  function setActive(i: number) {
+    tabs.forEach((t, j)   => { t.classList.toggle('ft-tab--active', j === i);   t.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+    panels.forEach((p, j) => p.classList.toggle('ft-panel--active', j === i));
+    dots.forEach((d, j)   => d.classList.toggle('ft-dot-active', j === i));
+  }
+  tabs.forEach((tab, i) => tab.addEventListener('click', () => setActive(i)));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
 })();
 
 /* ── RUBROS ────────────────────────────────────────────────── */
