@@ -98,7 +98,8 @@ JAVASCRIPT
 - Pricing: arranca en Pricing Selector, sin Hero
 - Why Adhoc: sección eliminada de Home
 - Final CTA: fondo violeta, excepción intencional y documentada
-- MegaNav CTA principal: violeta + "Solicitar una demo". El HTML de referencia tenía coral + "Diagnóstico gratuito" — ese era el prototipo. El CLAUDE.md es la decisión final. No revertir a coral.
+- MegaNav CTA principal: violeta + "Solicitar demo". El HTML de referencia tenía coral + "Diagnóstico gratuito" — ese era el prototipo. El CLAUDE.md es la decisión final. No revertir a coral.
+- Texto canónico del CTA principal: "Solicitar demo" (sin "una"). Aplica en nav, hero, y cualquier CTA de conversión primaria del sitio.
 - Button variante coral: se llama btn--conversion, no secondary.
   Solo para CTAs de marketing de alta conversión (hero, landings,
   final CTA de sección). Nunca en nav, cards, formularios ni UI interna.

@@ -1,0 +1,955 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
+import HeroDashboard from '../components/HeroDashboard.astro';
+---
+
+<Base title="Adhoc — Partner #1 de Odoo a nivel mundial">
+
+<!-- ══ 1. HERO ══════════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="hero">
+  <div class="container hero-inner">
+    <Tag label="★  Partner #1 de Odoo a nivel mundial" />
+    <h1 class="hero-hed">Escalá tu empresa<br><em>sin sumar</em> complejidad.</h1>
+    <p class="hero-sub">Centralizá operaciones, automatizá procesos y ganá visibilidad en tiempo real con Odoo implementado por expertos.</p>
+    <div class="hero-btns">
+      <Button variant="primary" size="lg" label="Solicitar demo" dataOpenCotizador={true} />
+      <Button variant="outline" size="lg" label="Diagnóstico gratuito" />
+    </div>
+    <div class="trust">
+      <span class="trust-label">Empresas líderes trabajan con Adhoc</span>
+      <div class="trust-logos">
+        <span class="tlogo">RE/MAX</span>
+        <span class="tlogo">Mercado Libre</span>
+        <span class="tlogo">PayPal</span>
+        <span class="tlogo">OneClick</span>
+        <span class="tlogo">Arbusta</span>
+      </div>
+    </div>
+  </div>
+  <HeroDashboard />
+</section>
+
+<!-- ══ 2. WHY ADHOC ═════════════════════════════════════════ -->
+<section class="sec sec--mustard">
+  <div class="container">
+    <div class="sec-hdr">
+      <Tag label="¿Por qué Adhoc?" />
+      <h2 class="sec-hed">La diferencia está<br>en la experiencia.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card why-card--dark">
+        <div class="why-num">#1</div>
+        <h3>Partner global de Odoo</h3>
+        <p>El único partner latinoamericano en llegar al primer lugar a nivel mundial. No es un título, es el resultado de años de trabajo real.</p>
+      </div>
+      <div class="why-stack">
+        <div class="why-card why-card--stat">
+          <div class="why-stat">+600</div>
+          <div><h4>Desarrollos propios</h4><p>Adaptamos Odoo a cualquier industria o proceso único.</p></div>
+        </div>
+        <div class="why-card why-card--stat">
+          <div class="why-stat">+350</div>
+          <div><h4>Empresas implementadas</h4><p>Cada proyecto suma aprendizaje a un equipo que ya vio casi todo.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="why-banner">
+      <div>
+        <h3>Soporte consultivo real</h3>
+        <p>No resolvemos tickets, te acompañamos estratégicamente. Nuestro equipo entiende tu negocio y evoluciona el sistema con vos.</p>
+      </div>
+      <Button variant="outline" size="md" label="Hablar con un especialista" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ 3. ROI CALCULATOR ════════════════════════════════════ -->
+<section class="sec sec--canvas">
+  <div class="container">
+    <div class="roi-card">
+      <div class="roi-head">
+        <div>
+          <span class="overline">Calculadora de ROI</span>
+          <h2 class="roi-title">¿Cuánto te cuesta no tener todo integrado?</h2>
+          <p class="roi-sub">Seleccioná los módulos que necesitás y el tamaño de tu equipo.</p>
+          <a href="/pricing" class="roi-link">Ver planes de Adhoc →</a>
+        </div>
+        <div class="roi-apps" aria-hidden="true">
+          <div class="roi-app"></div><div class="roi-app"></div>
+          <div class="roi-app"></div><div class="roi-app"></div>
+          <div class="roi-app"></div><div class="roi-app"></div>
+          <div class="roi-strike"></div>
+        </div>
+      </div>
+      <div class="roi-body">
+        <div class="roi-left">
+          <div class="roi-sect-lbl">Seleccioná los módulos que necesitás</div>
+          <div class="roi-mods" id="roi-mods"></div>
+          <div class="roi-slider-wrap">
+            <div class="roi-slider-lbl">Tamaño del equipo: <span class="roi-slider-num" id="roi-users">12</span> personas</div>
+            <input id="roi-slider" class="roi-slider" type="range" min="1" max="100" step="1" value="12" />
+            <div class="roi-slider-axis"><span>1</span><span>100</span></div>
+            <div class="roi-detected">
+              <span class="roi-detected-lbl">Plan detectado:</span>
+              <span class="roi-pill" id="roi-detected-pill">Plan Pyme</span>
+            </div>
+          </div>
+        </div>
+        <div class="roi-right">
+          <div class="roi-mcard"><span class="roi-mcard-lbl">Costo estimado sin Odoo / mes</span><span class="roi-mcard-val" id="roi-cost-current">USD 900</span></div>
+          <div class="roi-mcard"><span class="roi-mcard-lbl">Con Adhoc pagás / mes</span><span class="roi-mcard-val" id="roi-cost-adhoc">USD 100</span></div>
+          <div class="roi-mcard"><span class="roi-mcard-lbl">Ahorro estimado en 12 meses</span><span class="roi-mcard-val" id="roi-savings">USD 9.600</span></div>
+          <div class="roi-hero-card">
+            <span class="roi-hero-pill" id="roi-hero-pill">Plan Pyme</span>
+            <div class="roi-hero-price" id="roi-hero-price">USD 100 / mes</div>
+            <div class="roi-hero-impl" id="roi-hero-impl">+ USD 1.500 implementación única</div>
+            <div class="roi-hero-desc" id="roi-hero-desc">Te acompañamos en todo el proceso para que tu equipo adopte Odoo sin fricciones.</div>
+            <button class="roi-hero-cta" id="roi-hero-cta" data-open-cotizador="true">Agendar una demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 4. RUBROS ════════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="rubros">
+  <div class="rubros-outer">
+    <div class="rubros-left">
+      <span class="overline">Rubros</span>
+      <h2 class="rubros-hed">Trabajamos con tu industria</h2>
+      <div class="rubros-chips">
+        <button class="rchip rchip--active" data-target="rub-edu">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L1 8l9 5 9-5-9-5z"/><path d="M4 11v4c2 2 10 2 12 0v-4"/></svg>
+          Educación
+        </button>
+        <button class="rchip" data-target="rub-dis">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="16" height="13" rx="2"/><path d="M2 5l2-3h12l2 3"/><path d="M7 11h6"/></svg>
+          Distribución y comercios
+        </button>
+        <button class="rchip" data-target="rub-ser">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2l-2 2 1 1-7 7-1-1-2 2 3 3 2-2-1-1 7-7 1 1 2-2-3-3z"/></svg>
+          Servicios
+        </button>
+        <button class="rchip" data-target="rub-man">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="2.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4"/></svg>
+          Manufactura
+        </button>
+      </div>
+    </div>
+    <div class="rubros-right">
+      <div class="rblock" id="rub-edu">
+        <Tag label="Educación" />
+        <h3 class="rblock-title">Gestioná tu institución sin perder el foco en enseñar</h3>
+        <p class="rblock-sub">Inscripciones, facturación, empleados y comunicación con familias en un solo sistema.</p>
+        <div class="rblock-img"><span>UI Educación</span></div>
+      </div>
+      <div class="rblock" id="rub-dis">
+        <Tag label="Distribución y comercios" />
+        <h3 class="rblock-title">Stock actualizado, precios correctos, pedidos sin errores</h3>
+        <p class="rblock-sub">Unificá compras, inventario y ventas para que tu equipo nunca más dependa de planillas desactualizadas.</p>
+        <div class="rblock-img"><span>UI Distribución</span></div>
+      </div>
+      <div class="rblock" id="rub-ser">
+        <Tag label="Servicios" />
+        <h3 class="rblock-title">De las horas trabajadas a la factura, sin fricción</h3>
+        <p class="rblock-sub">Proyectos, presupuestos, facturación y soporte integrados. Menos administración, más tiempo para servir.</p>
+        <div class="rblock-img"><span>UI Servicios</span></div>
+      </div>
+      <div class="rblock" id="rub-man">
+        <Tag label="Manufactura" />
+        <h3 class="rblock-title">Producción, stock y ventas hablando el mismo idioma</h3>
+        <p class="rblock-sub">Controlá órdenes de producción, insumos y entregas desde un solo lugar con visibilidad en tiempo real.</p>
+        <div class="rblock-img"><span>UI Manufactura</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5. FEATURE TABS ══════════════════════════════════════ -->
+<section class="sec sec--surface" id="features">
+  <div class="container">
+    <h2 class="ft-headline">Resolvemos los desafíos que <em>frenan tu crecimiento.</em></h2>
+    <div class="ft-tabs" role="tablist">
+      <button class="ft-tab ft-tab--active" role="tab" aria-selected="true"  aria-controls="ft-panel-0" data-ft="0">Automatizar operaciones</button>
+      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-1" data-ft="1">Integrar áreas</button>
+      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-2" data-ft="2">Escalar con control</button>
+      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-3" data-ft="3">Ganar visibilidad</button>
+      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-4" data-ft="4">Control financiero</button>
+      <button class="ft-tab"               role="tab" aria-selected="false" aria-controls="ft-panel-5" data-ft="5">Digitalizar el negocio</button>
+    </div>
+
+    <div class="ft-panel ft-panel--active" id="ft-panel-0" role="tabpanel" style="--ft-bg:var(--color-primary);--ft-ink:#fff;">
+      <div class="ft-visual">
+        <div class="ft-mock">
+          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Flujo de pedidos automatizado</span></div>
+          <div class="ft-pipe">
+            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Pedido</div><div class="ft-pc"><div class="ft-pc-id">SO-1284</div><div class="ft-pc-nm">RE/MAX Argentina</div><div class="ft-pc-mt"><span>$24.5K</span><span>14:02</span></div></div></div>
+            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Aprobación</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">SO-1283</div><div class="ft-pc-nm">Mercado Libre</div><div class="ft-pc-mt"><span>$118K</span><span>13:48</span></div></div></div>
+            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Factura</div><div class="ft-pc ft-pc--auto"><div class="ft-pc-id">FA-0921</div><div class="ft-pc-nm">PayPal LATAM</div><div class="ft-pc-mt"><span>$72K</span><span>13:30</span></div></div></div>
+            <div class="ft-pipe-col"><div class="ft-pipe-lbl">Enviado</div><div class="ft-pc ft-pc--done"><div class="ft-pc-id">FA-0920 ✓</div><div class="ft-pc-nm">OneClick</div><div class="ft-pc-mt"><span>$45K</span><span>13:12</span></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">01 · Automatización</span>
+        <h3 class="ft-title">Automatizar operaciones</h3>
+        <p class="ft-sub">Reducí tareas repetitivas y liberá a tu equipo para el trabajo que realmente importa. Menos errores, más velocidad.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+
+    <div class="ft-panel" id="ft-panel-1" role="tabpanel" style="--ft-bg:#2A2A2A;--ft-ink:#E9E5DF;">
+      <div class="ft-visual">
+        <div class="ft-hub-wrap">
+          <div class="ft-hub-center">A · Adhoc Odoo</div>
+          <div class="ft-hub-nodes">
+            <div class="ft-hub-node" style="top:8%;left:50%">💼 Ventas</div>
+            <div class="ft-hub-node" style="top:28%;left:88%">📦 Inventario</div>
+            <div class="ft-hub-node" style="top:68%;left:88%">💰 Finanzas</div>
+            <div class="ft-hub-node" style="top:88%;left:50%">👥 CRM</div>
+            <div class="ft-hub-node" style="top:68%;left:2%">🛒 Compras</div>
+            <div class="ft-hub-node" style="top:28%;left:2%">📊 Reportes</div>
+          </div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">02 · Integración</span>
+        <h3 class="ft-title">Integrar áreas</h3>
+        <p class="ft-sub">Ventas, stock y finanzas en un solo sistema. Sin copiar datos entre planillas. Sin información desactualizada.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+
+    <div class="ft-panel" id="ft-panel-2" role="tabpanel" style="--ft-bg:var(--color-lavender);--ft-ink:#000;">
+      <div class="ft-visual">
+        <div class="ft-mock">
+          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Grupo empresarial · 5 subsidiarias</span></div>
+          <div style="text-align:center;margin-bottom:8px"><div class="ft-tree-root">Holding</div></div>
+          <div class="ft-tree-row"><div class="ft-tree-node">Argentina</div><div class="ft-tree-node">Chile</div><div class="ft-tree-node">México</div><div class="ft-tree-node">Perú</div><div class="ft-tree-node">Colombia</div></div>
+          <div class="ft-tree-note">● Consolidación en tiempo real · USD · ARS · CLP · MXN</div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">03 · Escalabilidad</span>
+        <h3 class="ft-title">Escalar con control</h3>
+        <p class="ft-sub">Multi-empresa, multi-moneda, multi-país. Adhoc + Odoo crecen con tu operación sin reescribir procesos.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+
+    <div class="ft-panel" id="ft-panel-3" role="tabpanel" style="--ft-bg:#1A1A1A;--ft-ink:#E9E5DF;">
+      <div class="ft-visual">
+        <div class="ft-mock">
+          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Tablero ejecutivo</span></div>
+          <div class="ft-kpi-row">
+            <div class="ft-kpi"><div class="ft-kpi-l">Facturación MTD</div><div class="ft-kpi-v">$4.2M</div><div class="ft-kpi-d ft-kpi-d--up">↑ 18.4%</div></div>
+            <div class="ft-kpi"><div class="ft-kpi-l">Pedidos</div><div class="ft-kpi-v">318</div><div class="ft-kpi-d ft-kpi-d--up">↑ 12.1%</div></div>
+            <div class="ft-kpi"><div class="ft-kpi-l">Margen</div><div class="ft-kpi-v">31.2%</div><div class="ft-kpi-d ft-kpi-d--dn">↓ 1.4%</div></div>
+          </div>
+          <div class="ft-chart-row">
+            <div class="ft-bar-wrap" style="height:42%"></div><div class="ft-bar-wrap" style="height:58%"></div>
+            <div class="ft-bar-wrap" style="height:49%"></div><div class="ft-bar-wrap" style="height:72%"></div>
+            <div class="ft-bar-wrap" style="height:65%"></div><div class="ft-bar-wrap" style="height:88%"></div>
+            <div class="ft-bar-wrap ft-bar-wrap--hi" style="height:76%"></div><div class="ft-bar-wrap ft-bar-wrap--hi" style="height:95%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">04 · Visibilidad</span>
+        <h3 class="ft-title">Ganar visibilidad</h3>
+        <p class="ft-sub">Dashboards en tiempo real con tus KPIs reales. Decidí con datos, no con planillas que se desactualizan en una semana.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+
+    <div class="ft-panel" id="ft-panel-4" role="tabpanel" style="--ft-bg:#000;--ft-ink:#E9E5DF;">
+      <div class="ft-visual">
+        <div class="ft-mock">
+          <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Estado de resultados — Q1</span><span class="ft-fin-tag">CIERRE AUTO</span></div>
+          <div class="ft-fin-row ft-fin-row--head"><span>Cuenta</span><span>Real</span><span>Presup.</span><span>Δ</span></div>
+          <div class="ft-fin-row"><span>Ingresos</span><span>$12.4M</span><span>$11.2M</span><span class="ft-pos">+10.7%</span></div>
+          <div class="ft-fin-row"><span>Costos</span><span>$5.8M</span><span>$5.6M</span><span class="ft-neg">+3.5%</span></div>
+          <div class="ft-fin-row"><span>Gastos op.</span><span>$2.1M</span><span>$2.3M</span><span class="ft-pos">−8.6%</span></div>
+          <div class="ft-fin-row ft-fin-row--tot"><span>EBITDA</span><span>$4.5M</span><span>$3.3M</span><span class="ft-pos">+36.3%</span></div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">05 · Finanzas</span>
+        <h3 class="ft-title">Control financiero</h3>
+        <p class="ft-sub">Cierres mensuales en horas, no semanas. Conciliación automática, presupuestos vivos y reportes contables al instante.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+
+    <div class="ft-panel" id="ft-panel-5" role="tabpanel" style="--ft-bg:var(--color-canvas);--ft-ink:#000;">
+      <div class="ft-visual">
+        <div class="ft-digi">
+          <div class="ft-paper">
+            <div class="ft-paper-title">Remito #4821</div>
+            <div class="ft-paper-line"></div><div class="ft-paper-line ft-paper-line--70"></div>
+            <div class="ft-paper-line ft-paper-line--90"></div><div class="ft-paper-line ft-paper-line--60"></div>
+            <div class="ft-paper-warn">SIN FIRMA · SIN ARCHIVAR</div>
+          </div>
+          <div class="ft-digi-arrow">→</div>
+          <div class="ft-app-card">
+            <div class="ft-app-title">Remitos · Adhoc App</div>
+            <div class="ft-app-row ft-app-row--done">Recepción · Cliente A <span class="ft-ck ft-ck--done"></span></div>
+            <div class="ft-app-row ft-app-row--done">Firma digital <span class="ft-ck ft-ck--done"></span></div>
+            <div class="ft-app-row ft-app-row--done">Sync con Odoo <span class="ft-ck ft-ck--done"></span></div>
+            <div class="ft-app-row">Notificación cliente <span class="ft-ck"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ft-text">
+        <span class="ft-eyebrow">06 · Digitalización</span>
+        <h3 class="ft-title">Digitalizar el negocio</h3>
+        <p class="ft-sub">Sacá los procesos del papel y de Excel. Llevá tu operación a una plataforma moderna sin romper lo que ya funciona.</p>
+        <button class="ft-cta">Ver cómo funciona →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 6. MÉTRICAS ══════════════════════════════════════════ -->
+<section class="sec sec--canvas">
+  <div class="container">
+    <div class="metrics-hdr">
+      <Tag label="Qué impacto genera" />
+      <h2 class="sec-hed">Más productividad.<br>Menos fricción operativa.</h2>
+      <p class="sec-sub">Resultados promedio en empresas que implementaron Odoo con Adhoc en los primeros 6 meses.</p>
+    </div>
+    <div class="metrics-row">
+      <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">40%</div><div class="metric-lbl">Tareas<br>manuales</div></div>
+      <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">60%</div><div class="metric-lbl">Errores<br>operativos</div></div>
+      <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">30%</div><div class="metric-lbl">Productividad<br>del equipo</div></div>
+      <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div></div>
+    </div>
+    <div class="metrics-cta">
+      <Button variant="primary" size="lg" label="Solicitar una demo →" dataOpenCotizador={true} />
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7. PROCESO ════════════════════════════════════════════ -->
+<section class="sec sec--surface">
+  <div class="container">
+    <div class="proceso-hdr">
+      <Tag label="El proceso" />
+      <h2 class="proceso-hed">Todo tu negocio en <em>un solo sistema.</em></h2>
+      <p class="sec-sub">No tiramos código encima de tus problemas. Primero entendemos tu operación. Después la transformamos.</p>
+    </div>
+    <div class="proceso-grid">
+      <div class="pcard">
+        <div class="pcard-num">01</div>
+        <div class="pcard-title">Diagnóstico</div>
+        <p class="pcard-sub">Analizamos tus procesos y cuellos de botella. Sin compromiso, sin tecnicismos.</p>
+        <div class="pcard-vis">
+          <div class="diag-list">
+            <div class="diag-item"><span class="diag-dot" style="background:#E64A37"></span>Procesos manuales<span class="diag-tag diag-tag--red">Crítico</span></div>
+            <div class="diag-item"><span class="diag-dot" style="background:#B87800"></span>Datos en planillas<span class="diag-tag diag-tag--yel">Medio</span></div>
+            <div class="diag-item"><span class="diag-dot" style="background:var(--color-primary)"></span>Stock desactualizado<span class="diag-tag diag-tag--lav">Alto</span></div>
+            <div class="diag-item"><span class="diag-dot" style="background:#3BB56A"></span>Cobranzas OK<span class="diag-tag diag-tag--grn">Bajo</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-num">02</div>
+        <div class="pcard-title">Implementación</div>
+        <p class="pcard-sub">Configuramos Odoo a medida, migramos datos y capacitamos a tu equipo.</p>
+        <div class="pcard-vis">
+          <div class="imp-mock">
+            <div class="imp-row imp-row--done"><span class="imp-dot" style="background:#3BB56A"></span><span>Diagnóstico</span><span class="imp-state imp-state--ok">✓</span></div>
+            <div class="imp-row imp-row--active"><span class="imp-dot" style="background:var(--color-primary)"></span><span>Configuración Odoo</span><span class="imp-state imp-state--cur">En curso</span></div>
+            <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Migración de datos</span><span class="imp-state">Próximo</span></div>
+            <div class="imp-row"><span class="imp-dot" style="background:#D5D2CB"></span><span>Capacitación</span><span class="imp-state">Próximo</span></div>
+            <div class="imp-progress"><div class="imp-progress-lbl">Avance — 62%</div><div class="imp-progress-bar"><div class="imp-progress-fill" style="width:62%"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-num">03</div>
+        <div class="pcard-title">Optimización<br>continua</div>
+        <p class="pcard-sub">Soporte consultivo real. Evolucionamos el sistema a medida que crecés.</p>
+        <div class="pcard-vis">
+          <div class="opt-vis">
+            <div class="opt-lbl">Eficiencia operativa</div>
+            <div class="opt-val">+38% <span class="opt-delta">↑ último Q</span></div>
+            <svg class="opt-chart" viewBox="0 0 280 80" width="100%" height="80" preserveAspectRatio="none">
+              <defs><linearGradient id="optg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C6CD8" stop-opacity=".3"/><stop offset="100%" stop-color="#7C6CD8" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8 L280,80 L0,80 Z" fill="url(#optg)"/>
+              <path d="M0,68 L46,60 L92,55 L138,40 L184,32 L230,18 L280,8" fill="none" stroke="#7C6CD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="280" cy="8" r="4" fill="#fff" stroke="#7C6CD8" stroke-width="2"/>
+            </svg>
+            <div class="opt-axis"><span>Mes 1</span><span>3</span><span>6</span><span>9</span><span>12</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proceso-cta">
+      <Button variant="primary" size="lg" label="Solicitar diagnóstico" dataOpenCotizador={true} />
+      <Button variant="outline" size="lg" label="Ver cómo trabajamos" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ 8. CASOS ══════════════════════════════════════════════ -->
+<section class="sec sec--canvas" id="casos">
+  <div class="container">
+    <h2 class="sec-hed" style="margin-bottom:var(--space-xl)">Empresas que confían<br>en Adhoc.</h2>
+    <div class="caso-featured">
+      <div class="caso-featured-text">
+        <div class="caso-co">RE/MAX Argentina</div>
+        <p class="caso-quote">"Adhoc implementó Odoo sin disrumpir nuestra operación. Hoy tenemos más de 300 inmobiliarias conectadas en un solo sistema."</p>
+        <a href="#" class="caso-link">Leer el caso completo →</a>
+      </div>
+      <div class="caso-featured-img">
+        <div class="caso-stat">
+          <span class="caso-stat-num">+300</span>
+          <span class="caso-stat-lbl">inmobiliarias<br>conectadas</span>
+        </div>
+      </div>
+    </div>
+    <div class="casos-grid">
+      <div class="caso-mini"><div class="caso-mini-co">Arbusta</div><p class="caso-mini-text">"Pasamos de perder horas en tareas manuales a procesos automatizados. −40% de tiempo administrativo en 3 meses."</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+      <div class="caso-mini"><div class="caso-mini-co">OneClick</div><p class="caso-mini-text">Ventas, stock y facturación integrados. "Ya no dependemos de planillas para saber qué tenemos en depósito."</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+      <div class="caso-mini"><div class="caso-mini-co">PayPal Argentina</div><p class="caso-mini-text">"Adhoc entiende que los procesos de una fintech son distintos. La implementación fue quirúrgica."</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+      <div class="caso-mini"><div class="caso-mini-co">Grupo Marquez</div><p class="caso-mini-text">Multi-empresa, multi-depósito. Consolidación de balances en tiempo real sin exportar nada a Excel.</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+      <div class="caso-mini"><div class="caso-mini-co">Sinteplast</div><p class="caso-mini-text">"Odoo con Adhoc nos dio la visibilidad que necesitábamos para tomar decisiones con datos reales."</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+      <div class="caso-mini"><div class="caso-mini-co">Fundación UADE</div><p class="caso-mini-text">Gestión académica, RRHH y facturación en un sistema. +60% menos tiempo en cierres de mes.</p><a href="#" class="caso-link caso-link--sm">Ver caso →</a></div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">★ Partner #1 de Odoo a nivel mundial</span>
+        <span class="ticker-item">· +350 empresas implementadas</span>
+        <span class="ticker-item">· +15 años de experiencia</span>
+        <span class="ticker-item">· +600 desarrollos propios</span>
+        <span class="ticker-item">· −40% tareas manuales en promedio</span>
+        <span class="ticker-item">· Implementación en 8–16 semanas</span>
+        <span class="ticker-item">★ Partner #1 de Odoo a nivel mundial</span>
+        <span class="ticker-item">· +350 empresas implementadas</span>
+        <span class="ticker-item">· +15 años de experiencia</span>
+        <span class="ticker-item">· +600 desarrollos propios</span>
+        <span class="ticker-item">· −40% tareas manuales en promedio</span>
+        <span class="ticker-item">· Implementación en 8–16 semanas</span>
+      </div>
+    </div>
+    <div class="casos-cta">
+      <Button variant="primary" size="lg" label="Solicitar una demo" dataOpenCotizador={true} />
+    </div>
+  </div>
+</section>
+
+<!-- ══ 9. FAQ ════════════════════════════════════════════════ -->
+<section class="sec sec--surface" id="faq">
+  <div class="container">
+    <div class="faq-wrap">
+      <h2 class="sec-hed" style="text-align:center;margin-bottom:var(--space-3xl)">Lo que siempre<br>nos preguntan.</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cuánto tarda una implementación?<span class="faq-ico" aria-hidden="true">+</span></button>
+          <div class="faq-a">Depende de la complejidad de tu operación. Una implementación estándar tarda entre 8 y 16 semanas. Trabajamos con etapas iterativas para que empecés a ver resultados desde la primera fase.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Sirve para mi rubro?<span class="faq-ico" aria-hidden="true">+</span></button>
+          <div class="faq-a">Trabajamos con manufactura, distribución, servicios, tecnología, inmobiliarias, retail y más. Odoo es modular y flexible. El diagnóstico gratuito es exactamente para determinar si somos la opción correcta para vos.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Migran mis sistemas actuales?<span class="faq-ico" aria-hidden="true">+</span></button>
+          <div class="faq-a">Sí. Migramos desde Excel, sistemas legacy, ERP propietarios, bases de datos y más. Tenemos procesos probados de migración para garantizar que no pierdas información histórica.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cuánto cuesta?<span class="faq-ico" aria-hidden="true">+</span></button>
+          <div class="faq-a">El costo varía según módulos, usuarios y complejidad. Hay un costo de licencia Odoo (Community es gratuita; Enterprise tiene costo) más honorarios de implementación. En el diagnóstico armamos una propuesta a medida.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Hay costos ocultos?<span class="faq-ico" aria-hidden="true">+</span></button>
+          <div class="faq-a">No. Antes de arrancar entregamos un presupuesto cerrado con alcance definido. Si el alcance cambia, lo comunicamos antes de hacer trabajo adicional. Sin sorpresas.</div>
+        </div>
+      </div>
+      <div class="faq-cta">
+        <Button variant="primary" size="lg" label="Solicitar una demo" dataOpenCotizador={true} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 10. LEAD CAPTURE ══════════════════════════════════════ -->
+<section class="sec sec--canvas" id="lead">
+  <div class="container lead-container">
+    <div class="lead-card">
+      <div class="lead-hdr">
+        <Tag label="Diagnóstico sin costo" />
+        <h2 class="sec-hed" style="margin-top:var(--space-md);margin-bottom:var(--space-xs)">Agendá una evaluación gratuita.</h2>
+        <p style="color:var(--color-text-secondary);font-size:.9375rem;">30 minutos. Sin compromiso.</p>
+      </div>
+      <div class="lead-checks">
+        <div class="lead-chk"><span class="lead-chk-dot" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Análisis de tus procesos y cuellos de botella</div>
+        <div class="lead-chk"><span class="lead-chk-dot" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Recomendación de módulos Odoo según tu industria</div>
+        <div class="lead-chk"><span class="lead-chk-dot" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Estimación de impacto y plazos de implementación</div>
+        <div class="lead-chk"><span class="lead-chk-dot" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sin presión. Sin compromiso. Solo claridad.</div>
+      </div>
+      <div class="lead-fields">
+        <input class="lead-input" type="text"  placeholder="Tu nombre"       aria-label="Nombre" />
+        <input class="lead-input" type="email" placeholder="Email empresarial" aria-label="Email" />
+        <input class="lead-input" type="text"  placeholder="Empresa"          aria-label="Empresa" />
+      </div>
+      <button class="lead-submit" data-open-cotizador="true">Agendar diagnóstico →</button>
+      <p class="lead-micro">Sin spam. Respondemos en menos de 24hs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 11. FINAL CTA ════════════════════════════════════════ -->
+<section class="sec sec--violet" id="final-cta">
+  <div class="container">
+    <div class="final-hdr">
+      <h2 class="sec-hed">Ordená y escalá<br>tu operación.</h2>
+      <p class="sec-sub" style="margin:var(--space-md) auto 0">El primer paso es entender dónde estás. El segundo es saber a dónde podés llegar.</p>
+    </div>
+    <div class="final-grid">
+      <div class="final-card">
+        <div class="final-icon">🔍</div>
+        <h3>Diagnóstico gratuito</h3>
+        <p>30 minutos con un especialista para entender tu operación actual y qué puede mejorar.</p>
+        <Button variant="primary" size="md" label="Agendar →" dataOpenCotizador={true} />
+      </div>
+      <div class="final-card final-card--dark">
+        <div class="final-icon">🚀</div>
+        <h3>Demo de Odoo</h3>
+        <p>Mirá en vivo cómo funciona Odoo aplicado a tu industria. Demo personalizada, no genérica.</p>
+        <Button variant="secondary" size="md" label="Solicitar demo →" dataOpenCotizador={true} />
+      </div>
+      <div class="final-card">
+        <div class="final-icon">💬</div>
+        <h3>Hablar con un especialista</h3>
+        <p>¿Tenés preguntas antes de arrancar? Charlá con alguien del equipo sin compromiso.</p>
+        <Button variant="outline" size="md" label="Contactar →" href="#lead" />
+      </div>
+    </div>
+  </div>
+</section>
+
+</Base>
+
+<style>
+/* ─── Base sections ─── */
+.sec          { padding: var(--space-4xl) 0; }
+.sec--canvas  { background: var(--color-canvas);  --card-bg: var(--color-surface); --section-bg: var(--color-canvas); }
+.sec--surface { background: var(--color-surface); --card-bg: var(--color-canvas);  --section-bg: var(--color-surface); }
+.sec--mustard { background: var(--color-mustard); --card-bg: var(--color-surface); --section-bg: var(--color-mustard); }
+.sec--violet  { background: var(--color-primary); --card-bg: var(--color-surface); --section-bg: var(--color-primary); }
+.sec--violet .final-hdr .sec-hed { color: #fff; }
+.sec--violet .final-hdr .sec-sub { color: rgba(255,255,255,.78); }
+.overline { font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);display:block;margin-bottom:var(--space-xs); }
+.sec-hdr  { margin-bottom:var(--space-2xl); }
+.sec-hed  { font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-top:var(--space-md); }
+.sec-hed em { font-style:italic;color:var(--color-primary); }
+.sec-sub  { font-family:var(--font-body);font-size:1.0625rem;color:var(--color-text-secondary);line-height:1.65;max-width:520px;margin-top:var(--space-md); }
+
+/* ─── 1. Hero ─── */
+#hero { padding-bottom:0;overflow:hidden;text-align:center; }
+.hero-inner { display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);padding-bottom:var(--space-3xl); }
+.hero-hed { font-family:var(--font-display);font-weight:500;font-size:clamp(3rem,5.5vw,4.5rem);line-height:1.04;letter-spacing:-.025em;max-width:820px; }
+.hero-hed em { font-style:italic;color:var(--color-primary); }
+.hero-sub { font-family:var(--font-body);font-size:1.125rem;color:var(--color-text-secondary);line-height:1.65;max-width:520px; }
+.hero-btns { display:flex;gap:var(--space-sm);justify-content:center;flex-wrap:wrap; }
+.trust { display:flex;flex-direction:column;align-items:center;gap:var(--space-sm); }
+.trust-label { font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-secondary); }
+.trust-logos { display:flex;align-items:center;gap:var(--space-md);flex-wrap:wrap;justify-content:center; }
+.tlogo { font-family:var(--font-body);font-size:.75rem;font-weight:700;color:#aaa;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border:1.5px solid var(--border-subtle);border-radius:999px; }
+
+/* ─── 2. Why Adhoc ─── */
+.why-grid { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);margin-bottom:var(--space-md); }
+.why-stack { display:flex;flex-direction:column;gap:var(--space-md); }
+.why-card { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl); }
+.why-card--dark { background:var(--color-ink);color:#E9E5DF;display:flex;flex-direction:column;gap:var(--space-md); }
+.why-card--dark h3 { font-family:var(--font-display);font-weight:500;font-size:1.25rem; }
+.why-card--dark p  { font-family:var(--font-body);font-size:.875rem;color:rgba(233,229,223,.7);line-height:1.6; }
+.why-num  { font-family:var(--font-display);font-weight:700;font-size:3.5rem;color:var(--color-lavender);line-height:1; }
+.why-card--stat { display:flex;align-items:center;gap:var(--space-lg); }
+.why-stat { font-family:var(--font-display);font-weight:700;font-size:2.8rem;color:var(--color-primary);white-space:nowrap;flex-shrink:0; }
+.why-card--stat h4 { font-family:var(--font-body);font-weight:700;font-size:1.1rem;margin-bottom:4px; }
+.why-card--stat p  { font-family:var(--font-body);font-size:.85rem;color:var(--color-text-secondary); }
+.why-banner { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl);display:flex;align-items:center;justify-content:space-between;gap:var(--space-2xl); }
+.why-banner h3 { font-family:var(--font-display);font-weight:500;font-size:1.4rem;margin-bottom:var(--space-xs); }
+.why-banner p  { font-family:var(--font-body);font-size:.9375rem;color:var(--color-text-secondary);max-width:480px; }
+
+/* ─── 3. ROI ─── */
+.roi-card { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-2xl); }
+.roi-head { display:grid;grid-template-columns:1fr auto;gap:var(--space-2xl);align-items:flex-start;margin-bottom:var(--space-xl); }
+.roi-title { font-family:var(--font-display);font-weight:500;font-size:1.75rem;line-height:1.15;letter-spacing:-.015em;margin:var(--space-sm) 0 var(--space-xs); }
+.roi-sub { font-family:var(--font-body);font-size:.9375rem;color:var(--color-text-secondary);margin-bottom:var(--space-xs); }
+.roi-link { font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-primary);text-decoration:none; }
+.roi-link:hover { text-decoration:underline; }
+.roi-apps { position:relative;display:flex;gap:var(--space-xs);align-items:center;padding:6px 4px; }
+.roi-app { width:28px;height:28px;border-radius:6px;background:rgba(212,207,198,.55); }
+.roi-strike { position:absolute;left:-4px;right:-4px;top:50%;height:2px;background:var(--color-ink);transform:translateY(-50%) rotate(-8deg);border-radius:2px; }
+.roi-body { display:grid;grid-template-columns:58fr 42fr; }
+.roi-left { padding-right:var(--space-2xl);border-right:1px solid var(--border-subtle); }
+.roi-right { padding-left:var(--space-2xl);display:flex;flex-direction:column;gap:var(--space-sm); }
+.roi-sect-lbl { font-family:var(--font-body);font-size:.8125rem;font-weight:500;color:var(--color-text-secondary);margin-bottom:var(--space-sm); }
+.roi-mods { display:grid;grid-template-columns:repeat(3,1fr);gap:0 var(--space-lg); }
+.roi-slider-wrap { margin-top:var(--space-xl); }
+.roi-slider-lbl { font-family:var(--font-body);font-size:.875rem;color:var(--color-text-secondary);margin-bottom:var(--space-sm);display:flex;align-items:baseline;gap:6px; }
+.roi-slider-num { font-weight:500;font-size:1.25rem;color:var(--color-primary); }
+.roi-slider { appearance:none;-webkit-appearance:none;width:100%;height:4px;background:var(--border-medium);border-radius:999px;outline:none; }
+.roi-slider::-webkit-slider-thumb { appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--color-surface);border:2px solid var(--color-primary);cursor:pointer; }
+.roi-slider::-moz-range-thumb { width:18px;height:18px;border-radius:50%;background:var(--color-surface);border:2px solid var(--color-primary);cursor:pointer; }
+.roi-slider-axis { display:flex;justify-content:space-between;font-family:var(--font-body);font-size:.6875rem;color:var(--color-text-secondary);margin-top:var(--space-xs); }
+.roi-detected { margin-top:var(--space-sm);display:flex;align-items:center;gap:var(--space-xs); }
+.roi-detected-lbl { font-family:var(--font-body);font-size:.75rem;color:var(--color-text-secondary); }
+.roi-pill { font-family:var(--font-body);font-size:.75rem;font-weight:500;padding:4px 10px;border-radius:999px;background:var(--color-lavender-fill);color:var(--color-lavender); }
+.roi-mcard { background:var(--color-canvas);border-radius:var(--radius-input);padding:var(--space-sm) var(--space-md);display:flex;justify-content:space-between;align-items:center; }
+.roi-mcard-lbl { font-family:var(--font-body);font-size:.8125rem;color:var(--color-text-secondary); }
+.roi-mcard-val { font-family:var(--font-body);font-size:1.375rem;font-weight:500;color:var(--color-primary);transition:opacity .15s; }
+.roi-hero-card { background:var(--color-primary);border-radius:var(--radius-button);padding:var(--space-lg);color:#fff;display:flex;flex-direction:column;gap:var(--space-xs); }
+.roi-hero-pill { align-self:flex-start;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-family:var(--font-body);font-size:.75rem;font-weight:500;padding:4px 10px;border-radius:999px; }
+.roi-hero-price { font-family:var(--font-body);font-size:1.875rem;font-weight:500;color:#fff;line-height:1.1; }
+.roi-hero-impl  { font-family:var(--font-body);font-size:.8125rem;color:var(--color-lavender); }
+.roi-hero-desc  { font-family:var(--font-body);font-size:.8125rem;color:rgba(255,255,255,.78);line-height:1.45; }
+.roi-hero-cta   { margin-top:var(--space-xs);display:flex;align-items:center;justify-content:center;background:var(--color-surface);color:var(--color-primary);font-family:var(--font-body);font-weight:500;font-size:.875rem;padding:11px;border-radius:var(--radius-button);border:none;cursor:pointer;transition:background .15s; }
+.roi-hero-cta:hover { background:var(--color-canvas); }
+
+/* ─── 4. Rubros ─── */
+.rubros-outer { max-width:1200px;margin:0 auto;padding:0 var(--space-xl);display:grid;grid-template-columns:30% 70%;gap:var(--space-3xl);align-items:start; }
+.rubros-left { position:sticky;top:80px;display:flex;flex-direction:column;gap:var(--space-lg); }
+.rubros-hed { font-family:var(--font-display);font-weight:500;font-size:1.375rem;line-height:1.25; }
+.rubros-chips { display:flex;flex-direction:column;gap:var(--space-sm);margin-top:4px; }
+.rchip { display:inline-flex;align-items:center;gap:var(--space-xs);font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:999px;padding:var(--space-xs) var(--space-md);cursor:pointer;text-align:left;transition:all .15s; }
+.rchip:hover:not(.rchip--active) { background:var(--color-lavender-fill);border-color:var(--color-lavender-fill);color:var(--color-ink); }
+.rchip--active { background:var(--color-ink);border-color:transparent;color:#E9E5DF; }
+.rubros-right { display:flex;flex-direction:column;gap:var(--space-4xl); }
+.rblock { display:flex;flex-direction:column;gap:var(--space-md); }
+.rblock-title { font-family:var(--font-display);font-weight:500;font-size:1.75rem;line-height:1.2;max-width:560px; }
+.rblock-sub { font-family:var(--font-body);font-size:1rem;color:var(--color-text-secondary);line-height:1.6;max-width:520px; }
+.rblock-img { width:100%;height:280px;border-radius:clamp(16px,5vw,32px);background:var(--card-bg);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);margin-top:var(--space-xs); }
+
+/* ─── 5. Feature Tabs ─── */
+.ft-headline { font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.8vw,3.2rem);line-height:1.08;letter-spacing:-.025em;text-align:center;max-width:760px;margin:0 auto var(--space-2xl); }
+.ft-headline em { font-style:italic;color:var(--color-primary); }
+.ft-tabs { display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-xs);margin-bottom:var(--space-xl); }
+.ft-tab { font-family:var(--font-body);font-size:.9375rem;font-weight:500;padding:11px 22px;border-radius:999px;border:none;cursor:pointer;background:var(--border-subtle);color:var(--color-ink);transition:background .2s,color .2s;white-space:nowrap; }
+.ft-tab:hover { background:var(--border-medium); }
+.ft-tab--active { background:var(--color-ink);color:var(--color-canvas); }
+.ft-panel { display:none;border-radius:clamp(20px,4vw,40px);padding:var(--space-3xl);min-height:480px;align-items:center;background:var(--ft-bg,var(--color-surface));color:var(--ft-ink,var(--color-ink)); }
+.ft-panel--active { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3xl); }
+.ft-visual { display:flex;align-items:center;justify-content:center;min-height:320px; }
+.ft-text { display:flex;flex-direction:column;gap:var(--space-md); }
+.ft-eyebrow { font-family:var(--font-body);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.6; }
+.ft-title { font-family:var(--font-display);font-weight:500;font-size:clamp(1.8rem,2.8vw,2.4rem);line-height:1.1;letter-spacing:-.02em; }
+.ft-sub { font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;opacity:.85;max-width:380px; }
+.ft-cta { align-self:flex-start;font-family:var(--font-body);font-size:.9375rem;font-weight:500;padding:12px 24px;border-radius:var(--radius-button);cursor:pointer;background:transparent;margin-top:var(--space-xs);border:1.5px solid currentColor;transition:background .18s,color .18s; }
+.ft-cta:hover { background:var(--ft-ink,var(--color-ink));color:var(--ft-bg,var(--color-surface)); }
+/* Mocks */
+.ft-mock { background:var(--color-surface);border-radius:var(--radius-button);padding:var(--space-sm);color:var(--color-ink);width:100%;max-width:520px;border:1px solid var(--border-subtle); }
+.ft-mock-bar { display:flex;align-items:center;gap:5px;padding-bottom:var(--space-xs);border-bottom:1px solid var(--border-subtle);margin-bottom:var(--space-sm); }
+.ft-mock-dot { width:9px;height:9px;border-radius:50%;flex-shrink:0;display:block; }
+.ft-mock-title { font-family:var(--font-display);font-weight:500;font-size:.85rem;margin-left:6px; }
+.ft-pipe { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-xs); }
+.ft-pipe-col { background:var(--color-canvas);border-radius:var(--radius-tag);padding:var(--space-xs); }
+.ft-pipe-lbl { font-family:var(--font-body);font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:6px; }
+.ft-pc { background:var(--color-surface);border-radius:6px;padding:var(--space-xs);font-size:.65rem;border:1px solid var(--border-subtle); }
+.ft-pc-id { color:#888;font-size:.55rem;margin-bottom:2px; }
+.ft-pc-nm { font-weight:600; }
+.ft-pc-mt { font-size:.55rem;color:#888;margin-top:4px;display:flex;justify-content:space-between; }
+.ft-pc--done { background:#E8F5EE;border-color:#B8E2C8; }
+.ft-pc--auto { background:var(--color-lavender-fill);border-color:var(--color-lavender); }
+/* Hub */
+.ft-hub-wrap { position:relative;width:320px;height:280px;display:flex;align-items:center;justify-content:center; }
+.ft-hub-center { background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-button);padding:var(--space-xs) var(--space-sm);font-family:var(--font-body);font-size:.75rem;font-weight:600;color:var(--color-ink);z-index:1; }
+.ft-hub-nodes { position:absolute;inset:0; }
+.ft-hub-node { position:absolute;background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-button);padding:6px 10px;font-family:var(--font-body);font-size:.72rem;font-weight:500;color:var(--color-ink);white-space:nowrap;transform:translate(-50%,-50%); }
+/* Tree */
+.ft-tree-root { background:var(--color-ink);color:var(--color-canvas);border-radius:var(--radius-button);padding:var(--space-xs) var(--space-md);font-family:var(--font-display);font-weight:500;font-size:.85rem;display:inline-block; }
+.ft-tree-row { display:flex;gap:var(--space-xs);flex-wrap:wrap;justify-content:center;margin-top:var(--space-xs); }
+.ft-tree-node { background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-input);padding:6px 10px;font-family:var(--font-body);font-size:.72rem;font-weight:600; }
+.ft-tree-note { font-family:var(--font-body);font-size:.65rem;color:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;margin-top:var(--space-xs); }
+/* KPIs */
+.ft-kpi-row { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-xs);margin-bottom:var(--space-xs); }
+.ft-kpi { background:var(--color-canvas);border-radius:var(--radius-tag);padding:var(--space-xs); }
+.ft-kpi-l { font-family:var(--font-body);font-size:.58rem;color:#888;margin-bottom:3px; }
+.ft-kpi-v { font-family:var(--font-display);font-weight:600;font-size:1.1rem;line-height:1; }
+.ft-kpi-d { font-family:var(--font-body);font-size:.58rem;font-weight:600;margin-top:3px; }
+.ft-kpi-d--up { color:#3BB56A; }
+.ft-kpi-d--dn { color:var(--color-coral); }
+.ft-chart-row { display:flex;align-items:flex-end;gap:4px;height:64px; }
+.ft-bar-wrap { flex:1;background:var(--color-lavender);border-radius:3px 3px 0 0; }
+.ft-bar-wrap--hi { background:var(--color-primary); }
+/* Finance table */
+.ft-fin-tag { font-family:var(--font-body);font-size:.55rem;font-weight:700;background:var(--color-ink);color:#fff;padding:3px 8px;border-radius:999px;letter-spacing:.04em;margin-left:auto; }
+.ft-fin-row { display:grid;grid-template-columns:1.5fr .9fr .9fr .6fr;gap:var(--space-sm);padding:9px var(--space-sm);border-bottom:1px solid var(--border-subtle);font-family:var(--font-body);font-size:.75rem;align-items:center; }
+.ft-fin-row--head { font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#888;background:var(--color-canvas); }
+.ft-fin-row--tot { background:var(--color-canvas);font-weight:700; }
+.ft-pos { color:#3BB56A; }
+.ft-neg { color:var(--color-coral); }
+/* Digi */
+.ft-digi { display:flex;align-items:center;gap:var(--space-md);width:100%;max-width:520px; }
+.ft-paper { background:var(--color-surface);border-radius:var(--radius-input);padding:var(--space-sm);border:1px solid var(--border-subtle);flex:1;transform:rotate(-3deg);position:relative; }
+.ft-paper-title { font-family:var(--font-display);font-weight:500;font-size:.82rem;margin-bottom:var(--space-xs);color:var(--color-ink); }
+.ft-paper-line { height:4px;background:var(--border-subtle);border-radius:3px;margin-bottom:5px; }
+.ft-paper-line--70 { width:70%; }
+.ft-paper-line--90 { width:90%; }
+.ft-paper-line--60 { width:60%; }
+.ft-paper-warn { font-family:var(--font-body);font-size:.58rem;color:var(--color-coral);font-weight:700;margin-top:var(--space-xs); }
+.ft-digi-arrow { font-size:1.4rem;color:rgba(0,0,0,.3);flex-shrink:0; }
+.ft-app-card { background:var(--color-surface);border-radius:var(--radius-input);padding:var(--space-sm);border:1px solid var(--border-subtle);flex:1; }
+.ft-app-title { font-family:var(--font-body);font-size:.75rem;font-weight:600;color:var(--color-ink);padding-bottom:var(--space-xs);border-bottom:1px solid var(--border-subtle);margin-bottom:var(--space-xs); }
+.ft-app-row { display:flex;align-items:center;justify-content:space-between;padding:7px 0;font-family:var(--font-body);font-size:.7rem;color:var(--color-ink);border-bottom:1px solid var(--border-subtle); }
+.ft-app-row:last-child { border:none; }
+.ft-ck { width:13px;height:13px;border-radius:50%;border:1.5px solid var(--border-medium);flex-shrink:0;display:block; }
+.ft-ck--done { background:#3BB56A;border-color:#3BB56A; }
+
+/* ─── 6. Métricas ─── */
+.metrics-hdr { text-align:center;margin-bottom:var(--space-2xl);display:flex;flex-direction:column;align-items:center; }
+.metrics-row { display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);overflow:hidden; }
+.metric-cell { background:var(--card-bg);padding:var(--space-2xl) var(--space-xl);display:flex;flex-direction:column;gap:var(--space-xs);border-right:1px solid var(--border-subtle); }
+.metric-cell:last-child { border-right:none; }
+.metric-arrow { font-size:1.6rem;font-weight:700;line-height:1;color:var(--color-primary); }
+.metric-arrow--up { color:var(--color-primary); }
+.metric-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;line-height:1;letter-spacing:-.03em; }
+.metric-num--up { color:var(--color-primary); }
+.metric-lbl { font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);line-height:1.4; }
+.metrics-cta { text-align:center;margin-top:var(--space-2xl); }
+
+/* ─── 7. Proceso ─── */
+.proceso-hdr { text-align:center;margin-bottom:var(--space-3xl);display:flex;flex-direction:column;align-items:center; }
+.proceso-hed { font-family:var(--font-display);font-weight:500;font-size:clamp(2.4rem,4.2vw,3.6rem);line-height:1.05;letter-spacing:-.02em;max-width:880px;margin-top:var(--space-md); }
+.proceso-hed em { font-style:italic;color:var(--color-primary); }
+.proceso-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg); }
+.pcard { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-2xl) var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);min-height:520px; }
+.pcard-num { font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--color-primary);text-align:center; }
+.pcard-title { font-family:var(--font-display);font-weight:500;font-size:2rem;line-height:1.05;letter-spacing:-.015em;text-align:center; }
+.pcard-sub { font-family:var(--font-body);font-size:.9375rem;color:var(--color-text-secondary);text-align:center;line-height:1.45;max-width:280px;margin:0 auto; }
+.pcard-vis { margin-top:auto;display:flex;align-items:center;justify-content:center;padding-top:var(--space-lg); }
+/* Diag */
+.diag-list { display:flex;flex-direction:column;gap:var(--space-xs);width:100%;max-width:300px; }
+.diag-item { display:flex;align-items:center;gap:var(--space-xs);background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-button);padding:11px var(--space-sm);font-family:var(--font-body);font-size:.8125rem; }
+.diag-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0;display:block; }
+.diag-tag { margin-left:auto;font-family:var(--font-body);font-size:.65rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px var(--space-xs);border-radius:999px; }
+.diag-tag--red { background:#FFE5DE;color:#C13E2D; }
+.diag-tag--yel { background:#FFF1D2;color:#9C6F0E; }
+.diag-tag--lav { background:var(--color-lavender-fill);color:var(--color-primary); }
+.diag-tag--grn { background:#E1F4E8;color:#1F7A47; }
+/* Imp */
+.imp-mock { width:100%;max-width:300px;background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-button);padding:var(--space-sm);display:flex;flex-direction:column;gap:6px; }
+.imp-row { display:flex;align-items:center;gap:var(--space-xs);padding:9px 11px;border-radius:var(--radius-input);font-family:var(--font-body);font-size:.78rem;background:var(--color-canvas); }
+.imp-row--active { background:var(--color-lavender-fill); }
+.imp-dot { width:9px;height:9px;border-radius:50%;flex-shrink:0;display:block; }
+.imp-state { margin-left:auto;font-family:var(--font-body);font-size:.65rem;font-weight:600;color:#888; }
+.imp-state--ok  { color:#3BB56A; }
+.imp-state--cur { color:var(--color-primary); }
+.imp-progress { margin-top:6px;padding:0 11px; }
+.imp-progress-lbl { font-family:var(--font-body);font-size:.65rem;color:var(--color-text-secondary);margin-bottom:4px; }
+.imp-progress-bar { background:var(--border-subtle);border-radius:4px;height:6px;overflow:hidden; }
+.imp-progress-fill { background:var(--color-primary);height:100%; }
+/* Opt */
+.opt-vis { width:100%;max-width:300px;background:var(--color-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-button);padding:var(--space-md); }
+.opt-lbl { font-family:var(--font-body);font-size:.7rem;font-weight:600;color:var(--color-text-secondary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-xs); }
+.opt-val { font-family:var(--font-display);font-weight:500;font-size:1.5rem;margin-bottom:var(--space-sm);display:flex;align-items:baseline;gap:var(--space-xs); }
+.opt-delta { font-family:var(--font-body);font-size:.75rem;font-weight:600;color:#3BB56A;background:#E1F4E8;padding:2px var(--space-xs);border-radius:999px; }
+.opt-chart { display:block; }
+.opt-axis { display:flex;justify-content:space-between;margin-top:var(--space-xs);font-family:var(--font-body);font-size:.65rem;color:var(--color-text-secondary); }
+.proceso-cta { display:flex;justify-content:center;gap:var(--space-sm);margin-top:var(--space-2xl); }
+
+/* ─── 8. Casos ─── */
+.caso-featured { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);display:grid;grid-template-columns:1fr 360px;margin-bottom:var(--space-md);overflow:hidden; }
+.caso-featured-text { padding:var(--space-2xl);display:flex;flex-direction:column;gap:var(--space-lg); }
+.caso-co { font-family:var(--font-display);font-weight:500;font-size:1.3rem; }
+.caso-quote { font-family:var(--font-display);font-weight:500;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.25;letter-spacing:-.01em; }
+.caso-quote::before { content:open-quote; }
+.caso-quote::after  { content:close-quote; }
+.caso-link { font-family:var(--font-body);font-size:.9375rem;font-weight:500;color:var(--color-ink);text-decoration:none; }
+.caso-link:hover { text-decoration:underline; }
+.caso-link--sm { font-size:.875rem; }
+.caso-featured-img { background:var(--color-ink);display:flex;align-items:center;justify-content:center; }
+.caso-stat { display:flex;flex-direction:column;align-items:center;gap:4px; }
+.caso-stat-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;color:#E9E5DF;line-height:1;letter-spacing:-.03em; }
+.caso-stat-lbl { font-family:var(--font-body);font-size:.8125rem;font-weight:500;color:rgba(233,229,223,.75);text-align:center;line-height:1.4; }
+.casos-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md); }
+.caso-mini { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-sm); }
+.caso-mini-co { font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-primary); }
+.caso-mini-text { font-family:var(--font-body);font-size:.9375rem;color:var(--color-ink);line-height:1.55;flex:1; }
+.ticker { margin-top:var(--space-xl);overflow:hidden;position:relative;padding-top:var(--space-lg);border-top:1px solid var(--border-subtle); }
+.ticker::before,.ticker::after { content:"";position:absolute;top:var(--space-lg);width:80px;height:100%;z-index:2;pointer-events:none; }
+.ticker::before { left:0;background:linear-gradient(to right,var(--section-bg),transparent); }
+.ticker::after  { right:0;background:linear-gradient(to left,var(--section-bg),transparent); }
+.ticker-track { display:flex;align-items:center;gap:var(--space-3xl);animation:ticker 28s linear infinite;width:max-content; }
+.ticker-track:hover { animation-play-state:paused; }
+@keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.ticker-item { font-family:var(--font-body);font-size:.8rem;font-weight:500;color:var(--color-text-secondary);white-space:nowrap; }
+.casos-cta { text-align:center;margin-top:var(--space-2xl); }
+
+/* ─── 9. FAQ ─── */
+.faq-wrap { max-width:720px;margin:0 auto; }
+.faq-item { border-bottom:1px solid var(--border-subtle); }
+.faq-q { display:flex;justify-content:space-between;align-items:center;width:100%;padding:var(--space-lg) 0;cursor:pointer;font-family:var(--font-body);font-size:1.0625rem;font-weight:500;color:var(--color-ink);background:none;border:none;text-align:left;gap:var(--space-md); }
+.faq-q:hover { text-decoration:underline; }
+.faq-ico { width:24px;height:24px;border-radius:50%;background:var(--color-canvas);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;flex-shrink:0;transition:transform .2s,background .2s; }
+.faq-q[aria-expanded="true"] .faq-ico { transform:rotate(45deg);background:var(--color-ink);color:var(--color-canvas); }
+.faq-a { overflow:hidden;font-family:var(--font-body);font-size:.9375rem;color:var(--color-text-secondary);line-height:1.7;max-height:0;transition:max-height .3s ease,padding-bottom .3s; }
+.faq-cta { text-align:center;margin-top:var(--space-3xl); }
+
+/* ─── 10. Lead ─── */
+.lead-container { display:flex;justify-content:center; }
+.lead-card { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-3xl);max-width:600px;width:100%; }
+.lead-hdr { text-align:center;margin-bottom:var(--space-xl); }
+.lead-checks { display:flex;flex-direction:column;gap:var(--space-xs);margin-bottom:var(--space-xl); }
+.lead-chk { display:flex;align-items:flex-start;gap:var(--space-xs);font-family:var(--font-body);font-size:.9rem;color:var(--color-text-secondary); }
+.lead-chk-dot { width:18px;height:18px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px; }
+.lead-chk-dot svg { width:10px;height:10px; }
+.lead-fields { display:flex;flex-direction:column;gap:var(--space-sm);margin-bottom:var(--space-md); }
+.lead-input { width:100%;padding:var(--space-sm) var(--space-md);border:1px solid var(--border-medium);border-radius:var(--radius-input);font-family:var(--font-body);font-size:.9375rem;background:var(--color-surface);color:var(--color-ink);outline:none;transition:border-color .15s; }
+.lead-input:focus { border-color:var(--color-primary); }
+.lead-input::placeholder { color:#bbb; }
+.lead-submit { width:100%;padding:var(--space-md);border-radius:var(--radius-button);background:var(--color-primary);color:#fff;font-family:var(--font-body);font-size:1.0625rem;font-weight:500;border:none;cursor:pointer;transition:background .15s; }
+.lead-submit:hover { background:var(--color-primary-hover); }
+.lead-micro { text-align:center;font-family:var(--font-body);font-size:.75rem;color:#bbb;margin-top:var(--space-sm); }
+
+/* ─── 11. Final CTA ─── */
+.final-hdr { text-align:center;margin-bottom:var(--space-2xl); }
+.final-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg); }
+.final-card { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md); }
+.final-card--dark { background:var(--color-ink);border-color:transparent; }
+.final-card--dark h3,.final-card--dark p { color:#E9E5DF; }
+.final-card--dark p { opacity:.7; }
+.final-icon { font-size:1.5rem; }
+.final-card h3 { font-family:var(--font-display);font-weight:500;font-size:1.15rem; }
+.final-card p  { font-family:var(--font-body);font-size:.875rem;color:var(--color-text-secondary);line-height:1.6;flex:1; }
+
+/* ─── Responsive ─── */
+@media (max-width:768px) {
+  .why-grid,.ft-panel--active,.caso-featured,.proceso-grid,.final-grid,.casos-grid { grid-template-columns:1fr; }
+  .rubros-outer { grid-template-columns:1fr;gap:var(--space-xl); }
+  .rubros-left { position:sticky;top:64px;z-index:10;background:var(--section-bg);padding:var(--space-md) 0 var(--space-xs); }
+  .rubros-chips { flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:var(--space-xs); }
+  .rubros-chips::-webkit-scrollbar { display:none; }
+  .rchip { white-space:nowrap; }
+  .metrics-row { grid-template-columns:repeat(2,1fr); }
+  .roi-body { grid-template-columns:1fr; }
+  .roi-left { padding-right:0;border-right:none;border-bottom:1px solid var(--border-subtle);padding-bottom:var(--space-xl);margin-bottom:var(--space-xl); }
+  .roi-right { padding-left:0; }
+  .db-grid { grid-template-columns:1fr; }
+  .db-sidebar { display:none; }
+  .db-kpis { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+
+<style is:global>
+.roi-mod { display:flex;align-items:center;gap:var(--space-xs);padding:7px 0;border-bottom:.5px solid var(--border-subtle);cursor:pointer;user-select:none; }
+.roi-mod:nth-last-child(-n+3) { border-bottom:none; }
+.roi-mod input { display:none; }
+.roi-cb { width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border-medium);background:var(--color-surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s; }
+.roi-mod input:checked + .roi-cb { background:var(--color-primary);border-color:var(--color-primary); }
+.roi-mod input:checked + .roi-cb::after { content:"";width:8px;height:5px;border:1.5px solid #fff;border-top:none;border-right:none;transform:rotate(-45deg) translate(.5px,-1px);display:block; }
+.roi-mod-name  { font-family:var(--font-body);font-size:.8125rem;font-weight:500;color:var(--color-ink);flex:1; }
+.roi-mod-price { font-family:var(--font-body);font-size:.75rem;color:var(--color-text-secondary); }
+</style>
+
+<script>
+/* ── FEATURE TABS ──────────────────────────────────────────── */
+(function () {
+  const tabs   = document.querySelectorAll<HTMLButtonElement>('.ft-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.ft-panel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t   => { t.classList.remove('ft-tab--active');   t.setAttribute('aria-selected','false'); });
+      panels.forEach(p => p.classList.remove('ft-panel--active'));
+      tab.classList.add('ft-tab--active');
+      tab.setAttribute('aria-selected','true');
+      panels[i]?.classList.add('ft-panel--active');
+    });
+  });
+})();
+
+/* ── RUBROS ────────────────────────────────────────────────── */
+(function () {
+  const chips  = document.querySelectorAll<HTMLButtonElement>('.rchip');
+  const blocks = document.querySelectorAll<HTMLElement>('.rblock');
+  const NAV    = 88;
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const target = document.getElementById(chip.dataset.target!);
+      if (!target) return;
+      window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - NAV, behavior: 'smooth' });
+    });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        chips.forEach(c => c.classList.toggle('rchip--active', c.dataset.target === e.target.id));
+    });
+  }, { rootMargin: `-${NAV}px 0px -40% 0px`, threshold: 0 });
+  blocks.forEach(b => obs.observe(b));
+})();
+
+/* ── FAQ ───────────────────────────────────────────────────── */
+(function () {
+  document.querySelectorAll<HTMLElement>('.faq-item').forEach(item => {
+    const btn = item.querySelector<HTMLButtonElement>('.faq-q')!;
+    const ans = item.querySelector<HTMLElement>('.faq-a')!;
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll<HTMLElement>('.faq-item').forEach(it => {
+        it.querySelector<HTMLButtonElement>('.faq-q')!.setAttribute('aria-expanded','false');
+        const a = it.querySelector<HTMLElement>('.faq-a')!;
+        a.style.maxHeight = '0';
+        a.style.paddingBottom = '0';
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded','true');
+        ans.style.maxHeight    = ans.scrollHeight + 'px';
+        ans.style.paddingBottom = '22px';
+      }
+    });
+  });
+})();
+
+/* ── ROI CALCULATOR ────────────────────────────────────────── */
+(function () {
+  const MODS = [
+    {n:'CRM',p:25,d:1},{n:'Ventas',p:20,d:1},{n:'Contabilidad',p:30,d:1},
+    {n:'Compras',p:15,d:0},{n:'Inventario',p:20,d:0},{n:'Proyectos',p:15,d:0},
+    {n:'RRHH',p:20,d:0},{n:'Manufactura',p:25,d:0},{n:'Sitio web',p:20,d:0},
+    {n:'Email marketing',p:15,d:0},{n:'Punto de venta',p:20,d:0},{n:'Servicio externo',p:15,d:0},
+  ];
+  const fmt = (n: number) => 'USD ' + Math.round(n).toLocaleString('es-AR').replace(/,/g,'.');
+  const getPlan = (u: number) => {
+    if (u<=4)  return {nombre:'Plan Starter', precio:11,  impl:0,    desc:'Accedé a las apps esenciales sin contratos largos.'};
+    if (u<=20) return {nombre:'Plan Pyme',    precio:100, impl:1500, desc:'Te acompañamos para que tu equipo adopte Odoo sin fricciones.'};
+    if (u<=50) return {nombre:'Plan Empresa', precio:450, impl:7500, desc:'Proyecto end-to-end con relevamiento, desarrollo a medida y soporte.'};
+    return           {nombre:'Plan Corp.',   precio:null,impl:null,  desc:'Cada proyecto es único. Te presentamos una propuesta integral.'};
+  };
+  const root = document.getElementById('roi-mods');
+  if (!root) return;
+  root.innerHTML = MODS.map((m,i)=>`<label class="roi-mod"><input type="checkbox" data-i="${i}" data-p="${m.p}" ${m.d?'checked':''}><span class="roi-cb"></span><span class="roi-mod-name">${m.n}</span><span class="roi-mod-price">USD ${m.p}</span></label>`).join('');
+  const sl  = document.getElementById('roi-slider')   as HTMLInputElement;
+  const uEl = document.getElementById('roi-users')!;
+  const dPl = document.getElementById('roi-detected-pill')!;
+  const cCr = document.getElementById('roi-cost-current')!;
+  const cAd = document.getElementById('roi-cost-adhoc')!;
+  const cSv = document.getElementById('roi-savings')!;
+  const hPl = document.getElementById('roi-hero-pill')!;
+  const hPr = document.getElementById('roi-hero-price')!;
+  const hIm = document.getElementById('roi-hero-impl')!;
+  const hDs = document.getElementById('roi-hero-desc')!;
+  const swap = (el:HTMLElement, v:string) => { el.style.opacity='0'; setTimeout(()=>{el.textContent=v;el.style.opacity='1';},90); };
+  const update = () => {
+    const u = +sl.value; uEl.textContent = String(u);
+    const checked = [...root.querySelectorAll<HTMLInputElement>('input:checked')];
+    const sum = checked.reduce((a,c)=>a+Number(c.dataset.p),0);
+    const plan = getPlan(u);
+    dPl.textContent = hPl.textContent = plan.nombre;
+    if (!checked.length) { [cCr,cAd,cSv].forEach(e=>swap(e,'—')); hPr.textContent='—'; hIm.textContent='Seleccioná módulos.'; hDs.textContent=plan.desc; return; }
+    swap(cCr, fmt(sum*u));
+    if (plan.precio===null) { swap(cAd,'A consultar'); swap(cSv,'Hablemos :)'); hPr.textContent='Cotización personalizada'; hIm.style.display='none'; }
+    else { hIm.style.display=''; swap(cAd,fmt(plan.precio)); swap(cSv,fmt((sum*u-plan.precio)*12)); hPr.textContent=fmt(plan.precio)+' / mes'; hIm.textContent=plan.impl===0?'Sin costo de implementación':'+ '+fmt(plan.impl)+' implementación única'; }
+    hDs.textContent = plan.desc;
+  };
+  root.addEventListener('change', update);
+  sl.addEventListener('input', update);
+  update();
+})();
+</script>

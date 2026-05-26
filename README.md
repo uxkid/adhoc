@@ -1,4 +1,8 @@
-# Adhoc — Frontend Handoff README
+# Adhoc — Frontend Handoff README (v2 — actualizado mayo 2026)
+
+> Este README fue sincronizado con los HTML de referencia en mayo 2026.
+> Los HTML en /reference/ siguen siendo la fuente de verdad visual.
+> Ante conflicto, los HTML ganan.
 
 **Proyecto:** Rediseño web Ad Hoc (partner #1 de Odoo en Latinoamérica)  
 **Stack:** Astro (static output) + HTML/CSS/JS vanilla dentro de componentes  
@@ -72,13 +76,15 @@ adhoc-web/
 │   │   └── global.css         ← importa todo lo anterior
 │   │
 │   ├── components/
-│   │   ├── MegaNav.astro      ← navegación principal (se repite en todas las páginas)
-│   │   ├── Cotizador.astro    ← flujo multi-step (modal, trigger desde CTA)
+│   │   ├── MegaNav.astro        ← navegación principal (se repite en todas las páginas)
+│   │   ├── Cotizador.astro      ← flujo multi-step (modal, trigger desde CTA)
 │   │   ├── Footer.astro
-│   │   ├── Button.astro       ← componente de botón con variantes
-│   │   ├── Tag.astro          ← chip/tag lavanda estilo Notion
-│   │   ├── Card.astro         ← card con squircle y surface inversion
-│   │   └── AppIcon.astro      ← tile de módulo Odoo (squircle 28px)
+│   │   ├── Button.astro         ← componente de botón con variantes
+│   │   ├── Tag.astro            ← chip/tag lavanda estilo Notion
+│   │   ├── Card.astro           ← card con squircle y surface inversion
+│   │   ├── AppIcon.astro        ← tile de módulo Odoo (squircle 28px)
+│   │   ├── HeroDashboard.astro  ← mockup de dashboard Odoo (usado solo en Hero de Home)
+│   │   └── Wave.astro           ← transición SVG entre secciones (usado en Integraciones)
 │   │
 │   ├── layouts/
 │   │   └── Base.astro         ← layout base: <head>, MegaNav, Footer, Cotizador
@@ -323,65 +329,102 @@ Nunca usar el mismo color para fondo y card dentro de la misma sección. Aplica 
 **Archivo:** `src/components/MegaNav.astro`  
 **Referencia:** `reference/adhoc-mega-nav.html`
 
-Estructura de la navegación principal, estilo Notion. Cuatro ítems principales con mega-panel:
+Estructura de navegación:
 
 ```
-Soluciones | Industrias | Recursos | Nosotros
+Soluciones (dropdown) | Precios | Casos | Recursos
 ```
+
+Solo "Soluciones" tiene mega-panel. Los otros tres son links estáticos.
+
+**Estructura interna del dropdown de Soluciones:**
+
+| Columna 1 | Columna 2 | Columna 3 |
+|---|---|---|
+| Por industria | Por tamaño | Featured card |
+| Educación | En crecimiento | Caso de éxito con resultado cuantificado |
+| Distribución | En escala | |
+| Servicios | Enterprise | |
+| Manufactura | | |
+
+**CTA en nav:** `button-primary` violeta, texto "Solicitar una demo"  
+**Botón secundario:** "Ingresar" (link estático, sin estilo primario)
 
 **Especificaciones de interacción:**
-- Desktop: hover sobre ítem → abre panel debajo con animación (opacity + translateY, ~200ms ease-out)
-- Mobile: bottom sheet con los mismos ítems, trigger por hamburger
-- Panel de Industrias: filtra por vertical (Manufactura, Comercializadora, Servicios, Educación), tamaño de empresa (1–4, 5–30, 30–50, 50+), y caso de uso
-- Color del nav: sin background de color. Fondo blanco o canvas según la sección. Sin border-bottom de color — usar `border-bottom: 1px solid var(--border-subtle)` 
+- Desktop: hover sobre "Soluciones" → abre mega-panel con animación opacity + translateY, ~200ms ease-out
+- Mobile: bottom sheet, trigger por hamburger
 - Links activos: ink (`#000000`), weight 500. Sin highlight de color
-- CTA en nav: `button-primary` (violeta, 12px radius)
+- Nav border: `border-bottom: 1px solid var(--border-subtle)`
+- Sin background de color en el nav
 
-**Importante:** el MegaNav es un componente Astro que se importa en `Base.astro` y aparece en todas las páginas. No duplicar.
+**Importante:** MegaNav se importa en `Base.astro`. No duplicar en páginas individuales.
 
 ---
 
-### Cotizador (Customer Journey)
+### Cotizador
 
 **Archivo:** `src/components/Cotizador.astro`  
 **Referencia:** `reference/adhoc-cotizador.html`  
-**Trigger:** click en el CTA principal "Solicitar una demo" (en nav y en cualquier sección de la página)
+**Trigger:** click en "Solicitar una demo" desde nav o cualquier CTA
 
-El cotizador es un **modal/overlay multi-step** estilo Typeform. No es una página separada.
+Modal/overlay multi-step. 4 data-steps: 3 preguntas + pantalla de resultado.
 
-**Flujo de 3 pasos (uno por pantalla):**
+**Flujo:**
 
 ```
-Paso 1: ¿En qué rubro opera tu empresa?
+Paso 1 (Pregunta 1 de 3): ¿En qué rubro opera tu empresa?
   → Radio cards con auto-avance al seleccionar
-  → Opciones: Manufactura / Comercializadora / Servicios / Educación
+  → Opciones: Manufactura / Distribución / Servicios / Educación
 
-Paso 2: ¿Qué herramienta usás hoy para gestionar tu empresa?
+Paso 2 (Pregunta 2 de 3): ¿Qué herramienta usás hoy?
   → Radio cards con auto-avance al seleccionar
-  → Opciones: Excel / Sistema actual (ERP) / Varios sistemas desconectados / Nada formal
+  → Opciones: Excel / Sistema propio que quedó chico /
+              Varios sistemas desconectados / Nada formal
 
-Paso 3: ¿Cuántos usuarios necesitarían acceso?
-  → Dropdown o selector numérico
-  → Avance con botón "Continuar" o tecla Enter
+Paso 3 (Pregunta 3 de 3): ¿Cuántos usuarios necesitarían acceso?
+  → Radio cards con auto-avance al seleccionar
+  → Rangos: 1–5 / 6–30 / 31–60 / 60+
 
-Resultado: Plan recomendado + dos CTAs:
-  → "Agendar llamada" (abre Calendly o similar)
-  → "Hablar con un asesor" (WhatsApp o formulario)
+Paso 4 (Resultado): Plan recomendado + CTAs
+  → "Agendar llamada" + "Hablar con un asesor"
 ```
 
 **Reglas de interacción:**
-- Radio cards → auto-avanzan al seleccionar (sin botón "Continuar")
-- Dropdown/text inputs → requieren "Continuar" o Enter para avanzar
-- Progress indicator sutil en la parte superior (no número de paso, barra de progreso thin)
+- Todos los pasos usan radio cards con auto-avance
+- Sin botón "Continuar" — la selección avanza sola
+- Progress indicator: texto "Pregunta X de 3" (no barra visual)
 - Escape o click fuera → cierra el modal
-- El modal no recarga la página — es JS puro en el cliente
 - Back button dentro del modal para volver al paso anterior
+- Sin recarga de página — JS puro en el cliente
 
 **Diseño del modal:**
-- Background: overlay `rgba(0,0,0,0.4)` sobre la página
-- Card del modal: fondo blanco, `border-radius: clamp(20px, 3vw, 32px)`, sin shadow, border `1px solid var(--border-subtle)`
+- Overlay: `rgba(0,0,0,0.4)`
+- Card: fondo blanco, `border-radius: clamp(20px, 3vw, 32px)`, sin shadow, `border: 1px solid var(--border-subtle)`
 - Ancho máximo: 560px, centrado vertical y horizontal
-- Padding interno: 40px desktop, 24px mobile
+- Padding: 40px desktop / 24px mobile
+
+---
+
+### Feature Tabs
+
+**Archivo:** `src/components/FeatureTabs.astro`  
+**Referencia:** `reference/adhoc-feature-tabs.html`
+
+> **Nota técnica:** El HTML de referencia implementa este componente en React (JSX con Babel). Esto es deuda técnica del prototipo. La implementación en Astro usa **vanilla JS**, consistente con el stack del proyecto. No usar React ni Alpine para este componente.
+
+**Tabs (6 en total):**
+1. Automatizar operaciones
+2. Integrar áreas
+3. Escalar con control
+4. Ganar visibilidad
+5. Control financiero
+6. Digitalizar el negocio
+
+**Comportamiento:**
+- Tab activo: fondo del card cambia a color único por feature (violeta, coral, mostaza, lavanda, negro, canvas)
+- Tab label activo: color ink (`var(--ink)`) en todos los casos
+- Transición: `opacity 200ms ease`
+- Vanilla JS — sin React, sin Alpine
 
 ---
 
@@ -394,30 +437,62 @@ Resultado: Plan recomendado + dos CTAs:
 Estructura de secciones en orden:
 
 ```
-1. Hero
-2. Logos de clientes (proof strip)
-3. Pain section ("¿Te pasa esto?")
-4. Industry selector (Wispr Flow-style: fondo oscuro, pill tabs + copy panels)
-5. Feature carousel (Headspace-style: 6 tabs con color, visual Odoo, copy)
-6. Why Adhoc (4 cards: Partner #1, +600 desarrollos, especialización, soporte)
-7. ROI section
-8. Casos de éxito (mini case studies)
-9. FAQ (accordion)
-10. Final CTA
+ 1. Hero          — canvas  — headline, 2 CTAs ("Solicitar demo" + "Diagnóstico gratuito"),
+                              trust strip + logos de clientes
+                              HeroDashboard.astro sangrado en la parte inferior,
+                              cortado para inducir scroll
+
+ 2. Rubros        — surface — DESKTOP: 2 columnas, sticky tabs izquierda + bloques scrollables derecha
+                              MOBILE:  columna única, cards de rubro apiladas verticalmente
+
+ 3. Features      — canvas  — 6 tabs, color de card único por feature,
+                              visual de UI Odoo, copy de beneficio
+
+ 4. Métricas      — surface — 4 números: −40% tareas, −60% errores, +30% prod., +100% visibilidad
+
+ 5. Integraciones — MOSTAZA — Wave.astro arriba y abajo como transición
+                              DESKTOP: 2 columnas, copy izquierda + grid de AppIcons derecha
+                              MOBILE:  columna única, copy arriba + AppIcons abajo
+
+ 6. Proceso       — canvas  — 3 cards: Diagnóstico, Implementación, Optimización continua
+
+ 7. Casos         — surface — card featured (RE/MAX) + 6 mini cards + ticker animado
+
+ 8. FAQ           — canvas  — 5 preguntas, accordion con height transition
+
+ 9. Contact form  — surface — formulario: nombre, email, empresa + checklist
+
+10. Footer
 ```
 
+> **Excepción documentada — Integraciones (sección 5):**
+> Usa fondo mostaza (`var(--color-mustard)`) con waves SVG de transición arriba y abajo.
+> La regla de alternancia canvas/surface no aplica a esta sección.
+
 **Regla de alternancia de superficies:**
-Las secciones alternan entre fondo canvas y fondo blanco. La primera sección (Hero) define el punto de partida — generalmente canvas beige. Cada sección siguiente invierte. No romper esta alternancia sin motivo.
+Las secciones 1–4 y 6–9 alternan entre `var(--color-canvas)` y `var(--color-surface)`. La sección 5 (Integraciones) es la única excepción explícita. No romper la alternancia en el resto sin motivo documentado.
 
-**Industry Selector (sección 4):**
-- Fondo oscuro (`#1A1A1A` o similar), no beige
-- Pill tabs para cada vertical: Manufactura / Comercializadora / Servicios / Educación
-- Al seleccionar un tab, el copy panel a la derecha cambia con animación suave (fade o slide)
-- Referencia visual: Wispr Flow homepage
+**Secciones eliminadas respecto al prototipo HTML:**
+- ROI Calculator — eliminada por completo
+- Final CTA violeta (sección 11 del prototipo) — eliminada
 
-**Feature Carousel (sección 5):**
-- 6 tabs, cada uno con un color de acento (usar variantes de la paleta), un visual de UI Odoo, y copy de beneficio
-- Referencia visual: Headspace feature tabs
+**Rubros — implementación (sección 2):**
+
+Desktop:
+- Layout: `grid` 30% / 70%
+- Izquierda: sticky (top: nav height), tabs solo texto por rubro
+  - `font-family: var(--font-display)`, `font-size: ~30px`
+  - Estado activo: `color: var(--color-ink)`, `opacity: 1`
+  - Estado inactivo: `color: var(--color-ink)`, `opacity: 0.6`
+  - Sin fill de fondo, sin íconos, sin box-shadow
+- Derecha: bloques apilados, cada uno con `id` único
+- JS: `IntersectionObserver` sobre los bloques → actualiza tab activo
+- Click en tab → `scrollIntoView` smooth con offset por el nav
+
+Mobile:
+- Sin grid de columnas
+- Sin tabs sticky
+- Cards de cada rubro apiladas verticalmente, en orden (Educación → Distribución → Servicios → Manufactura)
 
 ---
 
@@ -425,20 +500,22 @@ Las secciones alternan entre fondo canvas y fondo blanco. La primera sección (H
 
 **Referencia:** `reference/adhoc-pricing.html`
 
-Estructura:
+> **Nota:** El Hero y Trust bar del Pricing están desactivados en el HTML de referencia (`display:none`). La página arranca directamente en el Pricing Selector. No implementar el Hero.
+
+Estructura activa (7 secciones):
 
 ```
-1. Hero (value-first, no arranca con precios)
-2. Trust bar (logos + Partner #1)
-3. Selector de plan (Start / Growth / Enterprise) — tabs, no tabla
-4. Split layout: izquierda value stack, derecha precio + CTA
-5. Comparison matrix (tabla completa de features)
-6. ROI section
-7. Why Adhoc (qué está incluido en todos los planes)
-8. Mini casos por segmento
-9. FAQ (accordion — objeciones de precio y proceso)
-10. Final CTA ("Agendar diagnóstico sin costo")
+1. Pricing Selector  — tabs Start / Growth ⭐ / Enterprise
+2. Comparison Matrix — tabla completa de features
+3. ROI section
+4. Why Adhoc         — value stacking, qué incluye cada plan
+5. Casos por segmento
+6. FAQ               — objeciones de precio y proceso
+7. Final CTA         — "Agendar diagnóstico sin costo"
 ```
+
+**Sticky Bottom Bar:**  
+Aparece durante el scroll con dos CTAs: "Ver planes" y "Agendar diagnóstico". Implementar como elemento fixed, no parte del flujo de secciones.
 
 **Planes:**
 - `Start` — empresas 1–4 usuarios
@@ -518,27 +595,30 @@ Seguir este orden evita rehacer trabajo. Cada paso debe estar en PR separado y r
    → Shell HTML, import de estilos globales, slots para content
 
 3. MegaNav.astro
-   → Componente completo con mega-panel y mobile bottom sheet
+   → Un solo dropdown (Soluciones) + 3 links estáticos + mobile bottom sheet
 
 4. Componentes atómicos: Button, Tag, Card, AppIcon
    → Bloques reutilizables que usan el resto de las páginas
 
 5. Home (index.astro)
-   → La página más compleja, con industry selector y feature carousel
+   → 11 secciones según estructura actualizada (ver sección Home)
 
 6. Cotizador.astro (modal)
-   → Flujo multi-step, se integra en Base.astro y se activa desde cualquier CTA
+   → Radio cards en todos los pasos, se integra en Base.astro
 
-7. Pricing (pricing.astro)
-   → Selector de plan, comparison matrix, FAQ
+7. FeatureTabs.astro
+   → Vanilla JS, no React
 
-8. Industry pages ([vertical].astro)
+8. Pricing (pricing.astro)
+   → Arrancar en Pricing Selector (sin Hero), sticky bottom bar
+
+9. Industry pages ([vertical].astro)
    → Template único, contenido parametrizado por vertical
 
-9. Footer.astro
-   → Puede hacerse en paralelo con cualquier paso anterior
+10. Footer.astro
+    → Puede hacerse en paralelo con cualquier paso anterior
 
-10. QA cross-browser + responsive
+11. QA cross-browser + responsive
     → Chrome, Safari, Firefox. Mobile 375px, tablet 768px, desktop 1280px+
 ```
 
