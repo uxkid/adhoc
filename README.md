@@ -641,19 +641,14 @@ Seguir este orden evita rehacer trabajo. Cada paso debe estar en PR separado y r
 ⬜ 6. Cotizador.astro (modal)
       → Radio cards en todos los pasos, se integra en Base.astro
 
-⬜ 7. FeatureTabs.astro
-      → Vanilla JS, no React
-
-⬜ 8. Pricing (pricing.astro)
+⬜ 7. Pricing (pricing.astro)
       → Arrancar en Pricing Selector (sin Hero), sticky bottom bar
 
-⬜ 9. Industry pages ([vertical].astro)
+⬜ 8. Industry pages ([vertical].astro)
       → Template único, contenido parametrizado por vertical
 
-⬜ 10. (Footer ya completado en paso 5)
-
-⬜ 11. QA cross-browser + responsive
-       → Chrome, Safari, Firefox. Mobile 375px, tablet 768px, desktop 1280px+
+⬜ 9. QA cross-browser + responsive
+      → Chrome, Safari, Firefox. Mobile 375px, tablet 768px, desktop 1280px+
 ```
 
 ---
