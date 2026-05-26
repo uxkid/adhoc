@@ -474,9 +474,6 @@ import HeroDashboard from '../components/HeroDashboard.astro';
           <div class="faq-a">No. Antes de arrancar entregamos un presupuesto cerrado con alcance definido. Si el alcance cambia, lo comunicamos antes de hacer trabajo adicional. Sin sorpresas.</div>
         </div>
       </div>
-      <div class="faq-cta">
-        <Button variant="primary" size="lg" label="Solicitar demo" dataOpenCotizador={true} />
-      </div>
     </div>
   </div>
 </section>
@@ -786,9 +783,9 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .faq-wrap { max-width:720px;margin:0 auto; }
 .faq-item { border-bottom:1px solid var(--border-subtle); }
 .faq-q { display:flex;justify-content:space-between;align-items:center;width:100%;padding:var(--space-lg) 0;cursor:pointer;font-family:var(--font-body);font-size:1.0625rem;font-weight:500;color:var(--color-ink);background:none;border:none;text-align:left;gap:var(--space-md); }
-.faq-q:hover { text-decoration:underline; }
+.faq-q:hover { color:var(--color-primary); }
 .faq-ico { width:24px;height:24px;border-radius:50%;background:var(--color-canvas);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;flex-shrink:0;transition:transform .2s,background .2s; }
-.faq-q[aria-expanded="true"] .faq-ico { transform:rotate(45deg);background:var(--color-ink);color:var(--color-canvas); }
+.faq-q[aria-expanded="true"] .faq-ico { transform:rotate(45deg);background:var(--color-primary);color:#fff; }
 .faq-a { overflow:hidden;font-family:var(--font-body);font-size:.9375rem;color:var(--color-text-secondary);line-height:1.7;max-height:0;transition:max-height .3s ease,padding-bottom .3s; }
 .faq-cta { text-align:center;margin-top:var(--space-3xl); }
 
@@ -885,24 +882,31 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 
 /* ── FAQ ───────────────────────────────────────────────────── */
 (function () {
-  document.querySelectorAll<HTMLElement>('.faq-item').forEach(item => {
+  function openItem(item: HTMLElement) {
     const btn = item.querySelector<HTMLButtonElement>('.faq-q')!;
     const ans = item.querySelector<HTMLElement>('.faq-a')!;
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll<HTMLElement>('.faq-item').forEach(it => {
-        it.querySelector<HTMLButtonElement>('.faq-q')!.setAttribute('aria-expanded','false');
-        const a = it.querySelector<HTMLElement>('.faq-a')!;
-        a.style.maxHeight = '0';
-        a.style.paddingBottom = '0';
-      });
-      if (!isOpen) {
-        btn.setAttribute('aria-expanded','true');
-        ans.style.maxHeight    = ans.scrollHeight + 'px';
-        ans.style.paddingBottom = '22px';
-      }
+    btn.setAttribute('aria-expanded', 'true');
+    ans.style.maxHeight     = ans.scrollHeight + 'px';
+    ans.style.paddingBottom = '22px';
+  }
+  function closeAll() {
+    document.querySelectorAll<HTMLElement>('.faq-item').forEach(it => {
+      it.querySelector<HTMLButtonElement>('.faq-q')!.setAttribute('aria-expanded','false');
+      const a = it.querySelector<HTMLElement>('.faq-a')!;
+      a.style.maxHeight     = '0';
+      a.style.paddingBottom = '0';
+    });
+  }
+  document.querySelectorAll<HTMLElement>('.faq-item').forEach(item => {
+    item.querySelector<HTMLButtonElement>('.faq-q')!.addEventListener('click', () => {
+      const isOpen = item.querySelector<HTMLButtonElement>('.faq-q')!.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      if (!isOpen) openItem(item);
     });
   });
+  // Abrir el primer item por defecto
+  const first = document.querySelector<HTMLElement>('.faq-item');
+  if (first) openItem(first);
 })();
 
 /* ── ROI CALCULATOR ────────────────────────────────────────── */
