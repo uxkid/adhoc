@@ -494,11 +494,11 @@ import HeroDashboard from '../components/HeroDashboard.astro';
         <div class="lead-chk"><span class="lead-chk-dot" aria-hidden="true"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,8 8,3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Sin presión. Sin compromiso. Solo claridad.</div>
       </div>
       <div class="lead-fields">
-        <input class="lead-input" type="text"  placeholder="Tu nombre"       aria-label="Nombre" />
-        <input class="lead-input" type="email" placeholder="Email empresarial" aria-label="Email" />
-        <input class="lead-input" type="text"  placeholder="Empresa"          aria-label="Empresa" />
+        <input class="lead-input" id="lead-name"    type="text"  placeholder="Tu nombre"        aria-label="Nombre" />
+        <input class="lead-input" id="lead-email"   type="email" placeholder="Email empresarial" aria-label="Email" />
+        <input class="lead-input" id="lead-company" type="text"  placeholder="Empresa"           aria-label="Empresa" />
       </div>
-      <button class="lead-submit" data-open-cotizador="true">Agendar diagnóstico →</button>
+      <button class="lead-submit" id="lead-submit" data-open-cotizador="true" disabled>Agendar diagnóstico →</button>
       <p class="lead-micro">Sin spam. Respondemos en menos de 24hs.</p>
     </div>
   </div>
@@ -801,24 +801,14 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .lead-input { width:100%;padding:var(--space-sm) var(--space-md);border:1px solid var(--border-medium);border-radius:var(--radius-input);font-family:var(--font-body);font-size:.9375rem;background:var(--color-surface);color:var(--color-ink);outline:none;transition:border-color .15s; }
 .lead-input:focus { border-color:var(--color-primary); }
 .lead-input::placeholder { color:#bbb; }
-.lead-submit { width:100%;padding:var(--space-md);border-radius:var(--radius-button);background:var(--color-primary);color:#fff;font-family:var(--font-body);font-size:1.0625rem;font-weight:500;border:none;cursor:pointer;transition:background .15s; }
-.lead-submit:hover { background:var(--color-primary-hover); }
+.lead-submit { width:100%;padding:var(--space-md);border-radius:var(--radius-button);background:var(--color-primary);color:#fff;font-family:var(--font-body);font-size:1.0625rem;font-weight:500;border:none;cursor:pointer;transition:background .15s,opacity .15s; }
+.lead-submit:hover:not(:disabled) { background:var(--color-primary-hover); }
+.lead-submit:disabled { opacity:0.38;cursor:default; }
 .lead-micro { text-align:center;font-family:var(--font-body);font-size:.75rem;color:#bbb;margin-top:var(--space-sm); }
-
-/* ─── 11. Final CTA ─── */
-.final-hdr { text-align:center;margin-bottom:var(--space-2xl); }
-.final-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg); }
-.final-card { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md); }
-.final-card--dark { background:var(--color-ink);border-color:transparent; }
-.final-card--dark h3,.final-card--dark p { color:#E9E5DF; }
-.final-card--dark p { opacity:.7; }
-.final-icon { font-size:1.5rem; }
-.final-card h3 { font-family:var(--font-display);font-weight:500;font-size:1.15rem; }
-.final-card p  { font-family:var(--font-body);font-size:.875rem;color:var(--color-text-secondary);line-height:1.6;flex:1; }
 
 /* ─── Responsive ─── */
 @media (max-width:768px) {
-  .why-grid,.ft-panel--active,.caso-featured,.proceso-grid,.final-grid,.casos-grid { grid-template-columns:1fr; }
+  .why-grid,.ft-panel--active,.caso-featured,.proceso-grid,.casos-grid { grid-template-columns:1fr; }
   .rubros-outer { grid-template-columns:1fr; }
   .rubros-left { display:none; }
   .rubros-right { gap:var(--space-xl); }
@@ -907,6 +897,24 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   // Abrir el primer item por defecto
   const first = document.querySelector<HTMLElement>('.faq-item');
   if (first) openItem(first);
+})();
+
+/* ── LEAD FORM VALIDATION ──────────────────────────────────── */
+(function () {
+  const nameEl    = document.getElementById('lead-name')    as HTMLInputElement;
+  const emailEl   = document.getElementById('lead-email')   as HTMLInputElement;
+  const companyEl = document.getElementById('lead-company') as HTMLInputElement;
+  const btn       = document.getElementById('lead-submit')  as HTMLButtonElement;
+  if (!nameEl || !emailEl || !companyEl || !btn) return;
+
+  function validate() {
+    const nameOk    = nameEl.value.trim().length > 0;
+    const emailOk   = emailEl.value.includes('@') && emailEl.value.includes('.');
+    const companyOk = companyEl.value.trim().length > 0;
+    btn.disabled = !(nameOk && emailOk && companyOk);
+  }
+
+  [nameEl, emailEl, companyEl].forEach(el => el.addEventListener('input', validate));
 })();
 
 /* ── ROI CALCULATOR ────────────────────────────────────────── */
