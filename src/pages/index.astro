@@ -31,11 +31,11 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   <HeroDashboard />
 </section>
 
-<!-- ══ ink-stack-1: Rubros+Métricas sticky → Features ink ════ -->
+<!-- ══ ink-stack-1: Rubros sticky → Métricas → Features ink ════ -->
 <div class="ink-stack">
 
-  <!-- ══ 2. RUBROS + MÉTRICAS ══════════════════════════════════ -->
-  <section class="sec sec--surface sec--sticky-base" id="rubros-metricas">
+  <!-- ══ 2. RUBROS ═════════════════════════════════════════════ -->
+  <section class="sec sec--surface sec--sticky-base" id="rubros">
     <div class="rubros-outer">
       <div class="rubros-left">
         <span class="overline">Rubros</span>
@@ -74,8 +74,10 @@ import HeroDashboard from '../components/HeroDashboard.astro';
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Métricas — mismo fondo surface, sin separador -->
+  <!-- ══ 3. MÉTRICAS ═══════════════════════════════════════════ -->
+  <section class="sec sec--surface" id="metricas">
     <div class="container">
       <div class="metrics-hdr">
         <Tag label="Qué impacto genera" />
@@ -94,7 +96,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
     </div>
   </section>
 
-  <!-- ══ 3. FEATURES ════════════════════════════════════════════ -->
+  <!-- ══ 4. FEATURES ═══════════════════════════════════════════ -->
   <section class="sec sec--ink sec--ink-enter" id="features">
     <div class="container">
       <h2 class="ft-headline">Resolvemos los desafíos que <em>frenan tu crecimiento.</em></h2>
@@ -191,7 +193,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
         </div>
       </div>
 
-      <div class="ft-panel" id="ft-panel-4" role="tabpanel" style="--ft-bg:#000;--ft-ink:#E9E5DF;">
+      <div class="ft-panel" id="ft-panel-4" role="tabpanel" style="--ft-bg:var(--color-surface);--ft-ink:var(--color-ink);">
         <div class="ft-visual">
           <div class="ft-mock">
             <div class="ft-mock-bar"><span class="ft-mock-dot" style="background:#FF6058"></span><span class="ft-mock-dot" style="background:#FFBC2E"></span><span class="ft-mock-dot" style="background:#28C840"></span><span class="ft-mock-title">Estado de resultados — Q1</span><span class="ft-fin-tag">CIERRE AUTO</span></div>
@@ -444,8 +446,10 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 
 /* ─── Scroll entrance effect ─── */
 .ink-stack          { position: relative; }
-.sec--sticky-base   { position: sticky; top: 0; z-index: 1; }
-.sec--ink-enter     { position: relative; z-index: 2; border-radius: 32px 32px 0 0; }
+.sec--sticky-base   { position: sticky; top: 0; z-index: 1; padding-bottom: calc(var(--space-4xl) * 4); }
+#rubros             { padding-bottom: calc(var(--space-4xl) * 4 + 100px); }
+#metricas           { position: relative; z-index: 2; }
+.sec--ink-enter     { position: relative; z-index: 3; border-radius: 64px 64px 0 0; }
 
 /* ─── Integraciones placeholder ─── */
 .integraciones-placeholder { display:flex;align-items:center;justify-content:center;min-height:320px;color:rgba(255,255,255,.3);font-family:var(--font-body);font-size:.875rem; }
@@ -541,9 +545,10 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .ft-headline { font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.8vw,3.2rem);line-height:1.08;letter-spacing:-.025em;text-align:center;max-width:760px;margin:0 auto var(--space-2xl); }
 .ft-headline em { font-style:italic;color:var(--color-primary); }
 .ft-tabs { display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-xs);margin-bottom:var(--space-xl); }
-.ft-tab { font-family:var(--font-body);font-size:.9375rem;font-weight:500;padding:11px 22px;border-radius:999px;border:none;cursor:pointer;background:var(--border-subtle);color:var(--color-ink);transition:background .2s,color .2s;white-space:nowrap; }
-.ft-tab:hover { background:var(--border-medium); }
-.ft-tab--active { background:var(--color-ink);color:var(--color-canvas); }
+.ft-tab { font-family:var(--font-body);font-size:.9375rem;font-weight:500;padding:11px 22px;border-radius:999px;border:none;cursor:pointer;background:rgba(255,255,255,0.12);color:#fff;transition:background .2s,color .2s;white-space:nowrap; }
+.ft-tab:hover { background:rgba(255,255,255,0.2); }
+.ft-tab--active { background:var(--color-mustard);color:var(--color-ink); }
+.ft-tab--active:hover { background:var(--color-mustard);opacity:.75; }
 .ft-panel { display:none;border-radius:clamp(20px,4vw,40px);padding:var(--space-3xl);min-height:480px;align-items:center;background:var(--ft-bg,var(--color-surface));color:var(--ft-ink,var(--color-ink)); }
 .ft-panel--active { display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3xl); }
 .ft-visual { display:flex;align-items:center;justify-content:center;min-height:320px; }
@@ -789,7 +794,7 @@ import HeroDashboard from '../components/HeroDashboard.astro';
       if (e.isIntersecting)
         chips.forEach(c => c.classList.toggle('rchip--active', c.dataset.target === e.target.id));
     });
-  }, { rootMargin: `-${NAV}px 0px -40% 0px`, threshold: 0 });
+  }, { rootMargin: `-${NAV}px 0px -10% 0px`, threshold: 0 });
   blocks.forEach(b => obs.observe(b));
 })();
 

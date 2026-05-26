@@ -21,7 +21,13 @@
       "Bash(curl -s -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:4322/)",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4321/)",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4322/)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4323/)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4323/)",
+      "Bash(git push *)",
+      "Bash('#metricas')",
+      "Bash('#features')",
+      "Bash(node -e ' *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
