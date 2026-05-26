@@ -370,10 +370,78 @@ import HeroDashboard from '../components/HeroDashboard.astro';
   </section>
 
   <!-- ══ 6. INTEGRACIONES ═══════════════════════════════════════ -->
-  <!-- TODO: Wave.astro + AppIcons -->
   <section class="sec sec--ink sec--ink-enter" id="integraciones">
-    <div class="container integraciones-placeholder">
-      <p>Integraciones — próximamente</p>
+    <div class="container intg-hdr">
+      <Tag variant="dark" label="Integraciones" />
+      <h2 class="intg-hed">Conectado con todo lo que ya usás</h2>
+      <p class="intg-sub">Odoo se integra con las herramientas que tu equipo ya usa. Sin fricciones, sin silos, sin perder datos.</p>
+      <div class="intg-cta">
+        <Button variant="outline-white" size="lg" label="Solicitar demo" dataOpenCotizador={true} />
+      </div>
+    </div>
+    <div class="intg-carousel">
+      <div class="intg-fade intg-fade--left"></div>
+      <div class="intg-fade intg-fade--right"></div>
+      <!-- Fila 1: scroll izquierda -->
+      <div class="intg-row">
+        <div class="intg-track intg-track--left">
+          <div class="intg-icon"><img src="/icons/odoo/ai.svg" alt="IA" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/articulos.svg" alt="Artículos" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/compras.svg" alt="Compras" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/conversaciones.svg" alt="Conversaciones" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/crm.svg" alt="CRM" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/documentos.svg" alt="Documentos" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/email-marketing.svg" alt="Email Marketing" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/empleados.svg" alt="Empleados" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/estudio.svg" alt="Estudio" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/firma.svg" alt="Firma" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/horarios.svg" alt="Horarios" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/inventario.svg" alt="Inventario" width="36" height="36" /></div>
+          <!-- duplicate for seamless loop -->
+          <div class="intg-icon"><img src="/icons/odoo/ai.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/articulos.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/compras.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/conversaciones.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/crm.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/documentos.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/email-marketing.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/empleados.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/estudio.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/firma.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/horarios.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/inventario.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+        </div>
+      </div>
+      <!-- Fila 2: scroll derecha -->
+      <div class="intg-row">
+        <div class="intg-track intg-track--right">
+          <div class="intg-icon"><img src="/icons/odoo/manufactura.svg" alt="Manufactura" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/planeacion.svg" alt="Planeación" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/proyectos.svg" alt="Proyectos" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/punto-venta.svg" alt="Punto de Venta" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/redes-sociales.svg" alt="Redes Sociales" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/servicios.svg" alt="Servicios" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/soporte.svg" alt="Soporte" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/suscripciones.svg" alt="Suscripciones" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/tablero.svg" alt="Tablero" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/vacaciones.svg" alt="Vacaciones" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/ventas.svg" alt="Ventas" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/website.svg" alt="Website" width="36" height="36" /></div>
+          <!-- duplicate for seamless loop -->
+          <div class="intg-icon"><img src="/icons/odoo/manufactura.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/planeacion.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/proyectos.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/punto-venta.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/redes-sociales.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/servicios.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/soporte.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/suscripciones.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/tablero.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/vacaciones.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/ventas.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+          <div class="intg-icon"><img src="/icons/odoo/website.svg" alt="" aria-hidden="true" width="36" height="36" /></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -454,10 +522,22 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .sec--sticky-base   { position: sticky; top: 0; z-index: 1; padding-bottom: calc(var(--space-4xl) * 4); }
 #rubros             { padding-bottom: calc(var(--space-4xl) * 4 + 100px); }
 #metricas           { position: relative; z-index: 2; }
-.sec--ink-enter     { position: relative; z-index: 3; border-radius: 64px 64px 0 0; }
+.sec--ink-enter     { position: relative; z-index: 3; border-radius: 64px; }
 
-/* ─── Integraciones placeholder ─── */
-.integraciones-placeholder { display:flex;align-items:center;justify-content:center;min-height:320px;color:rgba(255,255,255,.3);font-family:var(--font-body);font-size:.875rem; }
+/* ─── 6. Integraciones ─── */
+.intg-hdr { text-align:center;display:flex;flex-direction:column;align-items:center;margin-bottom:var(--space-3xl); }
+.intg-hed { font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;letter-spacing:-.02em;color:#fff;margin-top:var(--space-md);max-width:680px; }
+.intg-sub { font-family:var(--font-body);font-size:1.0625rem;color:rgba(255,255,255,.6);line-height:1.55;max-width:500px;margin-top:var(--space-md); }
+.intg-cta { margin-top:var(--space-xl); }
+.intg-carousel { position:relative;overflow:hidden;display:flex;flex-direction:column;gap:16px;padding:var(--space-lg) 0; }
+.intg-fade { position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none; }
+.intg-fade--left  { left:0;background:linear-gradient(to right,var(--color-ink),transparent); }
+.intg-fade--right { right:0;background:linear-gradient(to left,var(--color-ink),transparent); }
+.intg-row { overflow:hidden; }
+.intg-track { display:flex;gap:24px;width:max-content; }
+.intg-track--left  { animation:scroll-left  30s linear infinite; }
+.intg-track--right { animation:scroll-right 30s linear infinite; }
+.intg-icon { width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
 .overline { font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);display:block;margin-bottom:var(--space-xs); }
 .sec-hdr  { margin-bottom:var(--space-2xl); }
 .sec-hed  { font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-top:var(--space-md); }
