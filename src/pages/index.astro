@@ -676,16 +676,16 @@ import HeroDashboard from '../components/HeroDashboard.astro';
 .caso-quote { font-family:var(--font-display);font-weight:500;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.25;letter-spacing:-.01em; }
 .caso-quote::before { content:open-quote; }
 .caso-quote::after  { content:close-quote; }
-.caso-link { font-family:var(--font-body);font-size:.9375rem;font-weight:500;color:var(--color-ink);text-decoration:none; }
+.caso-link { font-family:var(--font-body);font-size:.9375rem;font-weight:500;color:var(--color-primary);text-decoration:none; }
 .caso-link:hover { text-decoration:underline; }
 .caso-link--sm { font-size:.875rem; }
-.caso-featured-img { background:var(--color-ink);display:flex;align-items:center;justify-content:center; }
+.caso-featured-img { background:linear-gradient(135deg,var(--color-lavender-fill),var(--color-primary));display:flex;align-items:center;justify-content:center; }
 .caso-stat { display:flex;flex-direction:column;align-items:center;gap:4px; }
-.caso-stat-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;color:#E9E5DF;line-height:1;letter-spacing:-.03em; }
-.caso-stat-lbl { font-family:var(--font-body);font-size:.8125rem;font-weight:500;color:rgba(233,229,223,.75);text-align:center;line-height:1.4; }
+.caso-stat-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;color:#fff;line-height:1;letter-spacing:-.03em; }
+.caso-stat-lbl { font-family:var(--font-body);font-size:.8125rem;font-weight:500;color:rgba(255,255,255,.75);text-align:center;line-height:1.4; }
 .casos-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md); }
 .caso-mini { background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-sm); }
-.caso-mini-co { font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-primary); }
+.caso-mini-co { font-family:var(--font-body);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-coral); }
 .caso-mini-text { font-family:var(--font-body);font-size:.9375rem;color:var(--color-ink);line-height:1.55;flex:1; }
 .ticker { margin-top:var(--space-xl);overflow:hidden;position:relative;padding-top:var(--space-lg);border-top:1px solid var(--border-subtle); }
 .ticker::before,.ticker::after { content:"";position:absolute;top:var(--space-lg);width:80px;height:100%;z-index:2;pointer-events:none; }
