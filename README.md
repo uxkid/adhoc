@@ -440,23 +440,30 @@ Estructura de secciones en orden:
  1. Hero              — canvas  — headline, 2 CTAs, trust strip + logos,
                                   HeroDashboard.astro sangrado en la parte inferior
 
- 2. Rubros + Métricas — surface — UNA SOLA <section> con sec--sticky-base
-                                  Rubros arriba (sticky tabs desktop / cards mobile)
-                                  Métricas debajo (4 números), mismo fondo, sin separador
-                                  POSICIÓN: sticky — es tapada por Features al scrollear
+ 2a. Rubros            — surface — sec--sticky-base (z-index:1, padding-bottom extra)
+                                   Sticky tabs desktop / cards mobile
+                                   padding-bottom: calc(var(--space-4xl)*4 + 100px)
 
- 3. Features          — ink     — 6 tabs, color de card único por feature
-                                  EFECTO ENTRADA: border-radius 32px 32px 0 0
-                                  Z-INDEX: 2 sobre Rubros+Métricas sticky
+ 2b. Métricas          — surface — sección separada (z-index:2), va DESPUÉS del sticky
+                                   4 números clave. No sticky. Misma surface.
+                                   NOTA: no puede estar dentro del contenedor sticky
+                                   (se volvería inaccessible por scroll)
+
+ 3. Features           — ink     — 6 tabs, color de card único por feature
+                                   Tab activo: fondo mustard, texto ink
+                                   EFECTO ENTRADA: border-radius 64px (los 4 bordes)
+                                   Z-INDEX: 3 sobre Rubros+Métricas
 
  4. Casos             — surface — card featured (RE/MAX) + 6 mini cards + ticker animado
 
  5. Proceso           — canvas  — 3 cards: Diagnóstico, Implementación, Optimización continua
                                   POSICIÓN: sticky — es tapada por Integraciones al scrollear
 
- 6. Integraciones     — ink     — Wave.astro + AppIcons (pendiente)
-                                  EFECTO ENTRADA: border-radius 32px 32px 0 0
-                                  Z-INDEX: 2 sobre Proceso sticky
+ 6. Integraciones     — ink     — Carousel doble fila (scroll-left/scroll-right)
+                                  24 íconos Odoo × 2 por fila (loop seamless)
+                                  Fade overlays izquierda/derecha
+                                  EFECTO ENTRADA: border-radius 64px (los 4 bordes)
+                                  Z-INDEX: 3 sobre Proceso sticky
 
  7. FAQ               — surface — 5 preguntas, accordion con height transition
 
@@ -468,8 +475,9 @@ Estructura de secciones en orden:
 **Efecto de entrada — secciones ink (3 y 6):**
 
 Las secciones ink se "tapan" sobre la sección anterior mediante scroll:
-- La sección ink tiene `border-radius: 32px 32px 0 0` y `z-index: 2`
+- La sección ink tiene `border-radius: 64px` (los 4 bordes) y `z-index: 3`
 - La sección que la precede tiene `position: sticky; top: 0; z-index: 1`
+- Métricas (sección 2b) usa `z-index: 2` como capa intermedia
 - Ambos pares están envueltos en `<div class="ink-stack">` para aislar el contexto sticky
 
 ```html
@@ -494,6 +502,13 @@ Las secciones ink no participan de la alternancia canvas/surface — son la exce
 - ROI Calculator — eliminada por completo
 - Why Adhoc — eliminada por completo
 - Final CTA violeta — eliminada por completo
+
+**Detalles de implementación — decisiones tomadas:**
+- FAQ: primer item abierto por defecto; ícono activo violeta; hover violeta sin underline; sin CTA final
+- Contact form: botón arranca `disabled`, se habilita al completar nombre + email válido + empresa
+- Proceso: `.pcard { background: #D9D4CD }` para diferenciarse del canvas de la sección; mocks internos `#F6F6F6`
+- Casos: panel derecho con `linear-gradient(135deg, var(--color-lavender-fill), var(--color-primary))`; nombres de empresa en coral; links en violeta
+- Footer: incluido en `index.astro` vía `<Footer />` (importado en frontmatter)
 
 **Rubros — implementación (dentro de sección 2):**
 
@@ -607,38 +622,38 @@ npm run dev
 Seguir este orden evita rehacer trabajo. Cada paso debe estar en PR separado y revisado antes de continuar.
 
 ```
-1. tokens.css + typography.css + reset.css
-   → Toda la base de design tokens. Sin esto, nada más puede empezar.
+✅ 1. tokens.css + typography.css + reset.css
+      → Toda la base de design tokens. Sin esto, nada más puede empezar.
 
-2. Base.astro (layout base)
-   → Shell HTML, import de estilos globales, slots para content
+✅ 2. Base.astro (layout base)
+      → Shell HTML, import de estilos globales, slots para content
 
-3. MegaNav.astro
-   → Un solo dropdown (Soluciones) + 3 links estáticos + mobile bottom sheet
+✅ 3. MegaNav.astro
+      → Un solo dropdown (Soluciones) + 3 links estáticos + mobile bottom sheet
 
-4. Componentes atómicos: Button, Tag, Card, AppIcon
-   → Bloques reutilizables que usan el resto de las páginas
+✅ 4. Componentes atómicos: Button, Tag, Card, AppIcon
+      → Bloques reutilizables que usan el resto de las páginas
 
-5. Home (index.astro)
-   → 11 secciones según estructura actualizada (ver sección Home)
+✅ 5. Home (index.astro) + Footer.astro
+      → 8 secciones implementadas + footer coral completado
+      → Commits: paso 5a → 5k
 
-6. Cotizador.astro (modal)
-   → Radio cards en todos los pasos, se integra en Base.astro
+⬜ 6. Cotizador.astro (modal)
+      → Radio cards en todos los pasos, se integra en Base.astro
 
-7. FeatureTabs.astro
-   → Vanilla JS, no React
+⬜ 7. FeatureTabs.astro
+      → Vanilla JS, no React
 
-8. Pricing (pricing.astro)
-   → Arrancar en Pricing Selector (sin Hero), sticky bottom bar
+⬜ 8. Pricing (pricing.astro)
+      → Arrancar en Pricing Selector (sin Hero), sticky bottom bar
 
-9. Industry pages ([vertical].astro)
-   → Template único, contenido parametrizado por vertical
+⬜ 9. Industry pages ([vertical].astro)
+      → Template único, contenido parametrizado por vertical
 
-10. Footer.astro
-    → Puede hacerse en paralelo con cualquier paso anterior
+⬜ 10. (Footer ya completado en paso 5)
 
-11. QA cross-browser + responsive
-    → Chrome, Safari, Firefox. Mobile 375px, tablet 768px, desktop 1280px+
+⬜ 11. QA cross-browser + responsive
+       → Chrome, Safari, Firefox. Mobile 375px, tablet 768px, desktop 1280px+
 ```
 
 ---
