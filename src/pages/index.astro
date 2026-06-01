@@ -29,6 +29,11 @@ import Footer from '../components/Footer.astro';
       </div>
     </div>
   </div>
+  <!-- stickers hero -->
+  <img class="hero-sticker hero-sticker--lampara"  src="/illustrations/stickers/lampara.png"  alt="" aria-hidden="true" width="120" height="120" />
+  <img class="hero-sticker hero-sticker--estrella" src="/illustrations/stickers/estrella.png" alt="" aria-hidden="true" width="90"  height="90"  />
+  <img class="hero-sticker hero-sticker--objetivo" src="/illustrations/stickers/objetivo.png" alt="" aria-hidden="true" width="100" height="100" />
+
   <HeroDashboard />
 </section>
 
@@ -50,24 +55,28 @@ import Footer from '../components/Footer.astro';
       </div>
       <div class="rubros-right">
         <div class="rblock" id="rub-edu">
+          <img class="rblock-sticker" src="/illustrations/stickers/birrete.png"    alt="" aria-hidden="true" width="80" height="80" />
           <Tag label="Educación" variant="mus" />
           <h3 class="rblock-title">Gestioná tu institución sin perder el foco en enseñar</h3>
           <p class="rblock-sub">Inscripciones, facturación, empleados y comunicación con familias en un solo sistema.</p>
           <div class="rblock-img"><span>UI Educación</span></div>
         </div>
         <div class="rblock" id="rub-dis">
+          <img class="rblock-sticker" src="/illustrations/stickers/carrito.png"    alt="" aria-hidden="true" width="80" height="80" style="transform:rotate(-8deg)" />
           <Tag label="Distribución y comercios" variant="lav" />
           <h3 class="rblock-title">Stock actualizado, precios correctos, pedidos sin errores</h3>
           <p class="rblock-sub">Unificá compras, inventario y ventas para que tu equipo nunca más dependa de planillas desactualizadas.</p>
           <div class="rblock-img"><span>UI Distribución</span></div>
         </div>
         <div class="rblock" id="rub-ser">
+          <img class="rblock-sticker" src="/illustrations/stickers/herramienta.png" alt="" aria-hidden="true" width="80" height="80" style="transform:rotate(10deg)" />
           <Tag label="Servicios" variant="dark" />
           <h3 class="rblock-title">De las horas trabajadas a la factura, sin fricción</h3>
           <p class="rblock-sub">Proyectos, presupuestos, facturación y soporte integrados. Menos administración, más tiempo para servir.</p>
           <div class="rblock-img"><span>UI Servicios</span></div>
         </div>
         <div class="rblock" id="rub-man">
+          <img class="rblock-sticker" src="/illustrations/stickers/laptop.png"     alt="" aria-hidden="true" width="80" height="80" style="transform:rotate(-12deg)" />
           <Tag label="Manufactura" variant="cor" />
           <h3 class="rblock-title">Producción, stock y ventas hablando el mismo idioma</h3>
           <p class="rblock-sub">Controlá órdenes de producción, insumos y entregas desde un solo lugar con visibilidad en tiempo real.</p>
@@ -86,10 +95,22 @@ import Footer from '../components/Footer.astro';
         <p class="sec-sub">Resultados promedio en empresas que implementaron Odoo con Adhoc en los primeros 6 meses.</p>
       </div>
       <div class="metrics-row">
-        <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">40%</div><div class="metric-lbl">Tareas<br>manuales</div></div>
-        <div class="metric-cell"><div class="metric-arrow">↓</div><div class="metric-num">60%</div><div class="metric-lbl">Errores<br>operativos</div></div>
-        <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">30%</div><div class="metric-lbl">Productividad<br>del equipo</div></div>
-        <div class="metric-cell"><div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div></div>
+        <div class="metric-cell">
+          <img class="metric-blob" src="/contenedores/cont5%20(3).png" alt="" aria-hidden="true" width="200" height="200" />
+          <div class="metric-arrow">↓</div><div class="metric-num">40%</div><div class="metric-lbl">Tareas<br>manuales</div>
+        </div>
+        <div class="metric-cell">
+          <img class="metric-blob" src="/contenedores/cont5%20(2).png" alt="" aria-hidden="true" width="200" height="200" />
+          <div class="metric-arrow">↓</div><div class="metric-num">60%</div><div class="metric-lbl">Errores<br>operativos</div>
+        </div>
+        <div class="metric-cell">
+          <img class="metric-blob" src="/contenedores/cont5%20(1).png" alt="" aria-hidden="true" width="200" height="200" />
+          <div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">30%</div><div class="metric-lbl">Productividad<br>del equipo</div>
+        </div>
+        <div class="metric-cell">
+          <img class="metric-blob" src="/contenedores/cont5%20(4).png" alt="" aria-hidden="true" width="200" height="200" />
+          <div class="metric-arrow metric-arrow--up">↑</div><div class="metric-num metric-num--up">100%</div><div class="metric-lbl">Visibilidad<br>operativa</div>
+        </div>
       </div>
       <div class="metrics-cta">
         <Button variant="primary" size="lg" label="Solicitar demo →" dataOpenCotizador={true} />
@@ -544,7 +565,12 @@ import Footer from '../components/Footer.astro';
 .sec-sub  { font-family:var(--font-body);font-size:1.0625rem;color:var(--color-text-secondary);line-height:1.65;max-width:520px;margin-top:var(--space-md); }
 
 /* ─── 1. Hero ─── */
-#hero { padding-bottom:0;overflow:hidden;text-align:center; }
+#hero { padding-bottom:0;overflow:hidden;text-align:center;position:relative; }
+.hero-sticker { position:absolute;pointer-events:none;user-select:none;z-index:2; }
+.hero-sticker--lampara  { width:120px;height:120px;top:60px;right:8%;transform:rotate(15deg); }
+.hero-sticker--estrella { width:90px;height:90px;bottom:80px;left:6%;transform:rotate(-10deg); }
+.hero-sticker--objetivo { width:100px;height:100px;top:80px;left:5%;transform:rotate(8deg); }
+@media (max-width:767px) { .hero-sticker { display:none; } }
 .hero-inner { display:flex;flex-direction:column;align-items:center;gap:var(--space-lg);padding-bottom:var(--space-3xl); }
 .hero-hed { font-family:var(--font-display);font-weight:500;font-size:clamp(3rem,5.5vw,4.5rem);line-height:1.04;letter-spacing:-.025em;max-width:820px; }
 .hero-hed em { font-style:italic;color:var(--color-primary); }
@@ -616,7 +642,9 @@ import Footer from '../components/Footer.astro';
 .rchip:hover { opacity:.8; }
 .rchip--active { opacity:1; }
 .rubros-right { display:flex;flex-direction:column;gap:var(--space-4xl); }
-.rblock { display:flex;flex-direction:column;gap:var(--space-md); }
+.rblock { display:flex;flex-direction:column;gap:var(--space-md);position:relative; }
+.rblock-sticker { position:absolute;top:24px;right:24px;pointer-events:none;user-select:none;z-index:2;transform:rotate(12deg); }
+@media (max-width:767px) { .rblock-sticker { display:none; } }
 .rblock :global(.tag) { align-self:flex-start; }
 .rblock-title { font-family:var(--font-display);font-weight:500;font-size:1.75rem;line-height:1.2;max-width:560px; }
 .rblock-sub { font-family:var(--font-body);font-size:1rem;color:var(--color-text-secondary);line-height:1.6;max-width:520px; }
@@ -703,14 +731,15 @@ import Footer from '../components/Footer.astro';
 
 /* ─── 6. Métricas ─── */
 .metrics-hdr { text-align:center;margin-bottom:var(--space-2xl);display:flex;flex-direction:column;align-items:center; }
-.metrics-row { display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border-subtle);border-radius:clamp(16px,5vw,32px);overflow:hidden; }
-.metric-cell { background:var(--color-surface);padding:var(--space-2xl) var(--space-xl);display:flex;flex-direction:column;gap:var(--space-xs);border-right:1px solid var(--border-subtle); }
-.metric-cell:last-child { border-right:none; }
-.metric-arrow { font-size:1.6rem;font-weight:700;line-height:1;color:var(--color-primary); }
-.metric-arrow--up { color:var(--color-coral); }
-.metric-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;line-height:1;letter-spacing:-.03em; }
-.metric-num--up { color:var(--color-coral); }
-.metric-lbl { font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);line-height:1.4; }
+.metrics-row { display:flex;gap:var(--space-lg);justify-content:center;flex-wrap:wrap; }
+.metric-cell { width:200px;height:200px;overflow:visible;background:transparent;padding:var(--space-lg);display:flex;flex-direction:column;gap:var(--space-xs);border-radius:clamp(16px,5vw,32px);position:relative;border:none; }
+.metric-blob { position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;user-select:none;transform:none; }
+@media (max-width:767px) { .metric-blob { display:none; } }
+.metric-arrow { font-size:1.6rem;font-weight:700;line-height:1;color:var(--color-primary);position:relative;z-index:1; }
+.metric-arrow--up { color:var(--color-primary); }
+.metric-num { font-family:var(--font-display);font-weight:700;font-size:3.5rem;line-height:1;letter-spacing:-.03em;position:relative;z-index:1;color:var(--color-ink); }
+.metric-num--up { color:var(--color-ink); }
+.metric-lbl { font-family:var(--font-body);font-size:.875rem;font-weight:500;color:var(--color-text-secondary);line-height:1.4;position:relative;z-index:1; }
 .metrics-cta { text-align:center;margin-top:var(--space-2xl); }
 
 /* ─── 7. Proceso ─── */
