@@ -719,6 +719,17 @@ Todo el copy del sitio está en **español argentino con voseo**. Si el equipo d
 
 ---
 
+## Estado del proyecto
+
+| Item | Estado |
+|---|---|
+| Build | ✅ Limpio — cero errores, cero warnings |
+| Deploy | Vercel (pendiente) |
+| Páginas construidas | Home (`index.astro`) |
+| Links `href="#"` | Placeholders intencionales — se completan cuando se construyan las páginas internas |
+
+---
+
 ## Contacto del proyecto
 
 **Diseño y UX:** Facundo Mantegazza — contacto@uxkid.com  
